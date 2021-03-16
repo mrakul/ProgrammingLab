@@ -1,2 +1,2 @@
-# C-Projects-VS-Code
-C learning + GitHub 
+# C/C++-Projects-VS-Code
+C/C++ learning + GitHub 

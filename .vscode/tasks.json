@@ -22,12 +22,14 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++.exe build active file",
-            "command": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
+            "command": "C:\\Program Files\\mingw-w64\\mingw64\\bin\\g++.exe",
+            //"command": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
             "args": [
 				// Add debug info (-g option) to the object file (files) and link to exe (-o option)
                 "-g",
 				//"${file}",
-                "${fileDirname}\\**.c",
+                // "${fileDirname}\\**.c",
+                "${fileDirname}\\**.cpp",
                 //"${fileDirname}\\*.c",
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe",
@@ -39,12 +41,10 @@
                 //"-c",
                 
                 // 3. Link all object files together to Program.exe, preliminary compile 
+                // "${fileDirname}\\**.o"
+                //"${fileDirname}\\${fileBasenameNoExtension}.o",
                 // "-o",
                 // "${fileDirname}\\Program.exe",
-                // "${fileDirname}\\**.o"
-
-                //"${fileDirname}\\${fileBasenameNoExtension}.o",
-                //"-nostartfiles"  
             ],
             "options": {
                 //"cwd": "${workspaceFolder}"
@@ -57,7 +57,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "compiler: \"C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe\"
+            "detail": "compiler: \"C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe\""
         }
     ]
 }
