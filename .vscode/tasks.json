@@ -10,6 +10,7 @@
             "args": [
                 //"-IC:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include",
 				// Add debug info (-g option) to the object file (files) and link to exe (-o option)
+                "-Wall",
                 "-g",
 				"${file}",
                 // "${fileDirname}\\**.c",
