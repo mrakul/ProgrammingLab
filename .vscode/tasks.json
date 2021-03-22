@@ -4,15 +4,16 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++.exe build active file",
-            "command": "C:\\Program Files\\mingw-w64\\mingw64\\bin\\g++.exe",
+            "command": "C:\\Program Files\\mingw-w64\\mingw64\\bin\\gcc.exe",
+            // "command": "C:\\Program Files\\mingw-w64\\mingw64\\bin\\g++.exe",
             // "command": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
             "args": [
                 //"-IC:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include",
 				// Add debug info (-g option) to the object file (files) and link to exe (-o option)
                 "-g",
-				//"${file}",
+				"${file}",
                 // "${fileDirname}\\**.c",
-                "${fileDirname}\\**.c*",
+                // "${fileDirname}\\**.c*",
                 // "${fileDirname}\\**.cpp",
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe",
@@ -22,7 +23,7 @@
                 // Only compile file (-c option)
                 //"${file}",
                 //"-c",
-                // 3. Link all object files together to Program.exe, preliminary compile 
+                // 3. Link all object files together to Program.exe, preliminary compile
                 // "${fileDirname}\\**.o"
                 //"${fileDirname}\\${fileBasenameNoExtension}.o",
                 // "-o",
@@ -39,9 +40,9 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "compiler: \"C:\\Program Files\\mingw-w64\\mingw64\\bin\\g++.exe\""
+            "detail": "compiler: \"C:\\Program Files\\mingw-w64\\mingw64\\bin\\gcc.exe\""
             // "detail": "compiler: \"C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe\""
-            
+
         }
         // {
         //     "type": "cppbuild",
