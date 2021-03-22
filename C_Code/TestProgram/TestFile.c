@@ -75,19 +75,6 @@ int main(int argc, char const *argv[])
     }
 
     timeTest();
-
-    DIR *dir1;
-    struct dirent *dirEntry;
-    dir1 = opendir(".");
-    if (dir1)
-    {
-        while ((dirEntry = readdir(dir1)) != NULL)
-        {
-            printf("%s\n", dirEntry->d_name);
-        }
-        closedir(dir1);
-    }
-
     getchar();
 }
 
