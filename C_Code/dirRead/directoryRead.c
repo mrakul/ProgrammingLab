@@ -4,7 +4,6 @@
 
 int main(int argc, char const *argv[])
 {
-    char readChar;
     DIR *dir1;
     struct dirent *dirEntry;
     dir1 = opendir(".");
@@ -39,8 +38,8 @@ int main(int argc, char const *argv[])
     size_t lineLength = 20;
     char line[FOURTY] = {0};
     int line2[lineLength];
-    printf("Line1 size is: %d\n", sizeof(line));
-    printf("Line2 size is: %d\n", sizeof(line2));
+    printf("Line1 size is: %zu\n", sizeof(line));
+    printf("Line2 size is: %zu\n", sizeof(line2));
     while (feof(file1) == 0)
     {
         if (fgets(line, FOURTY, file1) != NULL)
@@ -53,6 +52,9 @@ int main(int argc, char const *argv[])
     {
         printf("File is closed successfully");
     }
+
+    int *intPtr = malloc(sizeof(*intPtr) * 70);
+    intPtr[0] = 10;
 
     return 0;
 }
