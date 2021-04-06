@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
     //     printf("Input char is: %c\n", readChar);
     // }
     FILE *file1;
-    if ((file1 = fopen(".\\C_Code\\TestProgram\\file.txt", "r")) == NULL)
+    if ((file1 = fopen(".\\C_Code\\dirRead\\file.txt", "r")) == NULL)
     {
         printf("Cannot open file.\n");
         exit(1);
@@ -37,16 +37,17 @@ int main(int argc, char const *argv[])
     enum NUMBERS {ONE = 1, TWO = 2, THREE = 3, FOUR = 4, FOURTY = 40};
     size_t lineLength = 20;
     char line[FOURTY] = {0};
-    int line2[lineLength];
+    char line2[lineLength];
     printf("Line1 size is: %zu\n", sizeof(line));
     printf("Line2 size is: %zu\n", sizeof(line2));
+    printf("size-t type size is: %zu\n", sizeof(size_t));
+    printf("lineLength size is: %zu\n", sizeof(lineLength));
     while (feof(file1) == 0)
     {
         if (fgets(line, FOURTY, file1) != NULL)
-        {
             printf("%s", line);
-        }
     }
+    fputc('\n', stdout);                // Print "\n" after the last line
 
     if (fclose(file1) == 0)
     {
@@ -55,6 +56,7 @@ int main(int argc, char const *argv[])
 
     int *intPtr = malloc(sizeof(*intPtr) * 70);
     intPtr[0] = 10;
+    free(intPtr);
 
     return 0;
 }
