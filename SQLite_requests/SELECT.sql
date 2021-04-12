@@ -5,15 +5,15 @@
 -- FROM Customers
 -- WHERE cust_name LIKE "%Toy%";
 
---  GLOB
-SELECT * FROM Customers
-WHERE cust_state GLOB '[^AMN]*' -- not A or M letter
-ORDER BY cust_contact LIMIT 5;
+--  GLOB:
+-- SELECT * FROM Customers
+-- WHERE cust_state GLOB '[^AM]*' -- not A or M letter
+-- /* WHERE cust_email IS NULL -- not A or M letter */
+-- ORDER BY cust_contact LIMIT 5;
 
 -- Concatenation, RTRIM
 -- SELECT RTRIM(LTRIM(vend_id || ' ' || vend_name || '         '))
 -- AS INFORMATION FROM Vendors;
-
 
 -- INNER JOIN
 -- SELECT OrderItems.order_num, order_item, prod_id, quantity, Orders.cust_id FROM OrderItems
@@ -37,8 +37,29 @@ ORDER BY cust_contact LIMIT 5;
     -- FROM Vendors
     -- ORDER BY vend_name;
 
---
-SELECT *
-FROM Orders
-WHERE CAST(strftime('%m', order_date) as decimal) = 02;
--- strftime('%m', order_date) = "01";
+-- DATA comparing
+-- SELECT *
+-- FROM Orders
+-- WHERE CAST(strftime('%m', order_date) as decimal) = 01;
+-- OR =>   strftime('%m', order_date) = "01";
+
+-- Summarazing Functions
+-- 1:
+-- SELECT AVG(prod_price) AS AVG_PRICE,
+--        MAX(prod_price) AS MAX_PRICE,
+--        MIN(prod_name) AS FIRST_PRODUCT, -- check test Products
+--        COUNT(*) AS NUM_OF_PRODUCTS
+-- FROM Products;
+-- 2: subquery
+-- SELECT *
+-- FROM Products
+-- WHERE prod_price = (SELECT MIN(prod_price) FROM Products);
+-- 3: SUM
+-- SELECT SUM(quantity) AS ORDERED_NUMBER,
+--        SUM(item_price * quantity) AS TOTAL_PRICE
+-- FROM OrderItems
+-- WHERE order_num = 20005;
+-- 4: AVG by unique values (DISTINCT keyword)
+SELECT AVG(DISTINCT prod_price) AS AVERAGE_OF_UNIQUE_PRICES
+FROM Products
+WHERE vend_id = 'DLL01';
