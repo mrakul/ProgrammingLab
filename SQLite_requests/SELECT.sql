@@ -1,6 +1,6 @@
 -- -- SQLite,
 
--- LIKE
+-- SELECE basics: LIKE
 -- SELECT cust_id, cust_name
 -- FROM Customers
 -- WHERE cust_name LIKE "%Toy%";
@@ -40,10 +40,11 @@
 -- DATA comparing
 -- SELECT *
 -- FROM Orders
--- WHERE CAST(strftime('%m', order_date) as decimal) = 01;
--- OR =>   strftime('%m', order_date) = "01";
+-- WHERE strftime('%m', order_date) = "01" AND
+--       strftime('%Y', order_date) = "2020"
+-- OR =>  CAST(strftime('%m', order_date) as decimal) = 01;
 
--- Summarazing Functions
+-- *** Data Manipulation Functions and Summarazing Functions ***
 -- 1:
 -- SELECT AVG(prod_price) AS AVG_PRICE,
 --        MAX(prod_price) AS MAX_PRICE,
@@ -59,7 +60,56 @@
 --        SUM(item_price * quantity) AS TOTAL_PRICE
 -- FROM OrderItems
 -- WHERE order_num = 20005;
+-- 4. SUBSTR example
+-- SELECT UPPER(cust_id) AS ID,
+--        UPPER(cust_name) AS NAME,
+--        UPPER(cust_contact) AS CONTACT,
+--        UPPER(cust_city) AS CITY,
+--        UPPER(SUBSTR(cust_contact, 1, 2) || SUBSTR(cust_city, 1, 3)) AS LOGIN
+-- FROM Customers
+-- ORDER BY cust_id;
 -- 4: AVG by unique values (DISTINCT keyword)
-SELECT AVG(DISTINCT prod_price) AS AVERAGE_OF_UNIQUE_PRICES
-FROM Products
-WHERE vend_id = 'DLL01';
+-- SELECT AVG(DISTINCT prod_price) AS AVERAGE_OF_UNIQUE_PRICES
+-- FROM Products
+-- WHERE vend_id = 'DLL01';
+
+-- SELECT MAX(prod_price) AS MaxPrice
+-- FROM Products
+-- WHERE prod_price < 10; -- WHERE has more priority than MAX
+
+-- *** GROUP BY ***
+-- 1.
+    -- SELECT vend_id, COUNT() AS NUM_OF_PRODUCTS_PER_VENDOR --, prod_id, COUNT()
+    -- FROM Products
+    -- -- WHERE prod_price >= 4
+    -- GROUP BY vend_id HAVING COUNT() >= 0 AND vend_id GLOB "[BDF]*";
+-- 2.
+    -- SELECT order_num, SUM(quantity)
+    -- FROM OrderItems
+    -- GROUP BY order_num
+    -- ORDER BY order_num;
+-- 3 Challenge from Book:
+    -- SELECT vend_id, COUNT(*) AS num_prods
+    -- FROM Products
+    -- GROUP BY vend_id HAVING COUNT(*) >= 2 AND prod_price >= 4;
+-- Number of items (positions) in every orders
+    -- SELECT order_num, COUNT() AS NUM_OF_ITEMS_PER_ORDER
+    -- FROM OrderItems
+    -- GROUP BY order_num
+    -- ORDER BY order_num;
+-- MIN_PRICE of a vendor's items
+    -- SELECT vend_id, MIN(prod_price) as MIN_PRICE
+    -- FROM Products
+    -- GROUP BY vend_id
+    -- ORDER BY MIN_PRICE;
+-- Orders having more then 200 total items
+    -- SELECT order_num, SUM(quantity)
+    -- FROM OrderItems
+    -- GROUP BY order_num
+    -- HAVING SUM(quantity) >= 100;
+--  Total price (>= 1000) for orders by Customers (using INNER JOIN to show cust_id from Orders and cust_name from Customers)
+    -- SELECT OrderItems.order_num, SUM(item_price * quantity) AS MONEY_SPENT, Orders.cust_id, Customers.cust_name
+    -- FROM OrderItems
+    -- INNER JOIN Orders ON OrderItems.order_num = Orders.order_num
+    -- INNER JOIN Customers ON Orders.cust_id = Customers.cust_id
+    -- GROUP BY OrderItems.order_num HAVING MONEY_SPENT >= 1000;
