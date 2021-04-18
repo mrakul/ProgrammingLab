@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <stdio.h>
+#include <string.h>
 
 int main(int argc, char const *argv[])
 {
@@ -34,9 +35,10 @@ int main(int argc, char const *argv[])
     // putchar('\n');
     //const size_t LINE_SIZE = 40;
 
-    enum NUMBERS {ONE = 1, TWO = 2, THREE = 3, FOUR = 4, FOURTY = 40};
+    //enum NUMBERS {ONE = 1, TWO = 2, THREE = 3, FOUR = 4, FOURTY = 40};
+    //char line[FOURTY] = {0};
     size_t lineLength = 20;
-    char line[FOURTY] = {0};
+    char line[atoi(argv[2])]; //variable-length set by arcguments passed by main arguments (argv2)
     char line2[lineLength];
     printf("Line1 size is: %zu\n", sizeof(line));
     printf("Line2 size is: %zu\n", sizeof(line2));
@@ -44,7 +46,7 @@ int main(int argc, char const *argv[])
     printf("lineLength size is: %zu\n", sizeof(lineLength));
     while (feof(file1) == 0)
     {
-        if (fgets(line, FOURTY, file1) != NULL)
+        if (fgets(line, *argv[2], file1) != NULL)
             printf("%s", line);
     }
     fputc('\n', stdout);                // Print "\n" after the last line

@@ -113,3 +113,50 @@
     -- INNER JOIN Orders ON OrderItems.order_num = Orders.order_num
     -- INNER JOIN Customers ON Orders.cust_id = Customers.cust_id
     -- GROUP BY OrderItems.order_num HAVING MONEY_SPENT >= 1000;
+
+-- #11, Book: SUBQUERIES
+-- 1. OrderItems -> Orders -> Customers
+    -- SELECT * FROM Customers
+    -- WHERE cust_id IN (SELECT cust_id
+    --                   FROM Orders
+    --                   WHERE order_num IN (SELECT order_num
+    --                                       FROM OrderItems
+    --                                       WHERE prod_id = 'RGAN01'));
+-- Strange example of a subquery
+    -- SELECT cust_name,
+    --        cust_state,
+    --        cust_id,
+    --        (SELECT COUNT(*)
+    --         FROM Orders
+    --         WHERE Customers.cust_id = Orders.cust_id) AS ORDERS
+-- FROM Customers
+-- ORDER BY cust_id;
+-- Crossjoin (result as INNER JOIN)
+    -- SELECT Vendors.vend_id, Products.vend_id, vend_name, prod_name
+    -- FROM Vendors, Products
+    -- WHERE Vendors.vend_id = Products.vend_id;
+-- #12, Book: JOINS
+--INNER JOIN
+    -- SELECT Vendors.vend_id, vend_name, prod_name, prod_price
+    -- FROM Vendors
+    -- INNER JOIN Products
+    -- ON Vendors.vend_id = Products.vend_id;
+ -- CrossJOIN: OrderItems, Products, Vendors
+    -- SELECT prod_name, vend_name, prod_price, quantity
+    -- FROM OrderItems, Products, Vendors
+    -- WHERE Products.vend_id = Vendors.vend_id
+    -- AND OrderItems.prod_id = Products.prod_id
+    -- AND order_num = 20007;
+-- INNER JOIN: OrderItems->Products->Vendors
+    -- SELECT prod_name, vend_name, prod_price, quantity, order_num
+    -- FROM OrderItems
+    -- INNER JOIN Products ON OrderItems.prod_id = Products.prod_id
+    -- INNER JOIN Vendors ON Products.vend_id = Vendors.vend_id
+    -- WHERE order_num = 20007;
+
+-- #13 Book: Advanced Joins
+SELECT cust_id, cust_name, cust_contact
+FROM Customers
+WHERE cust_name = (SELECT cust_name FROM Customers WHERE
+                   cust_contact = 'Jim Jones');
+

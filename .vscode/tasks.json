@@ -6,15 +6,16 @@
             "label": "C/C++: gcc.exe build active file",
             "command": "C:\\Program Files\\mingw\\mingw64\\bin\\gcc.exe",
             // "command": "C:\\Program Files\\mingw-w64\\mingw64\\bin\\g++.exe",
-            // "command": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
             "args": [
                 //"-IC:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include",
 				// Add debug info (-g option) to the object file (files) and link to exe (-o option)
                 "-Wall",
+                "-pedantic-errors",
+                //"-std=c89",
+                // "-ansi",
                 "-g",
 				// "${file}",
                 "${fileDirname}\\**.c",
-                // "${fileDirname}\\**.c*",
                 // "${fileDirname}\\**.cpp",
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe",

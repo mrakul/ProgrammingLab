@@ -80,7 +80,6 @@ int main(int argc, char const *argv[])
     timeTest();
     getchar();
 
-    gets(destString1);
 }
 
 void function1(int *const val1)
