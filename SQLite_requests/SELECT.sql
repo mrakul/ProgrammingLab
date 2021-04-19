@@ -155,8 +155,54 @@
     -- WHERE order_num = 20007;
 
 -- #13 Book: Advanced Joins
-SELECT cust_id, cust_name, cust_contact
-FROM Customers
-WHERE cust_name = (SELECT cust_name FROM Customers WHERE
-                   cust_contact = 'Jim Jones');
+-- 1. Show customer's order numbers (or count how much order numbers it has)
+    -- SELECT Customers.cust_id, order_num-- + COUNT(order_num) AS ORDERS_NUMBER-- Orders.order_num
+    -- FROM Customers
+    -- LEFT JOIN Orders
+    -- ON Customers.cust_id = Orders.cust_id;
+    -- + GROUP BY Customers.cust_id;
+--2. Count how many orders have a particular product
+    -- SELECT Products.prod_id, prod_name, COUNT(order_num)
+    -- FROM Products
+    --   LEFT JOIN OrderItems
+    --   ON Products.prod_id = OrderItems.prod_id
+    -- GROUP BY Products.prod_id
+    -- ORDER BY prod_name;
+-- !!! 3. How many products has every Vendor
+    -- SELECT Vendors.vend_id, COUNT(prod_id) AS NUM_OF_PRODUCTS-- prod_id, prod_name --COUNT(prod_id)
+    -- FROM Vendors
+    --   LEFT JOIN Products
+    --   ON Vendors.vend_id = Products.vend_id
+    -- GROUP BY prod_id
+    -- ORDER BY prod_id;
+
+-- #14 Book: UNIONS
+-- 1. Example from the book
+    -- SELECT cust_name, cust_contact, cust_email
+    -- FROM Customers
+    -- WHERE cust_state IN ('IL','IN','MI')
+    -- UNION ALL
+    -- SELECT cust_name, cust_contact, cust_email
+    -- FROM Customers
+    -- WHERE cust_name = 'Fun4All'
+    -- ORDER BY cust_name, cust_contact;
+-- 2. Challenges:
+    -- SELECT prod_id, quantity
+    -- FROM OrderItems
+    -- WHERE quantity = 100
+    --     UNION
+    -- SELECT prod_id, quantity
+    -- FROM OrderItems
+    -- WHERE prod_id LIKE "BNBG%"
+    -- ORDER BY prod_id, quantity;
+-- The same with WHERE with OR
+    -- SELECT prod_id, quantity
+    -- FROM OrderItems
+    -- WHERE quantity = 100 OR prod_id LIKE "BNBG%"
+    -- ORDER BY prod_id, quantity;
+-- UNION from different tables (different fields)
+    -- SELECT prod_name FROM Products
+    -- UNION
+    -- SELECT cust_name FROM Customers
+    -- ORDER BY prod_name;
 
