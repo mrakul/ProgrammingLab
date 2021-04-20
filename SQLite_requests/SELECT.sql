@@ -206,3 +206,29 @@
     -- SELECT cust_name FROM Customers
     -- ORDER BY prod_name;
 
+-- #15 Book: INSERT
+    -- INSERT INTO Customers(cust_id, cust_name, cust_address,
+    -- cust_city, cust_state, cust_zip, cust_country, cust_contact, cust_email)
+    -- VALUES ('1000000006',
+    -- 'Toy Land',
+    -- '123 Any Street',
+    -- 'New York',
+    -- 'NY',
+    -- '11111',
+    -- 'USA',
+    -- NULL,
+    -- NULL);
+-- Copy table
+    -- CREATE TABLE CustCopy AS SELECT * FROM Customers;
+
+-- #16 Book: UPDATE, DELETE
+-- 1. Update one field
+    -- UPDATE Customers
+    -- SET cust_email = 'kim@thetoystore.com'
+    -- WHERE cust_id = '1000000005';
+-- 2. Update two fields
+    -- UPDATE Customers
+    -- SET cust_contact = 'Sam Roberts', cust_email = 'sam@toyland.com'
+    -- WHERE cust_id = '1000000006';
+-- 3. DELETE
+    -- DELETE FROM Customers WHERE cust_id = '1000000006';
