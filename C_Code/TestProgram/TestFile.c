@@ -3,7 +3,7 @@
 #include "timeTest.h"
 
 void function1(int *const val1);
-
+const int NUMBER = 10;
 struct Human
 {
     int cash;
@@ -20,6 +20,9 @@ int main(int argc, char const *argv[])
 
     int a, i;
     p_man1 = &man1;
+
+    enum ENUM1 {ONE,TWO,THREE};
+    int numbers[NUMBER];           // Forbidden in c89 (variable-length array), allowed in following standards
 
     // Example:
     //     char s[] = "hello";

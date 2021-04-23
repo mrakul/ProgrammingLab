@@ -11,7 +11,7 @@
 				// Add debug info (-g option) to the object file (files) and link to exe (-o option)
                 "-Wall",
                 "-pedantic-errors",
-                //"-std=c89",
+                // "-std=c89",
                 // "-ansi",
                 "-g",
 				// "${file}",

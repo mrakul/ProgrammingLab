@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
     //enum NUMBERS {ONE = 1, TWO = 2, THREE = 3, FOUR = 4, FOURTY = 40};
     //char line[FOURTY] = {0};
     size_t lineLength = 20;
-    char line[atoi(argv[2])]; //variable-length set by arcguments passed by main arguments (argv2)
+    char line[atoi(argv[2])]; //variable-length set by arguments passed by main arguments (argv2)
     char line2[lineLength];
     printf("Line1 size is: %zu\n", sizeof(line));
     printf("Line2 size is: %zu\n", sizeof(line2));

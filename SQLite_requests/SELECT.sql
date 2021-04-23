@@ -1,4 +1,7 @@
--- -- SQLite,
+-- SQLite,
+
+-- ### This setting is to follow refferantial constraing ###
+PRAGMA foreign_keys = 1;
 
 -- SELECE basics: LIKE
 -- SELECT cust_id, cust_name
@@ -218,8 +221,31 @@
     -- 'USA',
     -- NULL,
     -- NULL);
--- Copy table
-    -- CREATE TABLE CustCopy AS SELECT * FROM Customers;
+-- COPY TABLE
+    -- CREATE TABLE CustCopy
+    --        AS SELECT *
+    --           FROM Customers;
+-- INSERT values from one to anoter existing(!) table
+INSERT INTO CustCopy (cust_id,
+                    cust_contact,
+                    cust_email,
+                    cust_name,
+                    cust_address,
+                    cust_city,
+                    cust_state,
+                    cust_zip,
+                    cust_country)
+        SELECT cust_id,
+                cust_contact,
+                cust_email,
+                cust_name,
+                cust_address,
+                cust_city,
+                cust_state,
+                cust_zip,
+                cust_country
+        FROM Customers;
+
 
 -- #16 Book: UPDATE, DELETE
 -- 1. Update one field
@@ -232,3 +258,44 @@
     -- WHERE cust_id = '1000000006';
 -- 3. DELETE
     -- DELETE FROM Customers WHERE cust_id = '1000000006';
+
+--#17 Book: CREATE TABLE, ALTER TABLE
+    -- ALTER TABLE Vendors ADD COLUMN vend_phone CHAR(20);
+    -- ALTER TABLE Vendors DROP vend_phone;
+--#18 Book: VIEWS
+-- 1. New VIEW:
+    -- CREATE VIEW CustomersWithOrders2 AS
+    -- SELECT *
+    -- FROM Customers
+    -- INNER JOIN Orders ON Customers.cust_id = Orders.cust_id;
+    -- SELECT *
+    -- FROM CustomersWithOrders2;
+
+-- ### CONSTRAINTS, ON DELETE CASCADE
+    -- CREATE TABLE departments
+    -- ( department_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    --   department_name VARCHAR UNIQUE
+    -- );
+    --
+    -- CREATE TABLE employees
+    -- ( employee_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    --   first_name VARCHAR NOT_NULL,
+    --   department_id INTEGER,
+    --   CONSTRAINT fk_departments
+    --     FOREIGN KEY (department_id)
+    --     REFERENCES departments(department_id)
+    --     ON DELETE CASCADE
+    -- );
+    --
+    -- INSERT INTO departments (department_name) VALUES ('DEPT2');
+    -- INSERT INTO departments (department_name) VALUES ('DEPT2');
+    -- INSERT INTO employees (first_name, department_id) VALUES ('Misha', 1);
+    -- INSERT INTO employees (first_name, department_id) VALUES ('Peta', 2);
+    -- DELETE FROM departments WHERE department_id = 1;
+-- ######################################
+
+
+
+
+
+
