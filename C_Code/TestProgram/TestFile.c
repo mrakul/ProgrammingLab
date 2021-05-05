@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <string.h>
+#include <inttypes.h>
 #include "timeTest.h"
 
 void function1(int *const val1);
+size_t arrSize(int array[]);
 const int NUMBER = 10;
 struct Human
 {
@@ -11,6 +13,10 @@ struct Human
 
 int main(int argc, char const *argv[])
 {
+    int16_t val;
+    val = -3;
+    printf("Val value %d", val);
+
     char srcString[] = "Test string";
     const char *srcString2 = "Test string 2";
     const char *srcString3[] = {"Test string 3"};
@@ -21,8 +27,13 @@ int main(int argc, char const *argv[])
     int a, i;
     p_man1 = &man1;
 
-    enum ENUM1 {ONE,TWO,THREE};
-    int numbers[NUMBER];           // Forbidden in c89 (variable-length array), allowed in following standards
+    enum ENUM1
+    {
+        ONE,
+        TWO,
+        THREE
+    };
+    int numbers[NUMBER]; // Forbidden in c89 (variable-length array), allowed in following standards
 
     // Example:
     //     char s[] = "hello";
@@ -80,12 +91,30 @@ int main(int argc, char const *argv[])
                i, argv[i], strnlen(argv[i], 15));
     }
 
+    // int j = 0;
+    // j = j++ + ++j;  // Undefined behavior
+
+    int x[5], y[5];
+    x[0] = *y; // x = y is rectricted
+
+
+    size_t arrSizeVal;
+    printf("array size: %zu\n", sizeof(x));
+    printf("INT size: %zu\n PTR size %zu:\n", sizeof(int), sizeof(int *));
+    arrSizeVal = arrSize(x);
+    printf("array size: %zu", arrSizeVal);
+
     timeTest();
     getchar();
-
 }
 
 void function1(int *const val1)
 {
     *val1 = 7;
+}
+
+size_t arrSize(int array[]) // pass only a pointer by value, ARRAY CAN'T BE BASSED BY VALUE IN C(!)
+                            // only a trick to wrap it up by typedef/structure
+{
+    return sizeof(array);   //returns a pointer's (int *) size
 }

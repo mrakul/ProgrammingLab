@@ -266,7 +266,7 @@ PRAGMA foreign_keys = 1;
 -- Check that VIEW works:
     -- SELECT * FROM CustomersWithOrders2;
 
--- ### CONSTRAINTS, ON DELETE CASCADE
+-- ### Referential integrity, CONSTRAINTS, ON DELETE CASCADE
     -- CREATE TABLE departments
     -- ( department_id INTEGER PRIMARY KEY AUTOINCREMENT,
     --   department_name VARCHAR UNIQUE
@@ -286,13 +286,34 @@ PRAGMA foreign_keys = 1;
     -- INSERT INTO departments (department_name) VALUES ('DEPT4');
     -- INSERT INTO employees (first_name, department_id) VALUES ('Misha', 6);
     -- INSERT INTO employees (first_name, department_id) VALUES ('Peta', 2);
-
-    SELECT * FROM employees;
+    -- SELECT * FROM employees;
     -- SELECT * FROM departments;
     -- DELETE FROM departments WHERE department_id = 2;
-    DELETE FROM employees WHERE employee_id BETWEEN 5 AND 12;
+    -- DELETE FROM employees WHERE employee_id BETWEEN 5 AND 12;
+-- ##################################
 
+-- #20 Book: Transactions
+-- BEGIN TRANSACTION;
+-- SAVEPOINT delete2;
+-- DELETE FROM OrderItems
+--     WHERE order_num = 20005;
+-- SAVEPOINT delete1;
+-- DELETE FROM Orderb
+--     WHERE order_num = 12333;
+-- COMMIT TRANSACTION;
 
-
-
-
+-- #22 Book: Indexes, Triggers
+-- Create INDEX
+    -- CREATE INDEX prod_name_IDX
+    -- ON Products (prod_name);
+-- Create TRIGGER
+    -- CREATE TRIGGER customer_state_UP
+    --    AFTER INSERT ON Customers
+    -- BEGIN
+    --     UPDATE Customers
+    --     SET cust_state = UPPER(cust_state)
+    --     WHERE Customers.cust_id = new.cust_id;
+    -- END;
+    -- SELECT * FROM Customers;
+    -- INSERT INTO Customers VALUES (1, 'NAME', 'TEST_ADDR', 'City', 'ru',  123, 'RUS', 'Contact', 'email@email.ru');
+    -- SELECT * FROM Customers;
