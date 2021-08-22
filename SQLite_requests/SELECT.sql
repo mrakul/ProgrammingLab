@@ -141,11 +141,15 @@ PRAGMA foreign_keys = 1;
     -- FROM Vendors, Products
     -- WHERE Vendors.vend_id = Products.vend_id;
 -- #12, Book: JOINS
---INNER JOIN
+-- INNER JOIN
     -- SELECT Vendors.vend_id, vend_name, prod_name, prod_price
-    -- FROM Vendors
-    -- INNER JOIN Products
+    -- FROM Products
+    -- LEFT JOIN Vendors
     -- ON Vendors.vend_id = Products.vend_id;
+ -- INNER JOIN on the same table (use AS):
+-- SELECT *
+-- FROM Customers AS T1
+-- INNER JOIN Customers ON T1.cust_id = Customers.cust_id;
  -- CrossJOIN: OrderItems, Products, Vendors
     -- SELECT prod_name, vend_name, prod_price, quantity
     -- FROM OrderItems, Products, Vendors
@@ -284,12 +288,22 @@ PRAGMA foreign_keys = 1;
     --
     -- INSERT INTO departments (department_name) VALUES ('DEPT1');
     -- INSERT INTO departments (department_name) VALUES ('DEPT4');
-    -- INSERT INTO employees (first_name, department_id) VALUES ('Misha', 6);
-    -- INSERT INTO employees (first_name, department_id) VALUES ('Peta', 2);
+    -- INSERT INTO employees (first_name, department_id) VALUES ('Misha2', 6);
+    -- INSERT INTO employees (first_name, department_id) VALUES ('Deptless', NULL);
     -- SELECT * FROM employees;
     -- SELECT * FROM departments;
     -- DELETE FROM departments WHERE department_id = 2;
     -- DELETE FROM employees WHERE employee_id BETWEEN 5 AND 12;
+
+    -- INNER JOIN departments <-> employees
+    -- SELECT employees.department_id, department_name, COUNT(employee_id) AS NUM_OF_EMPLOYEES
+    -- FROM employees
+    -- INNER JOIN departments ON employees.department_id = departments.department_id
+    -- GROUP BY departments.department_id;
+
+    SELECT department_id, COUNT(employee_id) AS NUM_OF_EMPLOYEES
+    FROM employees
+    GROUP BY department_id;
 -- ##################################
 
 -- #20 Book: Transactions
