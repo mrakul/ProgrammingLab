@@ -1,6 +1,0 @@
-This is the first line
-This is the second line
-3-rd line
-The Last line
-
-One more line
