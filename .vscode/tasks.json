@@ -15,17 +15,18 @@
                 // "-ansi",
 
                 // Only compile file (-c option), make object-files
+
+                //"${fileDirname}\\*.c",
                 //"-c",
                 "${fileDirname}\\*.c",
+                // or "${file}",
+                // Add debug info (-g option) to the object file (files)
+                //"-g",
 
                 // 3. Link all object files together to Program.exe, preliminary need to compile
                 //"${fileDirname}\\**.o",
                 "-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe",
-
-                // Add debug info (-g option) to the object file (files) and link to exe (-o option)
-                //"-g",
-				// "${file}",
 
                 //"-nostartfiles"
 
