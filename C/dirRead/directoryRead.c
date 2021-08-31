@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
     //     printf("Input char is: %c\n", readChar);
     // }
     FILE *file1;
-    if ((file1 = fopen(".\\C_Code\\dirRead\\file.txt", "r")) == NULL)
+    if ((file1 = fopen(".\\C\\dirRead\\file.txt", "r")) == NULL)
     {
         printf("Cannot open file.\n");
         exit(1);

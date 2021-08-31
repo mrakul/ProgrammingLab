@@ -8,28 +8,30 @@
             // "command": "C:\\Program Files\\mingw-w64\\mingw64\\bin\\g++.exe",
             "args": [
                 //"-IC:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include",
-				// Add debug info (-g option) to the object file (files) and link to exe (-o option)
+                //Warnings and errors MAXIMUM
                 "-Wall",
                 "-pedantic-errors",
                 // "-std=c89",
                 // "-ansi",
-                "-g",
-				// "${file}",
-                "${fileDirname}\\**.c",
-                // "${fileDirname}\\**.cpp",
-				"-o",
+
+                // Only compile file (-c option), make object-files
+                //"-c",
+                "${fileDirname}\\*.c",
+
+                // 3. Link all object files together to Program.exe, preliminary need to compile
+                //"${fileDirname}\\**.o",
+                "-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe",
 
+                // Add debug info (-g option) to the object file (files) and link to exe (-o option)
+                //"-g",
+				// "${file}",
+
                 //"-nostartfiles"
-                // ***
-                // Only compile file (-c option)
-                //"${file}",
-                //"-c",
-                // 3. Link all object files together to Program.exe, preliminary compile
-                // "${fileDirname}\\**.o"
-                //"${fileDirname}\\${fileBasenameNoExtension}.o",
-                // "-o",
-                // "${fileDirname}\\Program.exe",
+
+                //Explicitly specify the language to compile (WORKS BAD!)
+                //"-x",
+                //"c",
             ],
             "options": {
                 //"cwd": "${workspaceFolder}"
