@@ -29,8 +29,8 @@ int main(int argc, const char **argv){
 
     /*** Cast test ***/
     uint32_t number2 = -5;
-    printf("Number2 value %u\n", number2);
-    printf("Number2 value %d\n", (int)number2);
+    printf("Number2 value as unsigned %u\n", number2);
+    printf("Number2 value as signed%d\n", (int)number2);
 
     /*** Test #2 ***/
     float variable = 2.5f;
@@ -42,6 +42,9 @@ int main(int argc, const char **argv){
     printf("Variable after setting: %f\n", *varPtr);
     printf("Value with casting %d\n", (int)*varPtr);
     /*** End cast test ***/
+
+    getchar();
+    getchar();
 }
 
 int factorial(int n){
