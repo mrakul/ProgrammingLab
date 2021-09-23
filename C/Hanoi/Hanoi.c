@@ -9,7 +9,6 @@ typedef struct Disk_S{
 
 Disk_T *stackHead = NULL;
 
-
 /* Gets the new disk memory and initialize it     */
 /* INPUT: int diameter - diameter of the new disk */
 Disk_T * getNewDisk(int diameter){
@@ -53,13 +52,15 @@ int populate(int maxDiskDiam){
 
 int main(int argc, char const *argv[]){
 
+
     bool populated = false;
     /* Populate stack */
     populated = populate(10);
 
     if (!populated)
         printf("Something went wrong! \n");
+    else
+        printStack();
 
-    printStack();
     return 0;
 }
