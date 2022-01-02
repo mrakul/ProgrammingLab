@@ -24,4 +24,6 @@ int main(int argc, const char *argv[]){
     printArr(array, sizeof(array)/sizeof(*array));
     reverseArr(array, sizeof(array)/sizeof(*array));
     printArr(array, sizeof(array)/sizeof(*array));
+
+    return 0;
 }

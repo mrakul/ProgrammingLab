@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "cppbuild",
+            "type": "process",
             "label": "C/C++: gcc.exe build active file",
             "command": "C:\\Program Files\\mingw\\mingw64\\bin\\gcc.exe",
             // "command": "C:\\Program Files\\mingw-w64\\mingw64\\bin\\g++.exe",
@@ -15,11 +15,9 @@
                 // "-ansi",
 
                 // Only compile file (-c option), make object-files
-
-                //"${fileDirname}\\*.c",
                 //"-c",
                 "${fileDirname}\\*.c",
-                // or "${file}",
+                //"${file}",
                 // Add debug info (-g option) to the object file (files)
                 "-g",
 
