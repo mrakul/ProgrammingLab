@@ -15,8 +15,8 @@ int main(int argc, const char **argv){
     /*** Output value byte-by-byte ***/
     char *ch;
     printf("number address: %p\n", (void *)&number);
-    printf("number's address + 1 byte: %p\n", (char *)&number + 1);
-    printf("number's address + sizezof(number): %p\n", (char *)(&number + 1));
+    printf("number's address + 1 byte: %p\n", (char *)&number + 1);     //first - get the address-of(number) as address to uint32_t, then - cast to (char *), then - add 1 as sizeof(char)
+    printf("number's address + sizezof(number): %p\n", (char *)(&number + 1)); //first - get the address-of(number) as address to uint_32_t, then - add sizeof(uint32_t) to the address, then - cast to (char *)
     //Set ch to the last byte of 'number'
     ch = (char *)&number + sizeof(number) - 1;
 
@@ -40,7 +40,8 @@ int main(int argc, const char **argv){
     //Consider variable memory as int
     test((int *)varPtr);
     printf("Variable after setting: %f\n", *varPtr);
-    printf("Value with casting %d\n", (int)*varPtr);
+    printf("Value with casting to int: %d\n", (int)*varPtr);  //first - dereferencing, then - casting?
+    printf("Value with casting pointer to int %d\n", *(int *)varPtr); //first - casting to (int *), then - dereferencing as int?
     /*** End cast test ***/
 
     getchar();
