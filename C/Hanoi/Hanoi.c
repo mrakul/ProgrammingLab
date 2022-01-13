@@ -12,8 +12,7 @@ Disk_T *stackHead = NULL;
 /* Gets the new disk memory and initialize it     */
 /* INPUT: int diameter - diameter of the new disk */
 Disk_T * getNewDisk(int diameter){
-    Disk_T *newDisk = NULL;
-    newDisk = malloc(sizeof(Disk_T));
+    Disk_T *newDisk = malloc(sizeof(Disk_T));
     if (newDisk){
         newDisk->diameter = diameter;
         newDisk->prevDisk = NULL;
@@ -22,7 +21,7 @@ Disk_T * getNewDisk(int diameter){
 }
 
 void pushToStack(Disk_T *addedDisk){
-    if (stackHead)
+    if (stackHead)                          //may be made unconditional: if stackHead == NULL, addedDisk->prevDisk will be set to NULL;
         addedDisk->prevDisk = stackHead;
     stackHead = addedDisk;
 }
@@ -51,8 +50,6 @@ int populate(int maxDiskDiam){
 }
 
 int main(int argc, char const *argv[]){
-
-
     bool populated = false;
     /* Populate stack */
     populated = populate(10);

@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-			"args": ["someText", "123"],
+			"args": ["floats.txt"],//, "123"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
