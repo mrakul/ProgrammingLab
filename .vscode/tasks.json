@@ -11,7 +11,7 @@
                 //Warnings and errors MAXIMUM
                 "-Wall",
                 "-pedantic-errors",
-                // "-std=c89",
+                //"-std=c11",
                 // "-ansi",
 
                 // Only compile file (-c option), make object-files

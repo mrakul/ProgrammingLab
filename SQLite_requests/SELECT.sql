@@ -331,3 +331,31 @@ PRAGMA foreign_keys = 1;
     -- SELECT * FROM Customers;
     -- INSERT INTO Customers VALUES (1, 'NAME', 'TEST_ADDR', 'City', 'ru',  123, 'RUS', 'Contact', 'email@email.ru');
     -- SELECT * FROM Customers;
+
+
+
+/**** Employees and managers in one table example ***/
+CREATE TABLE employees_VANYA
+     ( employee_id INTEGER PRIMARY KEY AUTOINCREMENT,
+       hire_date TEXT,
+       chief_id INTEGER,
+       salary INTEGER,
+       CONSTRAINT fk_chif
+         FOREIGN KEY (chief_id)
+         REFERENCES employees(employee_id)
+         ON DELETE CASCADE
+    );
+
+INSERT INTO employees_VANYA (hire_date, chief_id, salary)
+VALUES ('2017-05-01', 4, 500);
+
+--DROP TABLE employees_VANYA;
+-- List all employees
+SELECT * FROM employees_VANYA;
+
+--List only employees with managers and which works longer then their managers
+SELECT * FROM employees_VANYA as E1
+    INNER JOIN employees_VANYA as E2
+    ON E1.chief_id = E2.employee_id
+WHERE date(E1.hire_date) < date(E2.hire_date);
+/***************************************************/

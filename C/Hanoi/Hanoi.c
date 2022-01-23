@@ -2,6 +2,8 @@
 #include <malloc.h>
 #include <stdbool.h>
 
+
+/*** Declarations ***/
 typedef struct Disk_S{
     int diameter;
     struct Disk_S *prevDisk;
@@ -9,7 +11,30 @@ typedef struct Disk_S{
 
 Disk_T *stackHead = NULL;
 
-/* Gets the new disk memory and initialize it     */
+/*** Function prototypes ***/
+Disk_T * getNewDisk(int diameter);
+void pushToStack(Disk_T *addedDisk);
+void printStack(void);
+int populate(int maxDiskDiam);
+//TODO:
+//popFromStack
+//free()
+
+/*** Main ***/
+int main(int argc, char const *argv[]){
+    bool populated = false;
+    /* Populate stack */
+    populated = populate(10);
+
+    if (!populated)
+        printf("Something went wrong! \n");
+    else
+        printStack();
+
+    return 0;
+}
+
+/* Gets a new disk memory and initialize it     */
 /* INPUT: int diameter - diameter of the new disk */
 Disk_T * getNewDisk(int diameter){
     Disk_T *newDisk = malloc(sizeof(Disk_T));
@@ -47,17 +72,4 @@ int populate(int maxDiskDiam){
             notGot = true;
     }
     return !notGot;
-}
-
-int main(int argc, char const *argv[]){
-    bool populated = false;
-    /* Populate stack */
-    populated = populate(10);
-
-    if (!populated)
-        printf("Something went wrong! \n");
-    else
-        printStack();
-
-    return 0;
 }
