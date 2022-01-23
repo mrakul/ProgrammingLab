@@ -1,16 +1,23 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
+#include "dirent.h"
+
+#define MAXPATH 1023
 
 int main(int argc, const char * argv[]){
     char buffer[80]; //buffer to read input data
     float curValue;
     //float sum = 0;
     FILE * fileToRead;
-    const char workDir[] = ".\\C\\IO\\";
-    char pathToFile[80] = {0};
+
+    //Get current working directory
+    char workDir[MAXPATH];
+    getcwd(workDir, MAXPATH);
+
     //Build the path to the file
-    strcat(strcpy(pathToFile, workDir), argv[1]);
+    char pathToFile[MAXPATH] = {0};
+    strcat(strcat(strcpy(pathToFile, workDir), "\\"), argv[1]);
 
     if (argc > 2){
         printf("Too much arguments! Please, input zero or one argument \n");
