@@ -4,7 +4,7 @@
         {
             "type": "process",
             "label": "C/C++: gcc.exe build active file",
-            "command": "C:\\Program Files\\mingw\\mingw64\\bin\\gcc.exe",
+            "command": "C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe",
             //"command": "C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe",
             "args": [
                 //"-IC:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include",
@@ -12,11 +12,12 @@
                 "-Wall",
                 "-pedantic-errors",
                 //"-std=c11",
+                "-std=c++2a",
                 // "-ansi",
 
                 // Only compile file (-c option), make object-files
                 //"-c",
-                //"${fileDirname}\\*.c",
+                //"${fileDirname}\\*.cpp",
                 "${file}",
                 // Add debug info (-g option) to the object file (files)
                 "-g",
