@@ -13,7 +13,13 @@
 			"stopAtEntry": true,
 			//"cwd": "${workspaceFolder}",
 			"cwd": "${fileDirname}",
-			"environment": [],
+			"environment": [
+				{
+					"name": "PATH",
+					"value": "%PATH%;C:\\Program Files\\mingw\\mingw64\\bin\\"
+				}
+
+			],
 			"externalConsole": false,
 			"MIMode": "gdb",
 			"targetArchitecture": "x86_64",
