@@ -36,11 +36,13 @@ int main(int argc, char const *argv[])
     /*** Check time for C-style array, array and vector ***/
     // C-style array case
     constexpr int SIZE = 100000;
+    constexpr int CYCLE = 1000;
+
     float Carray[SIZE] = {0.0};
     // 1. C-array time test
     clock_t point1 = clock();
     clock_t point2;
-    for (auto i = 1; i != 1000; i++)
+    for (auto i = 1; i != CYCLE; i++)
     {
         for (auto it = begin(Carray); it != end(Carray); it++)
         {
@@ -57,7 +59,7 @@ int main(int argc, char const *argv[])
     // 2. C++ array time test
     array<float, SIZE> array1 = {0.0};
     point1 = clock();
-    for (auto i = 1; i != 1000; i++)
+    for (auto i = 1; i != CYCLE; i++)
     {
         for (auto it = array1.begin(); it != array1.cend(); it++)
         {
@@ -74,7 +76,7 @@ int main(int argc, char const *argv[])
     // 3. Vector time test
     vector<float> vector1(SIZE, 0.0);
     point1 = clock();
-    for (auto i = 1; i != 1000; i++)
+    for (auto i = 1; i != CYCLE; i++)
     {
         for (auto it = array1.begin(); it != array1.cend(); it++)
         {
@@ -95,7 +97,6 @@ int main(int argc, char const *argv[])
     {       cout << "Current char is: " << endChar << endl;
             cin.get(endChar); // attempt to read another char
     }
-
 
     return 0;
 }
