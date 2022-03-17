@@ -34,9 +34,9 @@ int main(int argc, char const *argv[])
         cout << *it;
 
     /*** Check time for C-style array, array and vector ***/
-    float Carray[100000] = {0.0};
-    array<float, 100000> array1 = {0.0};
-    vector<float> vector1(100000, 0.0);
+    // C-style array case
+    constexpr int SIZE = 100000;
+    float Carray[SIZE] = {0.0};
     // 1. C-array time test
     clock_t point1 = clock();
     clock_t point2;
@@ -54,7 +54,8 @@ int main(int argc, char const *argv[])
     point2 = clock();
     cout << "C-array spent time is: " << (point2 - point1) / (double)CLOCKS_PER_SEC << endl;
 
-    // 2. Array time test
+    // 2. C++ array time test
+    array<float, SIZE> array1 = {0.0};
     point1 = clock();
     for (auto i = 1; i != 1000; i++)
     {
@@ -71,6 +72,7 @@ int main(int argc, char const *argv[])
     cout << "Array spent time is: " << (point2 - point1) / (double)CLOCKS_PER_SEC << endl;
 
     // 3. Vector time test
+    vector<float> vector1(SIZE, 0.0);
     point1 = clock();
     for (auto i = 1; i != 1000; i++)
     {

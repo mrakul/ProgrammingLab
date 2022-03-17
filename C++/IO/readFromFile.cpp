@@ -20,8 +20,10 @@ int main()
     double value;
     double sum = 0.0;
     int count = 0;        // number of items read
-    inFile >> value;      // get first value
-    while (inFile.good()) // while input good and not at EOF
+
+    //inFile >> value; // first read to check inFile.good()
+    //while (inFile.good()) // while input good and not at EOF
+    while (inFile >> value) // read and test for success, since inFileinFile, when placed in a context in which a bool value expected, evaluates to inFile.good()—that is, to true or false
     {
         cout << "Current read value: " << value << endl;
         ++count;         // count read numbers
@@ -34,7 +36,7 @@ int main()
         cout << "End of file reached.\n";
     else if (inFile.fail())
         cout << "Input terminated by data mismatch.\n";
-    else
+    else if (inFile.bad())
         cout << "Input terminated for unknown reason.\n";
 
     if (count == 0)
