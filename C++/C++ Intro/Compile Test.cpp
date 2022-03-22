@@ -37,7 +37,6 @@ int main(int argc, char const *argv[])
 
     string line;
     // char lineChar[20];
-    int i = 0;
 
     // reads the line until \n, but discarding \n
     while (getline(cin, line) && !line.empty())
