@@ -17,7 +17,10 @@ struct job
 template <typename T> void Swap(T &a, T &b);
 
 // Explicit specialization
-template <> void Swap<job>(job &job1, job &job2);
+template <> void Swap<job> (job &job1, job &job2);
+
+//Explicit instantiation
+//template void Swap<int>(int, int); // explicit instantiation
 
 void Show(job &j);
 
@@ -29,13 +32,12 @@ int main()
     cout.precision(2);
     cout.setf(ios::fixed, ios::floatfield);
 
-    //Use template of for int
+    //Use template (generated from the general definition)
     int i = 10, j = 20;
     cout << "i, j = " << i << ", " << j << ".\n";
     cout << "Using compiler-generated int swapper:\n";
     Swap(i, j); // generates void Swap(int &, int &)
     cout << "Now i, j = " << i << ", " << j << ".\n";
-
 
     // Use Swap of Explicit specialization
     job sue = {"Susan Yaffee", 73000.60, 7};

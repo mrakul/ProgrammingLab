@@ -10,8 +10,8 @@ int main(int argc, char const *argv[])
 {
     /*** Vectors test ***/
     vector<string> articles{"Hi", "Lane", "Shane"};
-    vector<string> articles2(10, "aaa");
-    articles2[3] = "asdas";
+    vector<string> articles2(10, "aaa");            //Make 10 elements of and initialize with "aaa"
+    articles2[3] = "asdas";                         //Change the 4-th element
     string word;
     // while (cin >> word)
     // {

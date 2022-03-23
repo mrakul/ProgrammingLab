@@ -42,21 +42,19 @@ int main(int argc, char const *argv[])
     while (getline(cin, line) && !line.empty())
     {
         cout << line.size() << endl;
-        if (!line.empty())
-        {
-            cout << line << endl;
-            decltype(line.size()) punct_cnt = 0;
-            // count the number of punctuation characters in s
-            // for (c = line[0], i = 0; i < line.size(); i++)     // for every char in s
-            for (auto &c : line) // !! c is a reference, since we want to change the initial string
-                if (ispunct(c))  // if the character is punctuation
-                    ++punct_cnt; // increment the punctuation counter
-                else
-                    c = toupper(c);
 
-            cout << punct_cnt
-                 << " punctuation characters in " << line << endl;
-        }
+        cout << line << endl;
+        decltype(line.size()) punct_cnt = 0;
+        // count the number of punctuation characters in s
+        // for (c = line[0], i = 0; i < line.size(); i++)     // for every char in s
+        for (auto &c : line) // !! c is a reference, since we want to change the initial string
+            if (ispunct(c))  // if the character is punctuation
+                ++punct_cnt; // increment the punctuation counter
+            else
+                c = toupper(c); //Make upper all the symbols
+
+        cout << punct_cnt
+             << " punctuation characters in " << line << endl;
     }
 
     // cin >> c;
@@ -68,7 +66,6 @@ int main(int argc, char const *argv[])
     cout << "Standard hosted: " << __STDC_HOSTED__ << endl;
     cout << "Standard version: " << __cplusplus << endl;
     cout << "Current date: " << __TIME__ << endl;
-
 
     // {
     //     int i, *const cp;
