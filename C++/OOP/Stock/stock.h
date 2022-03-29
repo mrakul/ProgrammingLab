@@ -18,10 +18,12 @@ public:
     void sell(long num, double price);
     void update(double price);
     void show() const;
+
+    const Stock &compare(const Stock &st) const;
     //Constructor / Desctructor
-    //Stock(); // default constructor
+    // Stock(); // default constructor
     Stock(int num);
-    Stock(const std::string &co = "NoName", long n = 0, double pr = 0.0);
+    Stock(const std::string &co = "NoName", long n = 0, double pr = 0.0);   //Call with no arguments as the default constructor, setting default values
     ~Stock(); // noisy destructor
 };
 #endif

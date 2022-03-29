@@ -2,6 +2,7 @@
 #include <string>
 #include <iomanip>
 #include <cctype>
+#include <cassert>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ struct pims
 
 int main(int argc, char const *argv[])
 {
+
     // int c(5);
     string a{"Test lalala"};
     string b("Another initializator mode");
@@ -51,7 +53,7 @@ int main(int argc, char const *argv[])
             if (ispunct(c))  // if the character is punctuation
                 ++punct_cnt; // increment the punctuation counter
             else
-                c = toupper(c); //Make upper all the symbols
+                c = toupper(c); // Make upper all the symbols
 
         cout << punct_cnt
              << " punctuation characters in " << line << endl;
@@ -66,6 +68,25 @@ int main(int argc, char const *argv[])
     cout << "Standard hosted: " << __STDC_HOSTED__ << endl;
     cout << "Standard version: " << __cplusplus << endl;
     cout << "Current date: " << __TIME__ << endl;
+
+    // Assert test
+    assert(2 == 2); // If condition failed, the program is stopped
+    // If NDEBUG is defined, assert does not take place
+
+    // Memory allocation test
+    // auto i: 0xd80fdffbbc
+    // if i: 0xd80fdffbb0
+    // else i(1): 0xd80fdffbb4
+    for (auto i : {0, 1, 2})
+    {
+        if (i % 2){
+            int i = 5;
+        }
+        else{
+            int b{192};
+            int i = 10;
+        }
+    }
 
     // {
     //     int i, *const cp;

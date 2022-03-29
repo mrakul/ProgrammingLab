@@ -76,6 +76,12 @@ void Stock::show() const
     cout.precision(prec);
 }
 
+const Stock &Stock::compare(const Stock &st) const{
+    if (st.total_val >= this->total_val)
+        return st;
+    else
+        return *this;
+}
 // Constructor definitions
 
 //Only one default constructor may exist
