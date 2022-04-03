@@ -10,13 +10,13 @@ struct job
     int floor;
 };
 
-// Non-template function prototype
+// Non-template function prototype - overrides template function generated
 // void Swap(job &, job &);
 
 // Template prototype
-template <typename T> void Swap(T &a, T &b);
+template <typename T> void Swap(T &a, T &b);    //Or template <class T>
 
-// Explicit specialization
+// Explicit specialization                      //Overrides template function generated
 template <> void Swap<job> (job &job1, job &job2);
 
 //Explicit instantiation

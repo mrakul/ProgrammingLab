@@ -17,8 +17,8 @@
 
                 // Only compile file (-c option), make object-files
                 //"-c",
-                //"${fileDirname}\\*.cpp",
-                "${file}",
+                 "${fileDirname}\\*.cpp",
+                //"${file}",
                 // Add debug info (-g option) to the object file (files)
                 "-g",
 

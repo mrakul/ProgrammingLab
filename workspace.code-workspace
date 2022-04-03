@@ -58,7 +58,9 @@
 			"limits": "cpp",
 			"numbers": "cpp",
 			"sstream": "cpp",
-			"stdexcept": "cpp"
+			"stdexcept": "cpp",
+			"fstream": "cpp",
+			"cstring": "cpp"
 		},
 		"files.trimTrailingWhitespace": true,
 		"editor.minimap.enabled": false,
