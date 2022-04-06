@@ -1,11 +1,8 @@
 #include <iostream>
 #include "MyTime.h"
 
-MyTime::MyTime()
-{
-    hours = 0;
-    minutes = 0;
-}
+MyTime::MyTime() : hours(0), minutes(0)     //use initializer list
+{}
 
 MyTime::MyTime(int hrs, int mnts) : hours(hrs), minutes(mnts)
 {}
@@ -51,7 +48,7 @@ MyTime MyTime::operator*(double mult) const
     return multObj;
 }
 
-MyTime operator*(double mult, const MyTime &t)    //Friend function: important (!!!) that it has access to the private members of the object
+MyTime operator*(const double mult, const MyTime &t)    //Friend function: important (!!!) that it has access to the private members of the object
 {
     MyTime multObj;
     long totalminutes = t.hours * mult * 60 + t.minutes * mult;
@@ -65,7 +62,7 @@ std::ostream &operator<<(std::ostream &os, const MyTime &t){
     return os; //returns the reference to the object itself
 }
 
-//Conversion function
+//Conversion function: from double to MyTime type
  MyTime::MyTime(double convert){
      minutes = convert;
  }

@@ -8,6 +8,7 @@ private:
     int hours;
     int minutes;
     static const int a = 0;
+    const int b {0};
 
 public:
     MyTime();
@@ -22,7 +23,7 @@ public:
     void Reset(int h, int m);
     MyTime operator+(const MyTime &added) const;
     MyTime operator*(double mult) const;
-    friend MyTime operator*(double mult, const MyTime &t);
+    friend MyTime operator*(const double mult, const MyTime &t);
     friend std::ostream &operator<<(std::ostream &os, const MyTime &t);
 
     //Conversion functions
