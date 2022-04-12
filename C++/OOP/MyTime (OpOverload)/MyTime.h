@@ -12,10 +12,10 @@ private:
 
 public:
     MyTime();
-    MyTime(int hrs, int mnts = 0);
+    explicit MyTime(int hrs, int mnts = 0);
     //MyTime(double convert); //to convert from double to MyTime, actually constructor?
     // Or this way not to make implicit conversion, only with MyTime() constructor name
-    explicit MyTime(double convert); //to convert from double to MyTime:
+    explicit MyTime(double convert); //to convert from double to MyTime: (!) 'explicit' keyword means that no conversion will occur implicitly
 
     void Show() const;
     void AddMin(int m);
