@@ -15,8 +15,11 @@ class RatedPlayer : public TableTennPlayer
         ~RatedPlayer(){std::cout << "Derived class destructor" << std::endl;};
 
         virtual void showName() const;      //automatically virtual if virtual in the base class definition
-        unsigned int showRating() const { return rating; }   // add a method
+        unsigned int showRating() const { return rating;}   // add a method for derived class + (!) use the implementation of pure virtual function
+        //unsigned int showRating() const { return rating; TableTennPlayer::showType;}  // If derived class, the base class's pure function may be called only explicitly with scope resolution
         void resetRating(unsigned int r) { rating = r; } // add a method
+        //void showType(void) const; // {std::cout << "This ia a Rated Player";}
+        RatedPlayer &operator=(RatedPlayer & ratedPlayer);
 };
 
 #endif

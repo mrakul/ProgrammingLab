@@ -13,5 +13,12 @@ RatedPlayer::RatedPlayer(unsigned int r, const TableTennPlayer &tp) :  TableTenn
 // Functions
 void RatedPlayer::showName() const {
    TableTennPlayer::showName();
-   std::cout << " (regular player also)";
+   std::cout << " (rated player also)";
 }
+
+RatedPlayer &RatedPlayer::operator=(RatedPlayer & ratedPlayer){
+   this->rating = ratedPlayer.rating;
+   return *this;
+}
+
+//void RatedPlayer::showType(void) const {std::cout << "This ia a Rated Player";}
