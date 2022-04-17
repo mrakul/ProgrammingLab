@@ -27,7 +27,9 @@ int main(int argc, char const *argv[])
     cout << "Your original string: " << input << endl;
 
     // 2. Return reference to the first parameter (input)
-    //result = version2(input, "###");
+    result = version2(input, "###");
+    //version2(input, "###") = "Cringe";        //(!) if specify string &version2(...), then it is allowed since returning non-const reference to s1
+
     cout << "Your string enhanced: " << result << endl;
     cout << "Your original string: " << input << endl;
     cout << "Resetting original string.\n";

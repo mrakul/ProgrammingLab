@@ -20,7 +20,7 @@ template <typename T> void Swap(T &a, T &b);    //Or template <class T>
 template <> void Swap<job> (job &job1, job &job2);
 
 //Explicit instantiation
-//template void Swap<int>(int, int); // explicit instantiation
+//template void Swap<int>(int, int); // explicit instantiation -> force the compiler to generate the code for int (?)
 
 void Show(job &j);
 
