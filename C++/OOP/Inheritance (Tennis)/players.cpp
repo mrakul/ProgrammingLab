@@ -14,6 +14,7 @@ int main(int argc, char const *argv[])
     player2.showName();
     player2.HasTable() ? std::cout << "has table " : std::cout << " has no table ";
 
+
     RatedPlayer player3 {5, player1};   //(!) use constructor with the base object type
     RatedPlayer player4 {10, "Cringe", "Dinge", false};   //(!) use constructor with the base object type
     player3.showRating();               // Can be called directly by the object

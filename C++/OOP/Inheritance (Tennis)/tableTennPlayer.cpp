@@ -8,6 +8,8 @@ TableTennPlayer::TableTennPlayer(const string &fName, const string &lName, bool 
                                                                                           lastName(lName),
                                                                                           hasTable(tabled) {}
 
+TableTennPlayer::~TableTennPlayer() {std::cout << "Base class destructor";}
+
 // Functions
 void TableTennPlayer::showName() const {
     std::cout << "Usual player " << firstName << ' ' << lastName << ' ';

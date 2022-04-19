@@ -15,7 +15,7 @@ class TableTennPlayer
     public:
         TableTennPlayer();
         TableTennPlayer(const string &fName, const string &lName = "NoName", bool tabled = false);
-        virtual ~TableTennPlayer(){std::cout << "Base class destructor" << std::endl;};
+        virtual ~TableTennPlayer();
 
         //Functionality
         virtual void showName() const;      //virtual automatically makes this function virtual in the derived class
