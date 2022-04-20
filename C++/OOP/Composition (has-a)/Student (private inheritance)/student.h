@@ -1,4 +1,4 @@
-// studentc.h -- defining a Student class using containment
+// studentc.h -- defining a Student class using private inheritance
 #ifndef STUDENTC_H_
 #define STUDENTC_H_
 #include <iostream>
