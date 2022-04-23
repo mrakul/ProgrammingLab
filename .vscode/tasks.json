@@ -11,13 +11,13 @@
                 //Warnings and errors MAXIMUM
                 "-Wall",
                 "-pedantic-errors",
-                //"-std=c11",
+                // "-std=c11",
                 "-std=c++2a",
                 // "-ansi",
 
                 // Only compile file (-c option), make object-files
                 //"-c",
-                 "${fileDirname}\\*.c",
+                 "${fileDirname}\\*.cpp",
                 //"${file}",
                 // Add debug info (-g option) to the object file (files)
                 "-g",

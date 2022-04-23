@@ -4,7 +4,7 @@ int fibByLoop(int fibNum)
 {
     int oneBefore = ONE;  // the first number is 1 initially
     int twoBefore = ONE;  // the second number is 1 initially
-    int isSwitchNum = 0;  // 0 - the first accumulated, 1 - the second accumulated
+    int isSwitchNum = 0;  // 0 - next accumulates the oneBefore, 1 - next accumulates the twoBefore
 
     if (fibNum < 3)       //1-st and 2-nd are always 1
         return 1;
@@ -19,7 +19,7 @@ int fibByLoop(int fibNum)
                 twoBefore = oneBefore + twoBefore;
         }
 
-    return (!isSwitchNum ? oneBefore : twoBefore);      //If the first is accumulator, return it. Otherwise, return second
+    return (isSwitchNum ? oneBefore : twoBefore);      //If next should be twoBefore, means that the last accumulated by oneBefore. Otherwise, return twoBefore
 }
 
 int fibByRecursion(int fibNum)
