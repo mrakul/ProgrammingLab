@@ -19,7 +19,7 @@ int main()
         {
             std::cout << error.what() << std::endl;
             std::cout << "Enter a new pair of numbers: ";
-            continue;
+            continue;       //If not have continue here, then the statements after the catch{} will be processed
         }
         std::cout << "Harmonic mean of " << x << " and " << y
                   << " is " << z << std::endl;
