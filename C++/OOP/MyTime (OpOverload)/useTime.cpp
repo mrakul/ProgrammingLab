@@ -30,5 +30,6 @@ int main()
 
     //Conversion check
     MyTime convertTime = MyTime(24.5);
+    cout << convertTime << endl;
     return 0;
 }

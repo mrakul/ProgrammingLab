@@ -7,8 +7,9 @@ class MyTime
 private:
     int hours;
     int minutes;
-    static const int a = 0;
-    const int b {0};
+    //int c{3};
+    static const int a;// = 5; //Constant may be initizalized within the class definition, or in MyTime.cpp as static int
+    static int b;           //Initialized in the MyTime.cpp
 
 public:
     MyTime();

@@ -66,3 +66,7 @@ std::ostream &operator<<(std::ostream &os, const MyTime &t){
  MyTime::MyTime(double convert){
      minutes = convert;
  }
+
+ //static variable initialization
+ int MyTime::b = 0;
+ const int MyTime::a = 4;

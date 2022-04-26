@@ -11,6 +11,7 @@ int main()
     cout << "Enter name of data file: ";
     cin.getline(filename, SIZE);
     inFile.open(filename); // associate inFile with a file
+
     if (!inFile.is_open()) // failed to open file
     {
         cout << "Could not open the file " << filename << endl;
