@@ -61,7 +61,8 @@
 			"stdexcept": "cpp",
 			"fstream": "cpp",
 			"cstring": "cpp",
-			"valarray": "cpp"
+			"valarray": "cpp",
+			"vector2": "cpp"
 		},
 		"files.trimTrailingWhitespace": true,
 		"editor.minimap.enabled": false,

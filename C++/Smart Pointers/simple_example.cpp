@@ -2,6 +2,9 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <string>
+using std::string;
+std::unique_ptr<string> demo(const char *s);
 
 class Report
 {
@@ -31,5 +34,15 @@ int main(int argc, char const *argv[])
         std::unique_ptr<Report> ps(new Report("using unique_ptr"));
         ps->comment();
     }
+
+    std::unique_ptr<string> ps;
+    ps = demo("Uniquely special");      //This is working well since demo() returns temporary object (rvalue)
+
     return 0;
+}
+
+std::unique_ptr<string> demo(const char *s)
+{
+    std::unique_ptr<string> temp(new string(s));
+    return temp;
 }
