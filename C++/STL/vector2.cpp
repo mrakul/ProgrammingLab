@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
+
 struct Review
 {
     std::string title;
@@ -10,6 +12,10 @@ struct Review
 
 bool FillReview(Review &rr);
 void ShowReview(const Review &rr);
+
+// for sort() function
+bool operator<(const Review &r1, const Review &r2); // makes total ordering
+bool worseThan(const Review &r1, const Review &r2); // makes strict weak ordering
 
 int main(int argc, char const *argv[])
 {
@@ -30,31 +36,42 @@ int main(int argc, char const *argv[])
              << "Rating\tBook\n";
         for (int i = 0; i < num; i++)
             ShowReview(books[i]);
-        cout << "Reprising:\n" << "Rating\tBook\n";
+        cout << "Reprising:" << std::endl
+             << "Rating\tBook" << std::endl;
 
         // Use an iterator to show all elements
         vector<Review>::iterator pr;
-        for (pr = books.begin(); pr != books.end(); pr++)
-            ShowReview(*pr);
+        // for (pr = books.begin(); pr != books.end(); pr++)
+        //     ShowReview(*pr);
+        for_each(books.begin(), books.end(), ShowReview); // This is equal to the for cycle above
 
         // Copy to another list => oldlist
         vector<Review> oldlist(books); // copy constructor used
         if (num > 3)
         {
             // remove 2 items
-            books.erase(books.begin() + 1, books.begin() + 3);      //remove 2-nd and 3-rd element, that is [2;3)
+            books.erase(books.begin() + 1, books.begin() + 3); // remove 2-nd and 3-rd element, that is [2;3)
             cout << "After erasure:\n";
             for (pr = books.begin(); pr != books.end(); pr++)
                 ShowReview(*pr);
             // insert 1 item
-            books.insert(books.begin(), oldlist.begin() + 1,        //add to the books[0] the 2-nd element of the oldlist
+            books.insert(books.begin(), oldlist.begin() + 1, // add to the books[0] the 2-nd element of the oldlist
                          oldlist.begin() + 2);
             cout << "After insertion:\n";
             for (pr = books.begin(); pr != books.end(); pr++)
                 ShowReview(*pr);
         }
 
-        //Swap to lists
+        // Test sorting
+        cout << "Total sorting by title and rating: " << std::endl;
+        std::sort(books.begin(), books.end());            // sorting by use of < operator for the type Review
+        for (auto x : books) ShowReview(x);
+
+        cout << "Descending order by rating: " << std::endl;
+        std::sort(books.begin(), books.end(), worseThan);   //Sort using the function (descending by rating)
+        for (auto x : books) ShowReview(x);
+
+        // Swap to lists
         books.swap(oldlist);
         cout << "Swapping oldlist with books:\n";
         for (pr = books.begin(); pr != books.end(); pr++)
@@ -84,4 +101,22 @@ bool FillReview(Review &rr)
 void ShowReview(const Review &rr)
 {
     std::cout << rr.rating << "\t" << rr.title << std::endl;
+}
+
+bool operator<(const Review &r1, const Review &r2) // just compare, the rest is done by sort()
+{
+    if (r1.title < r2.title)
+        return true;
+    else if (r1.title == r2.title && r1.rating < r2.rating)
+        return true;
+    else
+        return false;
+}
+
+bool worseThan(const Review &r1, const Review &r2)
+{
+    if (r1.rating < r2.rating)
+        return false;       //false means that need to change elements
+    else
+        return true;        //true = no need to change elements
 }

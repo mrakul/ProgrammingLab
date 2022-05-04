@@ -18,6 +18,7 @@ int main()
         cout << "Now processing type " << typeid(*pg).name() << ".\n";
         //Only Superb and Magnificent may be upcasted to Superb, so the Say() function may be called,
         //which is defined in Superb class initially
+        //(note: actually, a pointer to Grand is downcasted to Superb, if it is allowed, that is an object IS Superb, or Magnificent as Is-A Superb)
         // Note: for references bad_cast exception is used
         if ((ps = dynamic_cast<Superb *>(pg))){
             ps->Say();
