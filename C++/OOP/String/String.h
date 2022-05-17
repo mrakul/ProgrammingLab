@@ -12,7 +12,8 @@ public:
     //Constructors / Destructor section
     String();              // default constructor
     String(const char *s); // constructor
-    String(const String &st);
+
+    String(const String &st);   //Copy constructor to make deep copy!
     ~String();             // destructor
 
     int length () const { return strLen; }  //Make inline
@@ -24,7 +25,7 @@ public:
                                     const String &str);
 
     //Assignment operator
-    String &operator=(const String &source);
+    String &operator=(const String &source);    //overload '=' operator to make deep copy
     char &operator[](int i);
     const char &operator[](int i) const;    //The last const allow to distinguish versions
 

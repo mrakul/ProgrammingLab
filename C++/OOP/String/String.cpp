@@ -54,7 +54,7 @@ String &String::operator=(const String &source)
     if (this == &source)
         return *this;
     // release obtained memory by the strPtr of the target
-    delete[] strPtr;
+    delete[] strPtr;    //or 'delete this->strPtr'
 
     strLen = source.strLen;
     strPtr = new char[strLen + 1];

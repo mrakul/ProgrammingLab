@@ -23,7 +23,7 @@ int main()
         cout << "obj1: " << obj1 << endl;
 
         //Since the object is passed by value, the destructor is called for the temporary local object also.
-        //If no copy constructor to call then object number is not incremented (default copy constructor is called)
+        //If no copy constructor implemented then object number is not incremented (default copy constructor is called)
         //Second, it releases the memory of the strPtr by calling the destructor
         //Note: destructor is called for the temporary object just right after the call
         callme2(obj2);
@@ -31,7 +31,7 @@ int main()
 
         cout << "Initialize one object to another:\n";
         //Again, copy constructor is called
-        String sailor = obj3;
+        String sailor = obj3;       //This is another syntax for String sailor = String(obj3);
         cout << "sailor: " << sailor << endl;
 
         //Assignment operator check

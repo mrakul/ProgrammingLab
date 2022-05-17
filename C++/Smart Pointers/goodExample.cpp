@@ -24,6 +24,7 @@ int main()
             unique_ptr<string>(new string("Turkey Errors")),
             unique_ptr<string>(new string("Goose Eggs"))};
     unique_ptr<string> ptrFilm;
+    shared_ptr<string> ptrFilmShared;;
     //pwin = films[2];                    //compiler prevents this assignment
     cout << "The nominees for best avian baseball film are\n";
     for (int i = 0; i < 5; i++)
