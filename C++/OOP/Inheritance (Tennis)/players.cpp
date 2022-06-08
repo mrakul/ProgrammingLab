@@ -4,19 +4,19 @@
 
 int main(int argc, char const *argv[])
 {
-
+    //Base class objects and functions calls
     TableTennPlayer player1 {"Michael", "Pims", true};
     TableTennPlayer player2 {"John", "Lane", false};
-
     player1.showName();
     player1.HasTable() ? std::cout << "has table " : std::cout << " has no table ";
-
+    std::cout << std::endl;
     player2.showName();
     player2.HasTable() ? std::cout << "has table " : std::cout << " has no table ";
+    std::cout << std::endl;
 
-
-    RatedPlayer player3 {5, player1};   //(!) use constructor with the base object type
-    RatedPlayer player4 {10, "Cringe", "Dinge", false};   //(!) use constructor with the base object type
+    //Derived class objects
+    RatedPlayer player3 {5, player1};   //(!) use copy constructor with the base object type
+    RatedPlayer player4 = RatedPlayer{10 , "Cringe", "Dinge", false};       //Calls the RatedPlayer with 4 argunments constructor -> TableTennPlayer with 3 arguments constructor
     player3.showRating();               // Can be called directly by the object
 
     //Examples of virtual functions calls
@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
     TableTennPlayer * ptr_pl3 = &player3;       //By pointer
 
     r_pl1.showName();                   //OK
-    r_pl3.showName();                   //Call overloaded function (since it it virtual)
+    r_pl3.showName();                   //Call overloaded function (since it is virtual)
     ptr_pl3->showName();                //Call overloaded function by using pointer
 
     //Assignment operator checks

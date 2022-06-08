@@ -4,6 +4,14 @@
 TableTennPlayer::TableTennPlayer() : firstName("NoName"),
                                      lastName("NoName"),
                                      hasTable(false) {}
+
+//Copy constructor
+TableTennPlayer::TableTennPlayer(const TableTennPlayer &copyPlayer){
+    this->firstName = copyPlayer.firstName;
+    this->lastName = copyPlayer.lastName;
+    this->hasTable = copyPlayer.hasTable;
+}
+
 TableTennPlayer::TableTennPlayer(const string &fName, const string &lName, bool tabled) : firstName(fName),
                                                                                           lastName(lName),
                                                                                           hasTable(tabled) {}

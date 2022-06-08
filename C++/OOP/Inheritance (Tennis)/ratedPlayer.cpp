@@ -1,7 +1,8 @@
 #include <iostream>
 #include "ratedPlayer.h"
 
-RatedPlayer::RatedPlayer(unsigned int r, const string &fn, const string &ln, bool ht) : TableTennPlayer(fn, ln, ht), rating(r) {}
+RatedPlayer::RatedPlayer(unsigned int r, const string &fName, const string &lName, bool tabled) : TableTennPlayer(fName, lName, tabled), rating(r)
+{this->rating = 23;}
 // If omit TableTennPlayer(fn, ln, ht) constructor, then default TableTennPlayer() is called implicitly:
 // RatedPlayer::RatedPlayer(unsigned int r, const string &fn, const string &ln, bool ht) : TableTennPlayer(), rating(r){}
 

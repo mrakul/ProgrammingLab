@@ -10,7 +10,8 @@ class RatedPlayer : public TableTennPlayer
         unsigned int rating; // add new member
 
     public:
-        RatedPlayer(unsigned int r = 0, const string &fn = "none", const string &ln = "none", bool ht = false);
+        RatedPlayer() : TableTennPlayer(), rating(0) {}
+        RatedPlayer(unsigned int r, const string &fName, const string &lName = "NoName", bool tabled = false);
         RatedPlayer(unsigned int r, const TableTennPlayer &tp);     //Construct basing on the base type object
         ~RatedPlayer(){std::cout << "Derived class destructor" << std::endl;};
 
