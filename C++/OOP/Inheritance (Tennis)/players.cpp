@@ -17,6 +17,7 @@ int main(int argc, char const *argv[])
     //Derived class objects
     RatedPlayer player3 {5, player1};   //(!) use copy constructor with the base object type
     RatedPlayer player4 = RatedPlayer{10 , "Cringe", "Dinge", false};       //Calls the RatedPlayer with 4 argunments constructor -> TableTennPlayer with 3 arguments constructor
+    RatedPlayer player5 = player4; //(!)Use the Copy constuctor: The same as wrigint RatedPlayer player5 = RatedPlayer(player4).
     player3.showRating();               // Can be called directly by the object
 
     //Examples of virtual functions calls
