@@ -22,7 +22,7 @@ public:
         return std::pair<Type, Type>{lowerBound, upperBound};
     }
 
-    //Overloaded operator to filter out values by allowed range
+    //Overloaded operator to filter out values by allowed range (predicate in this case, since takes on argument and returning boolean)
     bool operator()(const Type &curVal){
         return (curVal <= lowerBound || curVal >= upperBound);       //If out of the range, return true meaning to remove
     }
@@ -55,17 +55,17 @@ int main(int argc, char const *argv[])
     printTheList(numbers);
 
     /*** List #2 test ***/
-    AllowedRange<int> range_7_10(7, 10);        //Make allowed range of (7; 10)
+    AllowedRange<int> rangeToFilter(7, 10);        //Make allowed range of (7; 10)
 
     //Print the current bounds and the initial list values
-    std::cout << "The lower bound is: " << range_7_10.getBounds().first << " and the upper bound is: " << range_7_10.getBounds().second << std::endl;
+    std::cout << "The lower bound is: " << rangeToFilter.getBounds().first << " and the upper bound is: " << rangeToFilter.getBounds().second << std::endl;
     printTheList(numbers2);     //print the current list
     //Sort the values and print
     numbers2.sort();
     printTheList(numbers2);
 
     //Remove the numbers by using a functor created and print out the list again
-    numbers2.remove_if(range_7_10);     //or use anonymous object as numbers2.remove_if(AllowedRange<int>(7, 10));
+    numbers2.remove_if(rangeToFilter);     //or use anonymous object as numbers2.remove_if(AllowedRange<int>(7, 10));
     printTheList(numbers2);
 
     return 0;

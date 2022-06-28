@@ -62,7 +62,9 @@
 			"fstream": "cpp",
 			"cstring": "cpp",
 			"valarray": "cpp",
-			"vector2": "cpp"
+			"vector2": "cpp",
+			"map": "cpp",
+			"set": "cpp"
 		},
 		"files.trimTrailingWhitespace": true,
 		"window.zoomLevel": -1,
