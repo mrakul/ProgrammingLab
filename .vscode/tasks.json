@@ -9,8 +9,9 @@
             "args": [
                 //"-IC:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include",
                 //Warnings and errors MAXIMUM
-                "-Wall",
+                "-Wall", "-Werror",
                 "-pedantic-errors",
+                "-pedantic",
                 // "-std=c11",
                 "-std=c++2a",
                 // "-ansi",
@@ -45,7 +46,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "compiler: \"C:\\Program Files\\mingw\\mingw64\\bin\\gcc.exe\""
+            "detail": "compiler: \"C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe\""
             // "detail": "compiler: \"C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe\""
 
         }
