@@ -26,19 +26,9 @@ int main(int argc, char const *argv[])
         cout << "Vector's size: " << (*vectorsIter).size() << endl;
         cout << "Vector's values: ";
         for(auto curNumber: (*vectorsIter)){
-
+            cout << curNumber << " ";
         }
-    }
-
-    constexpr int arrSize = 20;
-    int * array = new int[arrSize]{0, 1, 2};     //Initialize fields: !!! initializer list may be for dynamic memory allocation
-
-    int array2[20]{0, 1, 2};
-    //int sizeArr = sizeof(array2) / sizeof(*array2);
-    //cout << sizeArr;
-
-    for(int i; i < 20; i++){
-        cout << array[i] << endl;
+        cout << endl;
     }
 
     return 0;

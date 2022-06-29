@@ -101,7 +101,7 @@ int main(int argc, char const *argv[])
         do {
             character = getchar(); // считать введённый со стандартного потока  ввода  символ
             putchar (character);   // вывести этот символ
-        } while (character != '.'); // пока введенный символне точка
+        } while (character != '.'); // пока введенный символ не точка
     */
 
     return 0;
