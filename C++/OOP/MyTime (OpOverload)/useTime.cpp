@@ -19,7 +19,7 @@ int main()
     initTime.Show();
 
     //Add another object by overloaded operator+
-    initTime = initTime + addedTime;
+    initTime = initTime + addedTime;    //+ operator returns temporary object and assign it to itself
     initTime.Show();
 
     //Multiplication test: 1. By overloaded * operator, 2. By Friend function
@@ -31,5 +31,10 @@ int main()
     //Conversion check
     MyTime convertTime = MyTime(24.5);
     cout << convertTime << endl;
+
+    //Dynamic allocation check
+    MyTime *dyntime = new MyTime{34.5};
+    delete dyntime;
+
     return 0;
 }

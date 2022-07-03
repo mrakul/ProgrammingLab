@@ -41,14 +41,13 @@ int main(int argc, char const *argv[])
     numbers.insert(numbers.begin(), 11); // insert to the head
     numbers.push_back(15); // insert to the head
     numbers.push_front(7); // insert to the tail
-
     //Make the copy of the list
     list<int> numbers2(numbers);
 
     // Print out the current list #1
     printTheList(numbers);
 
-    // Remove unwanted numbers from the list #1
+    // Remove unwanted numbers from the list #1 using tooBig() function, predicates
     numbers.remove_if(tooBig);
 
     // Print out the list after the removing values from the list #1

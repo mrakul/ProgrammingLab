@@ -29,6 +29,9 @@ int main(int argc, const char *argv[])
 
     //Insert a word
     A.insert("AddedWord");
+    //Or use variable:
+    //string s3("grungy");
+    //C.insert(s3);
     copy(A.begin(), A.end(), out);
     cout << endl;
 
@@ -52,21 +55,22 @@ int main(int argc, const char *argv[])
     cout << "Set C:\n";
     set_union(A.begin(), A.end(), B.begin(), B.end(),
               insert_iterator<set<string>>(C, C.begin()));      //Use insert_iterator to adjust the size of C dynamically
+
     //Output C set
     //copy(C.begin(), C.end(), out);
     for(auto strOut : C) cout << strOut << endl;    //Also works, despite that C is not a sequence
     cout << endl;
 
-//Another one insert of a string variable
-//     string s3("grungy");
-//     C.insert(s3);
-//     cout << "Set C after insertion:\n";
-//     copy(C.begin(), C.end(), out);
-//     cout << endl;
+    //Use copy() + insert_iterator to copy to D
+    set<string> D;
+    copy(C.begin(), C.end(), insert_iterator<set<string>>(D, D.begin()));
+    //copy(C.begin(), C.end(), D.begin());    //this doesn't work, since returns only read_only (constant) iterator (note: begin() allows change value, cbegin() doesn't allow)
+    for(auto strOut : D) cout << strOut << endl;    //Also works, despite that C is not a sequence
+    cout << endl;
 
     cout << "Showing a range:\n";
     copy(C.lower_bound("b"), C.upper_bound("i"), out);
     cout << endl;
 
-//     return 0;
+    return 0;
 }

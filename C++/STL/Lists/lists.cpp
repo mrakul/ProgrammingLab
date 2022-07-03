@@ -19,7 +19,6 @@ int main()
     list<int> three(two);
     three.insert(three.end(), more, more + 6);
 
-
     cout << "List one: ";
     //for_each(one.begin(), one.end(), outint);
     for(auto number : one) cout << number << ' ';

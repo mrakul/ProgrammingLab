@@ -13,6 +13,7 @@ private:
 
 public:
     MyTime();
+    virtual ~MyTime();
     explicit MyTime(int hrs, int mnts = 0);
     //MyTime(double convert); //to convert from double to MyTime, actually constructor?
     // Or this way not to make implicit conversion, only with MyTime() constructor name
