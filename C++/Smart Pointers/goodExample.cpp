@@ -5,7 +5,7 @@
 int main()
 {
     using namespace std;
-    // auto_ptr<string> films[5] =
+    // 0. auto_ptr<string> films[5] =
     //     {
     //         auto_ptr<string>(new string("Fowl Balls")),
     //         auto_ptr<string>(new string("Duck Walks")),
@@ -15,7 +15,7 @@ int main()
     // auto_ptr<string> ptrFilm;
     // ptrFilm = films[2];            // films[2] loses ownership => Segmentation fault when using films[2]
 
-    //unique_ptr using
+    // 1. unique_ptr using
     unique_ptr<string> films[5] =
         {
             unique_ptr<string>(new string("Fowl Balls")),
@@ -25,14 +25,18 @@ int main()
             unique_ptr<string>(new string("Goose Eggs"))};
     unique_ptr<string> ptrFilm;
     shared_ptr<string> ptrFilmShared;;
-    //pwin = films[2];                    //compiler prevents this assignment
-    cout << "The nominees for best avian baseball film are\n";
-    for (int i = 0; i < 5; i++)
-        cout << *films[i] << endl;
-    cout << "The winner is " << *ptrFilm << "!\n";
+    //ptrFilm = films[2];                    //compiler prevents this assignment
+    cout << "The nominees for best avian baseball film are" << endl;
+    for (auto &filmPtr : films){     //Go through the pointers list: (!!!) may be used as a link only, since unique-ptr can't be copied
+        cout << *filmPtr << endl;
+        string *aString = filmPtr.release();   //return the pointer explicitly, release the ownership of the object
+        delete aString;                        //destroy object
+    }
+
+    //cout << "The winner is " << *ptrFilm << "!\n";
     cin.get();
 
-    //shared_ptr using
+    //2. shared_ptr using
     shared_ptr<string> films2[5] =
         {
             shared_ptr<string>(new string("Fowl Balls")),
@@ -43,6 +47,19 @@ int main()
     shared_ptr<string> ptrFilm2;
 
     ptrFilm2 = films2[4];       //Allowed, both points to the same area, but only the last Destructor will release memory (of the films2)
+    cout << "ptrFilm2.useCount() = " << ptrFilm2.use_count()
+         << " films2[4].useCount() = " << films2[4].use_count() << endl;
+
+    ptrFilm2.reset();           //Reset the pointer, not destroying object
+
+    cout << "ptrFilm2.useCount() = " << ptrFilm2.use_count()
+         << " films2[4].useCount() = " << films2[4].use_count() << endl;
+
+    films2[4].unique() ? cout << "Yes" : cout << "No";
+    cout << (ptrFilm2.unique() ? "Yes" : "No") << endl;     //braces makes conditional operator more prioritized (meaning operator precedence)
+
+    //Example ot pointer to an array of ints (just in case)
+    unique_ptr<int[]> pia{new int[20]};
 
     return 0;
 }

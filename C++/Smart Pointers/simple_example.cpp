@@ -23,8 +23,8 @@ public:
 int main(int argc, char const *argv[])
 {
     {
-        std::auto_ptr<Report> ps(new Report("using auto_ptr"));
-        ps->comment(); // use -> to invoke a member function
+        //std::auto_ptr<Report> ps(new Report("using auto_ptr"));   //Auto is deprecated now
+        //ps->comment(); // use -> to invoke a member function
     }
     {
         std::shared_ptr<Report> ps(new Report("using shared_ptr"));
