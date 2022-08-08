@@ -22,7 +22,7 @@ public:
         return std::pair<Type, Type>{lowerBound, upperBound};
     }
 
-    //Overloaded operator to filter out values by allowed range (predicate in this case, since takes on argument and returning boolean)
+    //Overloaded operator to filter out values by allowed range (predicate in this case, since takes one argument and returning boolean)
     bool operator()(const Type &curVal){
         return (curVal <= lowerBound || curVal >= upperBound);       //If out of the range, return true meaning to remove
     }
