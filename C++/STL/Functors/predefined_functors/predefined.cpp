@@ -4,7 +4,6 @@
 #include <iterator>
 #include <functional>   //to make plus<double> object-functor
 
-
 using namespace std;
 
 double sqrt (double curVal){
@@ -17,7 +16,6 @@ int main(int argc, char const *argv[])
     double arr1[LIM] = {4, 7, 10, 2, -6};
     vector<double> doublesVect(arr1, arr1 + LIM);
     vector<double> doublesVect2{1, 2, 3};
-
 
     //Make an ostream_iterator to print out
     ostream_iterator<double, char> out(cout, " ");

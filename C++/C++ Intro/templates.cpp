@@ -14,10 +14,12 @@ struct job
 // void Swap(job &, job &);
 
 // Template prototype
-template <typename T> void Swap(T &a, T &b);    //Or template <class T>
+template <typename T>
+void Swap(T &a, T &b);    //Or template <class T> - implicit instantiation: compiler generates code only when encounter particular use with specified types within the code
 
 // Explicit specialization                      //Overrides template function generated
-template <> void Swap<job> (job &job1, job &job2);
+template <>
+void Swap<job> (job &job1, job &job2);
 
 //Explicit instantiation
 //template void Swap<int>(int, int); // explicit instantiation -> force the compiler to generate the code for int (?)

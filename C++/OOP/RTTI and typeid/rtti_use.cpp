@@ -15,11 +15,11 @@ int main()
     for (int i = 0; i < 5; i++){
         pg = GetOne();
         pg->Speak();
-        cout << "Now processing type " << typeid(*pg).name() << ".\n";
+        cout << "Now processing type " << typeid(*pg).name() << "." << endl;
         //Only Superb and Magnificent may be upcasted to Superb, so the Say() function may be called,
         //which is defined in Superb class initially
         //(note: actually, a pointer to Grand is downcasted to Superb, if it is allowed, that is an object IS Superb, or Magnificent as Is-A Superb)
-        // Note: for references bad_cast exception is used
+        // Note: for references bad_cast exception is used, since no value as for pointer to check the condition
         if ((ps = dynamic_cast<Superb *>(pg))){
             ps->Say();
 
