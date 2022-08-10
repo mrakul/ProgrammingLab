@@ -1,7 +1,7 @@
 // cinexcp.cpp -- having cin throw an exception
 #include <iostream>
 #include <exception>
-int main(int argc, char const *argv[])
+int main(int argc, char const* argv[])
 {
     using namespace std;
     // Set failbit to cause an exception to be thrown
