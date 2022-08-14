@@ -31,7 +31,7 @@ int main()
 
         cout << "Initialize one object to another:\n";
         //Again, copy constructor is called
-        String sailor = obj3;       //This is another syntax for String sailor = String(obj3);
+        String sailor = obj3;       //This is another syntax for String sailor = String(obj3);  Or this:  String sailor(obj3)?
         cout << "sailor: " << sailor << endl;
 
         //Assignment operator check

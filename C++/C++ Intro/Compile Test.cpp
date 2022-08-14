@@ -10,8 +10,13 @@ struct pims
 {
     int a{0};
     string Str1{" "};
-    // int b(4); - prohitibetd initializizing form
+    //int b(4); //- prohibited initializizing form
 };
+
+// Trailing return type: since x and y are not defined before the function declaration,
+// this form may be used to specify the returned type.
+// Useful for templates
+auto function(int x, int y) -> decltype(x * y);
 
 int main(int argc, char const *argv[])
 {

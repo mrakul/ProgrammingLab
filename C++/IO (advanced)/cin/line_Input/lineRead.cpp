@@ -32,6 +32,7 @@ int main(int argc, char const* argv[])
     cout << "Enter a string for getline() processing: " << endl;
     cin.getline(input, Limit, '#');     //Note: when # is encountered, EOF is not set
 
+    // Check the stream state after reading
     cout << cin.eofbit << " " << cin.badbit << " " << cin.failbit << endl;
     cout << cin.eof() << " " << cin.bad() << " " << cin.fail();
 

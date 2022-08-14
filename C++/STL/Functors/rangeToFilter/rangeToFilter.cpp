@@ -53,7 +53,7 @@ int main(int argc, char const *argv[])
     // Print out the list after the removing values from the list #1
     printTheList(numbers);
 
-    /*** List #2 test ***/
+    // List #2 test to filter by using object functor
     AllowedRange<int> rangeToFilter(7, 10);        //Make allowed range of (7; 10)
 
     //Print the current bounds and the initial list values
