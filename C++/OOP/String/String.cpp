@@ -30,8 +30,10 @@ String::String(const String &st)
 {
     // Make deep copy of the object
     strLen = st.strLen;                                                 // set size
-    strPtr = new char[strLen + 1];                                      // allot storage
+    //(!!!) This hint is just to understand the copy constructor behavior
+    strPtr = new char[strLen + 1 + sizeof("_COPY")];                    // allot storage
     std::strcpy(strPtr, st.strPtr);                                     // initialize pointer
+    std::strcat(strPtr, "_COPY");                                       // Concatenate strings (add _COPY)
     objectsNumber++;                                                    // set object count
     cout << objectsNumber << ": \"" << strPtr << "\" object created\n"; // To observe what happened
 }

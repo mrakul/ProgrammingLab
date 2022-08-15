@@ -8,7 +8,7 @@ RatedPlayer::RatedPlayer(unsigned int r, const string &fName, const string &lNam
 
 
 //Constructor using base object type to construct derived object
-RatedPlayer::RatedPlayer(unsigned int r, const TableTennPlayer &tp) :  TableTennPlayer(tp), rating(r)   //rating(r), TableTennPlayer(tp) gives warning that rating will e initialized after TableTennPlayer(tp)
+RatedPlayer::RatedPlayer(unsigned int r, const TableTennPlayer &tp) :  TableTennPlayer(tp), rating(r)   //rating(r), TableTennPlayer(tp) gives warning that rating will be initialized after TableTennPlayer(tp)
 {   }
 
 // Functions

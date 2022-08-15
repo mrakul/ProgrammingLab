@@ -85,17 +85,17 @@ const Stock &Stock::compare(const Stock &st) const{
 // Constructor definitions
 
 //Only one default constructor may exist
-// Stock::Stock()
-// {
-//     company = "NoName";
-//     shares = 0;
-//     share_val = 0.0;
-//     total_val = 0.0;
-//     std::cout << "Object created!";
-// }
+Stock::Stock()
+{
+    company = "NoName";
+    shares = 0;
+    share_val = 0.0;
+    total_val = 0.0;
+    std::cout << "Object created!";
+}
 
-Stock::Stock(const std::string &co, long n, double pr){
-    company = co;
+Stock::Stock(const std::string &companyName, long n, double pr){
+    company = companyName;
     if (n < 0)
     {
         std::cerr << "Number of shares cannot be negative; "
@@ -106,8 +106,7 @@ Stock::Stock(const std::string &co, long n, double pr){
         shares = n;
     share_val = pr;
     set_tot();
-    std::cout << "Object created! " << std::endl;
-
+    std::cout << company << ": Object created! " << std::endl;
 }
 
 //Constructor with one formal parameter and use of list of initialization (recommended?)
