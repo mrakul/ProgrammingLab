@@ -5,21 +5,20 @@
             "type": "process",
             "label": "C/C++: gcc.exe build active file",
             "command": "C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe",
-            //"command": "C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe",
             "args": [
                 //"-IC:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include",
                 //Warnings and errors MAXIMUM
                 "-Wall", "-Werror",
                 "-pedantic-errors",
                 "-pedantic",
-                // "-std=c11",
+                // "-std=c++11",
                 "-std=c++2a",
                 // "-ansi",
 
                 // Only compile file (-c option), make object-files
-                //"-c",
-                "${file}",
-                // "${fileDirname}\\*.cpp",
+                // "-c",
+                // "${file}",
+                "${fileDirname}\\*.cpp",
                 // Add debug info (-g option) to the object file (files)
                 "-g",
 
@@ -50,6 +49,7 @@
             // "detail": "compiler: \"C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe\""
 
         }
+        // MSVC compiler parameters:
         // {
         //     "type": "cppbuild",
         //     "label": "cl.exe build active file",

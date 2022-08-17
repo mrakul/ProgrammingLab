@@ -64,7 +64,8 @@
 			"valarray": "cpp",
 			"vector2": "cpp",
 			"map": "cpp",
-			"set": "cpp"
+			"set": "cpp",
+			"ratio": "cpp"
 		},
 		"files.trimTrailingWhitespace": true,
 		"window.zoomLevel": -1,

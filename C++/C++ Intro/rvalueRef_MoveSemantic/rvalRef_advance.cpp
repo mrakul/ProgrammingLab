@@ -28,6 +28,7 @@ public:
             m_data[i] = copiedVect.m_data[i];
     }
 
+    // In the example below it is used for lvalue of
     intsVect& operator=(intsVect& assignedVect)         //If use non-const reference, will have the message "cannot bind non-const lvalue reference of type 'intsVect&' to an rvalue of type 'intsVect'"" for the rvalue case
                                                         //But for the Temp object 2 this can be used (without const) and use as usual non-const reference
     {
@@ -72,18 +73,16 @@ int main(int argc, char const* argv[])
 
         // Check to assign rvalue
         cout << "assigning rvalue..." << endl;
-        vector2 = intsVect("Rvalue temp object", 5);
         // Before adding && rvalue reference, operator=(const intsVect& assignedVect) was called:
         // 1. First, the normal constructor for intsVect "Rvalue temp object" is called to generate the object
         // 2. Second, the assignment operator=() is called, creating another one temporary object "Rvalue temp object_COPY" and copy IT to the vector2
         // 3. Call the destructor for the Rvalue temp object itself
+        vector2 = intsVect("Rvalue temp object", 5);
 
         //But after adding "intsVect& operator=(intsVect&& other)" to have rvalue reference:
         // 1. Normal constructor is called like for the first operator=()
         // 2. New operator=(&&) is called
         // 3. Destructor is called, but no additional object is required
-
-
         // The first operator=(&) is used in this case, since vector2 is modifiable lvalue (?)
         intsVect("Temp object 2", 7) = vector2;
 

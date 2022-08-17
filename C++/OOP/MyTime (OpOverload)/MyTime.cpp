@@ -33,7 +33,7 @@ void MyTime::Reset(int h, int m)
     minutes = m;
 }
 
-MyTime MyTime::operator+(const MyTime &added) const
+MyTime MyTime::operator+(const MyTime &added) const     //(!) Note that operator+() creates temporary MyTime object to return
 {
     MyTime sum;
     sum.minutes = minutes + added.minutes;
