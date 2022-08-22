@@ -17,12 +17,16 @@ public:
     explicit Useless(int numToFill);
     Useless(int numToFill, char charToFill);
     //Copy and move
-    Useless(const Useless& sourceObj);       // regular copy constructor
-    Useless(Useless&& sourceObj);            // move constructor
+    Useless(const Useless& sourceObj);          // Regular Copy Constructor
+    Useless(Useless&& sourceObj);               // Move Constructor
 
     ~Useless();
-    Useless operator+(const Useless& addedObj)const;
-    // need operator=() in copy and move versions, ommitted just for demonstration
+    Useless operator+(const Useless& addedObj) const;
+
+    //Copy assignment operator
+    Useless& operator=(const Useless& assignedObj);
+    //Move assignment operator
+    Useless& operator=(Useless&& movedObj);
 
     void ShowData() const;
 };

@@ -51,7 +51,7 @@ std::ostream &operator<<(std::ostream &os, const String &st)
     return os;
 }
 
-String &String::operator=(const String &source)
+String &String::operator=(const String &source)      // Important: it returns the reference to itself
 {
     if (this == &source)
         return *this;

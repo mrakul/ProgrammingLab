@@ -7,22 +7,31 @@
             "command": "C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe",
             "args": [
                 //"-IC:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include",
-                //Warnings and errors MAXIMUM
+                //Boost include path:   (!) Need to add to c_cpp_properties.json also
+                "-I",
+                "C:\\boost\\boost_1_80_0\\",
+                /***  Warnings and errors MAXIMUM ***/
                 "-Wall", "-Werror",
                 "-pedantic-errors",
                 "-pedantic",
-                // "-std=c++11",
+
+                /*** Chose the standard ***/
                 "-std=c++2a",
+                // "-std=c++11",
+                //-std=c++98",
                 // "-ansi",
 
-                // Only compile file (-c option), make object-files
-                // "-c",
-                // "${file}",
-                "${fileDirname}\\*.cpp",
+                // > Zero optimization
+                // "-O0",
+
+                /*** Compile options ***/
+                // "-c",                            // Only compile file (-c option), make object-files
+                "${file}",
+                // "${fileDirname}\\*.cpp",
                 // Add debug info (-g option) to the object file (files)
                 "-g",
 
-                // 3. Link all object files together to Program.exe, preliminary need to compile
+                // 3. Link all object files together to Program.exe, preliminary need to compile separately
                 //"${fileDirname}\\**.o",
                 "-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe",

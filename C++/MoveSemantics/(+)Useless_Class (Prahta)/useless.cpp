@@ -1,4 +1,5 @@
 #include "useless.h"
+#include <cstring>
 
 //Initialize static variable
 
@@ -18,6 +19,7 @@ Useless::Useless(int numToCreate) : numElements(numToCreate){
     ptrData = new char[numElements];
     ShowObject();
 }
+
 Useless::Useless(int numToCreate, char charToFill) : numElements(numToCreate){
     ++countObjects;
     cout << "! (int, char) Constructor called, number of objects: " << countObjects << endl;
@@ -37,23 +39,15 @@ Useless::Useless(const Useless& sourceObj) : numElements(sourceObj.numElements){
     ShowObject();
 }
 
-//Creates an object actually and swaps bookkeeping info with the rvalue object
+// Move Constructor: creates an object actually and swaps bookkeeping info with the rvalue object
 Useless::Useless(Useless&& sourceObj) : numElements(sourceObj.numElements)
 {
     ++countObjects;
     cout << "! Move constructor called, number of objects: " << countObjects << endl;
     ptrData = sourceObj.ptrData;        // steal address
-    sourceObj.ptrData = nullptr;        // give old object nothing in return (need to swap?)
-    sourceObj.numElements = 0;          // (?) Need to swap?
+    sourceObj.ptrData = nullptr;        // give old object nothing in return (need to swap actually?).
+    sourceObj.numElements = 0;          // (?) Need to swap? Note: since we are creating the new object, nothing is allocated for it, so we can set to 0 and nullptr sourceObj (as was for targed)
     ShowObject();
-}
-
-Useless::~Useless()
-{
-    cout << "! Destructor called, objects left: " << --countObjects << endl;
-    cout << "deleted object:" << endl;
-    ShowObject();
-    delete[] ptrData;
 }
 
 //Note: operator+() doesn't create object automatically as constructors, needs to create it explicitly
@@ -74,6 +68,49 @@ Useless Useless::operator+(const Useless& addedObj) const        //Returning rva
     //Return temp object as rvalue(?)
     return temp;
 }
+
+//Assignment operator of lvalue (copy assignment operator)
+Useless& Useless::operator=(const Useless& assignedObj){
+    if (this == &assignedObj)                               //If assign an object to itself, then just return itself
+        return *this;
+
+    delete[] this->ptrData;                                 //Release the obtained memory before allocating the new memory
+
+    this->numElements = assignedObj.numElements;            //Copy number of elements
+    this->ptrData = new char[numElements];                  //Allocate enough memory
+    //Or use a cycle explicitly
+    memcpy(this->ptrData, assignedObj.ptrData, this->numElements);      //Copy all the data from the assigned to the source
+
+    return *this;
+}
+
+//Assignment operator of rvalue (move assignment operator)
+Useless& Useless::operator=(Useless&& movedObj){
+    if (this == &movedObj)                               //If move an object to itself, then just return itself
+        return *this;
+
+    //One opportunity is to swap pointers and number of elements
+    //swap(this->numElements, movedObj.numElements);
+    //swap(this->ptrData, movedObj.ptrData);
+
+    //Or correctly to release the target explicitly and set the pointer/number of the moved object, resetting the moved object members?
+    delete[] this->ptrData;
+    this->numElements = movedObj.numElements;
+    this->ptrData = movedObj.ptrData;
+    movedObj.numElements = 0;
+    movedObj.ptrData = nullptr;
+
+    return *this;
+}
+
+Useless::~Useless()
+{
+    cout << "! Destructor called, objects left: " << --countObjects << endl;
+    cout << "deleted object:" << endl;
+    ShowObject();
+    delete[] ptrData;
+}
+
 
 void Useless::ShowObject() const
 {

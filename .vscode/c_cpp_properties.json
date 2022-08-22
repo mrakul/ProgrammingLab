@@ -4,6 +4,7 @@
             "name": "GCC",
             "includePath": [
             //"C:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include"
+            "C:\\boost\\boost_1_80_0\\"
             ],
             "defines": [
                 "_DEBUG",

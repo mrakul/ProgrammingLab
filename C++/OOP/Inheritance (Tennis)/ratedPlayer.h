@@ -20,7 +20,7 @@ class RatedPlayer : public TableTennPlayer
         //unsigned int showRating() const { return rating; TableTennPlayer::showType;}  // If derived class, the base class's pure function may be called only explicitly with scope resolution
         void resetRating(unsigned int r) { rating = r; } // add a method
         //void showType(void) const; // {std::cout << "This ia a Rated Player";}
-        RatedPlayer &operator=(RatedPlayer & ratedPlayer);
+        RatedPlayer &operator=(RatedPlayer & ratedPlayer);                  // Important: it returns the reference to itself
 };
 
 #endif

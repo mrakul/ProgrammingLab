@@ -39,6 +39,7 @@ private:
     int input;      // TV or DVD
 
 public:
+    //TV class decides who is friend and has access to its private fields. In this case, this is Remote's set_chan when transmitting to it TV object
     friend void Remote::set_chan(Tv & t, int c);
     //Or make the entire class a friend, but this is not required
     //friend class Remote; // Remote can access Tv private parts

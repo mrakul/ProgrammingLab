@@ -4,13 +4,13 @@
 
 using namespace std;
 
-const int BUFF_SIZE = 50;
+const int BUFF_SIZE = 20;
 
 int main(int argc, char const* argv[])
 {
 
     // 1. Use of stringstream, that is for input and output
-    stringstream strStream;     // Bidirectional stringstream (two streams?)
+    stringstream strStream;                                             // Bidirectional stringstream (two streams?)
     char strToConvert[BUFF_SIZE];
     // strToConvert[4] = 'g';   // (?)
 
@@ -20,14 +20,14 @@ int main(int argc, char const* argv[])
     // cout.write(strToConvert, 5);    // The alternative to output to cout
 
     strStream.getline(strToConvert, BUFF_SIZE);    //Read IN to the strToConver
-    //cout.write(strToConvert, BUFF_SIZE);    // The alternative to output to cout
+    cout.write(strToConvert, BUFF_SIZE);           // The alternative to output to cout: print out the entire sentence (all BUFF_SIZE is printed out)
+    // Read word-by-word and print out
+    // while (strStream >> strToConvert)
+    //     cout << " " << strToConvert;
+
     //strStream.clear();
     cout << strStream.eofbit << " " << strStream.badbit << " " << strStream.failbit << endl;    //read() sets EOF and fail bits
     cout << strStream.eof() << " " << strStream.bad() << " " << strStream.fail();
-
-    // Read word-by-word
-    // while (strStream >> strToConvert)
-    //     cout << " " << strToConvert;
 
     // 2. Use of ostringstream to only output there
     ostringstream outStream;
@@ -48,7 +48,7 @@ int main(int argc, char const* argv[])
 
     // 3. Use of istringstream to only input
     char sentence[] = "This is the best sentence in the world";
-    istringstream inStream(sentence);
+    istringstream inStream(sentence);           //Constructor to initialize by the sentence above
     char word[10];
     while (inStream >> word)
         cout << word << endl;

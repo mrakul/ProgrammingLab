@@ -17,6 +17,7 @@ void RatedPlayer::showName() const {
    std::cout << " (rated player also)";
 }
 
+// Important: it returns the reference to itself
 RatedPlayer &RatedPlayer::operator=(RatedPlayer & ratedPlayer){
    this->rating = ratedPlayer.rating;
    return *this;

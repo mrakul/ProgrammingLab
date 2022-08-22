@@ -15,8 +15,8 @@ struct job
 // void Swap(job &, job &);
 
 // Template prototype, implicit instantiation
-template <typename T>
-void Swap(T& a, T& b);    //Or template <class T> - implicit instantiation: compiler generates code only when encounter particular use with specified types within the code
+template <typename Type>
+void Swap(Type& a, Type& b);    //Or template <class T> - implicit instantiation: compiler generates code only when encounter particular use with specified types within the code
 
 // Explicit specialization                      //Overrides template function generated
 template <>
@@ -28,8 +28,8 @@ template void Swap<int>(int&, int&); // explicit instantiation -> force the comp
 void Show(job& j);
 
 //Example of using 'using' to create aliases
-template<typename T>
-    using arr12 = std::array<T, 12>; // This create template for multiple aliases
+template<typename Type>
+    using arr12 = std::array<Type, 12>; // This create template for multiple aliases
 
 int main(int argc, char const* argv[])
 {
@@ -63,10 +63,10 @@ int main(int argc, char const* argv[])
     return 0;
 }
 
-template <typename T>
-void Swap(T& a, T& b) // General template version
+template <typename Type>
+void Swap(Type& a, Type& b) // General template version
 {
-    T temp;
+    Type temp;
     temp = a;
     a = b;
     b = temp;

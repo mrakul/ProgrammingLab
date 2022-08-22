@@ -65,7 +65,9 @@
 			"vector2": "cpp",
 			"map": "cpp",
 			"set": "cpp",
-			"ratio": "cpp"
+			"ratio": "cpp",
+			"future": "cpp",
+			"*.ipp": "cpp"
 		},
 		"files.trimTrailingWhitespace": true,
 		"window.zoomLevel": -1,

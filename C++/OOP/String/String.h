@@ -25,7 +25,7 @@ public:
                                     const String &str);
 
     //Assignment operator
-    String &operator=(const String &source);    //overload '=' operator to make deep copy
+    String &operator=(const String &source);    //overload '=' operator to make deep copy. Important: it returns the reference to itself
     char &operator[](int i);
     const char &operator[](int i) const;    //The last const allow to distinguish versions
 
