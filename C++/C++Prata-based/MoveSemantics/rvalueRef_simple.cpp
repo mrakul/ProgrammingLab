@@ -39,7 +39,6 @@ int main(int argc, const char* argv[])
     // parameter is initialized to the lvalue. But a non-const lvalue reference parameter
     // can’t accept an rvalue function argument.
 
-
     //r3(w);		        // is an error because an rvalue reference cannot refer to an lvalue, such as w.
     r3(w+1);             // is valid, and rx refers to the temporary value of the expression w+1.
     r3(up(w));           // is valid, and rx refers to the temporary return value of up(w)
