@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <cstring>
 
 using std::string;
 using std::cin, std::cout, std::endl;
@@ -7,11 +8,19 @@ using std::cin, std::cout, std::endl;
 int main(int argc, char const* argv[])
 {
     string strInput;
-    char charInput[10];
+    char charInput[30];
+    int strLen{0};
 
-    while (cin.get(charInput, sizeof(charInput))){          //If reached EOF, need to reset the state
+    //Note: getline() continue reading after reading all the line if it fits. get() stops and sets failbit even if the line fits!
+    //(!) getline() if charInput is less than input string, then the failbit is set.
+    //(!) get() reading all the content and after that sets the failbit
+    while (cin.getline(charInput, sizeof(charInput)) && (strLen = strlen(charInput))){          //If reached EOF, need to reset the state.
         cout << "Current input is: " << charInput << endl;
     }
+
+    //Check the state
+    cout << cin.eofbit << " " << cin.badbit << " " << cin.failbit << endl;
+    cout << cin.eof() << " " << cin.bad() << " " << cin.fail();     //failbit is set (for some reason?)
 
     cin.get(charInput, sizeof(charInput));                  //not working without resetting the state(?)
     while (cin.good())                                      //not working without resetting the state(?)
@@ -20,6 +29,7 @@ int main(int argc, char const* argv[])
         cin.get(charInput, sizeof(charInput));
     }
 
+    //Check the state
     cout << cin.eofbit << " " << cin.badbit << " " << cin.failbit << endl;
     cout << cin.eof() << " " << cin.bad() << " " << cin.fail();     //fail bit is set (for some reason?)
 
@@ -48,7 +58,7 @@ int main(int argc, char const* argv[])
         cin.ignore(Limit, '\n'); // discard the part after the delimiter ("#" in this case) till the NewLine
 
 
-    //Use cin.get() for input: it leaves the delimiter in the buffer
+    // Use cin.get() for input: it leaves the delimiter in the buffer
     cout << "Enter a string for get() processing:" << endl;
     cin.get(input, Limit, '#');
     cout << "Here is your input:\n";
