@@ -1,0 +1,25 @@
+A copy (or move) implies another object.
+Construction does not.
+
+Copy example for vec.push_back( A( 10, "hello" ) );
+
+1) A temporary A is created on the stack
+2)a) If A has a copy ctor, then the new object is copy constructed from the temporary
+2)b) Otherwise the new object is default constructed, and the copy (assignment) operator is invoked to copy the temporary's value to the new object
+3) The temporary object is destroyed
+
+Move example for vec.push_back( A( 10, "hello" ) );
+
+1) A temporary A is created on the stack
+2) The new object is default constructed
+3) The innards of the two objects are swapped ("moved")
+4) The temporary is destroyed
+
+Emplace example for vec.emplace_back( 10, "hello" );
+
+1) The new object is constructed
+
+Hope this helps.
+
+The source:
+https://cplusplus.com/forum/general/122033/

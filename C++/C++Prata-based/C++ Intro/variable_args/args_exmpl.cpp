@@ -12,7 +12,7 @@ void oneArgOut(const Type& funcVariable)
 
 void funcOut(){cout << "\t### Terminating funcOut() ###";}                                       //Or the solution is to have termination function for zero arguments
 
-
+//Variadic template to accept variadic number of arguments
 template<typename Type, typename... Args>                // (!) Note that typename... is also specifies that types are different
 void funcOut(const Type& firstArg, const Args&... args)  // recursive variadic function for several arguments. Note: the first argument is needed to identify as multiple arguments
 {                                                        // "Args is a template parameter pack, and args is a function parameter pack"
