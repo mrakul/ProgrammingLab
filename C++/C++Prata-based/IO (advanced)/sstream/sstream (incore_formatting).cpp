@@ -4,7 +4,7 @@
 
 using namespace std;
 
-const int BUFF_SIZE = 20;
+const int BUFF_SIZE = 12;
 
 int main(int argc, char const* argv[])
 {
@@ -14,13 +14,13 @@ int main(int argc, char const* argv[])
     char strToConvert[BUFF_SIZE];
     // strToConvert[4] = 'g';   // (?)
 
-    strStream << "Number: " << 43.59 << " Cringe sentence" << endl;     // Write OUT to the string stream
+    strStream << "Number: " << 43.59 << " Cringe sentence#" << endl;     // Write OUT to the string stream
     cout << strStream.str();                                            // Print out the stream's content
     // strStream.read(strToConvert, 15);  // Write the stream's content to the string (chars)
     // cout.write(strToConvert, 5);    // The alternative to output to cout
 
-    strStream.getline(strToConvert, BUFF_SIZE);    //Read IN to the strToConver
-    cout.write(strToConvert, BUFF_SIZE);           // The alternative to output to cout: print out the entire sentence (all BUFF_SIZE is printed out)
+    while (strStream.get(strToConvert, BUFF_SIZE))// ,'#')) //- check another delimiter             //Read IN to the strToConver: get() continues reading if the buffer is small, getline() stops immediately
+        cout.write(strToConvert, strStream.gcount());           // Print out the number of read characters!
     // Read word-by-word and print out
     // while (strStream >> strToConvert)
     //     cout << " " << strToConvert;
@@ -28,6 +28,11 @@ int main(int argc, char const* argv[])
     //strStream.clear();
     cout << strStream.eofbit << " " << strStream.badbit << " " << strStream.failbit << endl;    //read() sets EOF and fail bits
     cout << strStream.eof() << " " << strStream.bad() << " " << strStream.fail();
+
+    strStream.clear();
+
+    char ch = strStream.get();
+    ch = ch;
 
     // 2. Use of ostringstream to only output there
     ostringstream outStream;

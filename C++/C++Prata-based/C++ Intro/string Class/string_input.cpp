@@ -13,6 +13,12 @@ int main(int argc, char const *argv[])
 
     //For string objects, recall, you have two options :
     string stuff;
+    //Just an example to print out pointer to the actual data: they are both equal after the default constructor, but non-null
+    char const * ptr1 = stuff.data();
+    cout << hex << reinterpret_cast<const void*>(ptr1) << endl;
+    char const * ptr2 = stuff.c_str();
+    cout << hex << reinterpret_cast<const void*>(ptr2) << endl;
+
     cin >> stuff;        // read a word (stays /n in the buffer)
     cout << "stuff's length: " << stuff.length() << endl;
     char ch = cin.get();    //discard newline

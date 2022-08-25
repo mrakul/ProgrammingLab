@@ -6,15 +6,15 @@
 int main()
 {
     using namespace std;
-    string one("Lottery Winner!"); // ctor #1
+    string one("Lottery Winner!"); // Constructor #1
     cout << one << endl;           // overloaded <<
 
     //String2
-    string two(20, '$');           // ctor #2
+    string two(20, '$');           // Constructor #2
     cout << two << endl;
 
     //String3
-    string three(one);              // ctor #3
+    string three(one);              // Constructor #3
     cout << three << endl;
     one += " Oops!";                // overloaded +=
     cout << one << endl;
@@ -22,28 +22,28 @@ int main()
     three[0] = 'P';
 
     //String4
-    string four;                    // ctor #4
+    string four;                    // Constructor #4
     four = two + three;             // overloaded +, =
     cout << four << endl;
     char alls[] = "All's well that ends well";
 
     //String5
-    string five(alls, 20);          // ctor #5 (take first 20 symbols or more)
+    string five(alls, 20);          // Constructor #5 (take first 20 symbols or more)
     cout << five << "!\n";
 
     //String6
-    string six(alls + 6, alls + 10); // ctor #6 (uses Iterators conception)
+    string six(alls + 6, alls + 10); // Constructor #6 (uses Iterators conception)
     cout << six << ", ";
 
     //String7
-    string seven(&five[6], &five[10]); // ctor #6 again
+    string seven(&five[6], &five[10]); // Constructor #6 again
     cout << seven << "...\n";
 
     //String8
-    string eight(four, 7, 16);          // ctor #7: start position and number of characters to copy
+    string eight(four, 7, 16);          // Constructor #7: start position and number of characters to copy
     cout << eight << " in motion!" << endl;
 
-    string piano_man = {'L', 'i', 's','z','t'}; //ctor#9 from the Stephen Prata's C++ Primer Plus book - use Initializer list
+    string piano_man = {'L', 'i', 's','z','t'}; //Constructor #9 from the Stephen Prata's C++ Primer Plus book - use Initializer list
 
     //Actions on the strings
     if (one > two)
