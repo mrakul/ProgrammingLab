@@ -14,6 +14,8 @@ int main()
     int stuff[5] = {1, 2, 4, 8, 6};
     list<int> two;      //empty list
     two.insert(two.begin(), stuff, stuff + 5);
+    //To copy the entire list an assignment operator = may be used. Also, the move semantics may be used
+    // three = one; three = move(one); - move semantics
 
     int more[6] = {6, 4, 2, 4, 6, 5};
     list<int> three(two);

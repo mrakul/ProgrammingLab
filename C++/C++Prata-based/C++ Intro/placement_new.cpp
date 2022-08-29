@@ -58,15 +58,15 @@ int main(int argc, char const *argv[])
     delete ptrObj4;                                                 //Free heap as usual
 
     //(!) Need to explicitly call the destructor for the placed objects
-    //delete ptrObj1;                                               //Must not use these deletes, since it releases the memory without
+    //delete ptrObj1;                                               //Must not use these deletes, since it releases the memory without calling the subsequent destructors
     //delete ptrObj2;
 
     ptrObj3->~TestingClass();                                       // (!) Call the destructor explicitly: buffer still exists, but the related objects destructors are called
     ptrObj1->~TestingClass();                                       // My note: destructor itself only calls the destructors for the contained objects, not being releasing the memory
-    //And after that release the buffer's memory
     delete[] bufPtr;                                                // Release buffer after calling the destructors explicitly
 
     cout << "Done" << endl;
+
 
     return 0;
 }
