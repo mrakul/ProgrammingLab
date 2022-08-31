@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
     ptrObj1 = new (bufPtr) TestingClass;                            // (!!!) Placement new: place a new object at the butPtr location, but it doesn't allocate a new memory
     ptrObj2 = new TestingClass("Heap object1", 20);                 // Place object on heap
     cout << "Memory block addresses:\n" <<
-        "bufPtr: " << (void *)bufPtr <<
+        "bufPtr: " << reinterpret_cast<void *>(bufPtr) <<           //reinterpret_cast to output the buffer. Otherwise, it is printed out as a null-terminated C-string
         " Object1 on heap address: " << ptrObj2 << endl;
 
     cout << "Memory contents:\n";
