@@ -1,6 +1,6 @@
-### Output ###
+    ### Output ###
 
-git log -5 --graph --decorate --pretty=oneline --abbrev-commits
+git log -5 --graph --decorate --pretty=oneline --abbrev-commit
 -> show last 5 commits in the pretty mode
 
 git show
@@ -11,7 +11,7 @@ git remote -v
 git branch -a
 -> shows all remote and local branches
 
-### Rebase ###
+    ### Work with branches  ###
 git rebase <branch1> <branch2>
 -> rebases <branch2> to <branch1> and checkout to <branch2>
 
@@ -21,18 +21,23 @@ git checkout <commit/branch>
 git branch -f <branch>
 -> move the specified branch to the current commit (where the HEAD now)
 
+git reset --hard <commit>
+-> moves the current branch's pointer to the commit
+
 git checkout -b <new branch>
 -> creates a new branch and checkout checkout it
 
-### Cherry-pick ###
+    ### Cherry-pick ###
 git cherry-pick <C1, C2 ... Cn>
 -> pick up the specified commits for the current branch and move the branch to the last specified commit
 
-### Garbage collector ###
+    ### Garbage collector ###
 git gc
 -> removes the orphaned nodes
 
-TODO:
-remote branches examples
+### Remotes ###
+git remote set-url origin https://github.com/mrakul/ProgrammingLab.git  https://github.com/mrakul/CCpp-Projects-VS-Code.git
+-> changes the origin's URL
 
-change origin URL (?)
+git remote add upstream <URL>
+-> set upstream URL
