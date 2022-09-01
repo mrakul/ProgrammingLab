@@ -36,8 +36,35 @@ git gc
 -> removes the orphaned nodes
 
 ### Remotes ###
+# If the branch is created remotely:
+git fetch origin
+-> will fetch the remote branch and create its remote representation
+  >From https://github.com/mrakul/ProgrammingLab
+  > * [new branch]      test2      -> origin/test2
+  > git branch --remotes
+  >  origin/HEAD -> origin/main
+  >  origin/main
+  >  origin/test2
+// Then if try to checkout to the local, the branch is just created locally
+git checkout test2
+  > Switched to a new branch 'test2'
+  > M       Git/git_commands.txt
+  > Branch 'test2' set up to track remote branch 'test2' from 'origin'.
+
+//If remote branches are deleted, but local remotes representation is still exists, this command "cuts"(prunes), removes their representation:
+git remote prune origin
+ > Pruning origin
+ > URL: https://github.com/mrakul/ProgrammingLab.git
+ > * [pruned] origin/test2
+ > * [pruned] origin/test4
+
+
 git remote set-url origin https://github.com/mrakul/ProgrammingLab.git  https://github.com/mrakul/CCpp-Projects-VS-Code.git
 -> changes the origin's URL
 
 git remote add upstream <URL>
 -> set upstream URL
+
+git push origin --delete test
+-> (!) removes the remote branch (FROM THE REMOTE REPOSITORY) and its local reflection (origin/test)
+-> Then you need to remove the local (not remote) branch separately
