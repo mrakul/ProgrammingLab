@@ -1,16 +1,38 @@
 ### Output ###
-git log -5 --graph --decorate --pretty=oneline --abbrev-commit
+
+git log -5 --graph --decorate --pretty=oneline --abbrev-commits
+-> show last 5 commits in the pretty mode
+
+git show
+->: show last commit or current commit
+
+git remote -v
+-> shows all remote repositories URLs
+git branch -a
+-> shows all remote and local branches
 
 ### Rebase ###
-git checkout <commit/branch> : move HEAD to the commit/branch. If a commit specified, then the branch in a detached state.
+git rebase <branch1> <branch2>
+-> rebases <branch2> to <branch1> and checkout to <branch2>
 
-git branch -f <branch> : move the specified branch to the current commit (where the HEAD now)
+git checkout <commit/branch>
+->  move HEAD to the commit/branch. If a commit specified, then the branch in a detached state.
+
+git branch -f <branch>
+-> move the specified branch to the current commit (where the HEAD now)
+
+git checkout -b <new branch>
+-> creates a new branch and checkout checkout it
 
 ### Cherry-pick ###
+git cherry-pick <C1, C2 ... Cn>
+-> pick up the specified commits for the current branch and move the branch to the last specified commit
 
+### Garbage collector ###
+git gc
+-> removes the orphaned nodes
 
 TODO:
-
 remote branches examples
 
 change origin URL (?)
