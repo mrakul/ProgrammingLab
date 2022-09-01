@@ -1,2 +1,2 @@
-# C/C++-Projects-VS-Code
-C/C++ learning + GitHub 
+## ProgrammingLab Repository
+Experiments and learning of C/C++ and others + GitHub 
