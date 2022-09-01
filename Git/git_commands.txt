@@ -1,0 +1,16 @@
+### Output ###
+git log -5 --graph --decorate --pretty=oneline --abbrev-commit
+
+### Rebase ###
+git checkout <commit/branch> : move HEAD to the commit/branch. If a commit specified, then the branch in a detached state.
+
+git branch -f <branch> : move the specified branch to the current commit (where the HEAD now)
+
+### Cherry-pick ###
+
+
+TODO:
+
+remote branches examples
+
+change origin URL (?)
