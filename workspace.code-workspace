@@ -101,7 +101,7 @@
 		},
 		"files.trimTrailingWhitespace": true,
 		"window.zoomLevel": -1,
-		"sqlite.sqlite3":"D:\\Projects\\CCpp-Projects-VS-Code\\SQLite_requests\\SQLite\\sqlite3",
+		"sqlite.sqlite3":"D:\\Projects\\ProgrammingLab\\SQLite_requests\\SQLite\\sqlite3",
 		//"terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
 		//"C_Cpp.default.includePath": ["C:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include"]
 		"editor.bracketPairColorization.enabled": false,

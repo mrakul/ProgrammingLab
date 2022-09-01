@@ -4,7 +4,7 @@
 const int Size = 5;
 
 template < typename T>
-void sum(std::array<double, Size> a, T & fp);
+void sum(std::array<double, Size> a, T &fp);
 
 class Adder
 {
@@ -16,7 +16,7 @@ public:
 };
 
 template<typename T>
-void show2(double x, T& funcPtr) { std::cout << x << " -> " << funcPtr(x) << '\n'; }
+void show2(double x, T &funcPtr) { std::cout << x << " -> " << funcPtr(x) << '\n'; }
 
 double f1(double x) { return 1.8 * x + 32; }
 
@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
 }
 
 template<typename T>
-void sum(std::array<double, Size> a, T& fp)
+void sum(std::array<double, Size> a, T &fp)
 {
     for (auto pt = a.begin(); pt != a.end(); ++pt)
     {
