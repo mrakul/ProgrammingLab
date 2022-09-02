@@ -1,8 +1,14 @@
 {
 	"folders": [
 		{
-			"path": "."
-		}
+			"path": ".",
+			"name": "Workspace"
+		},
+		//Another path may be added to workspace
+		// {
+		// 	"path": "C:\\Users\\Mikhail Rakul\\AppData\\Roaming\\Code\\User\\",
+		// 	"name": "User"
+		// }
 	],
 	"settings": {
 		"files.associations": {

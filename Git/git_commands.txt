@@ -14,6 +14,10 @@ git show
 
 -- Shows all remote repositories URLs
 git remote -v
+
+-- Show remote repositories with the remote branches and linkage with with local
+git remote show origin
+
 -- Shows all remote and local branches
 git branch -a
 
