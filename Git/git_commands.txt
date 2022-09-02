@@ -25,10 +25,13 @@ git branch -a
 -- Rebases <branch2> to <branch1> and checkout to <branch2>
 git rebase <branch1> <branch2>
 
+-- Interactively rebase the current branch to the specified
+git rebase -i <branch>
+
 -- Move HEAD to the commit/branch. If a commit specified, then the branch in a detached state.
 git checkout <commit/branch>
 
--- Move the specified branch to the current commit (where the HEAD now)
+-- Move the specified branch to the current commit (where the HEAD now), (!) BUT not checkout the branch
 git branch -f <branch>
 
 -- Moves the current branch's pointer to the commit
@@ -50,9 +53,12 @@ git cherry-pick <C1, C2 ... Cn>
 git gc
 
     ### Remotes ###
+-- Forcely push the changes to the main of remote origin
+git push -f origin main
+
 --  If the branch is created remotely:
 git fetch origin
--- will fetch the remote branch and create its remote representation
+-- will fetch the remote branch and create its remote representation (but not local branch)
   >From https://github.com/mrakul/ProgrammingLab
   > * [new branch]      test2      -> origin/test2
   > git branch --remotes
@@ -71,6 +77,11 @@ git checkout --track origin/test2
 -- Push the branch to the remote repository (origin), ('--set-upstream' == '-u'):
 git push -u origin dev
 
+-- Remove the remote branch and its local reflection:
+git push origin --delete test
+-> (!) removes the remote branch (FROM THE REMOTE REPOSITORY) and its local reflection (origin/test)
+-> Then you need to remove the local (not remote) branch separately
+
  -- If remote branches are deleted, but local remotes representation is still exists, this command "cuts"(prunes), removes their representation:
 git remote prune origin
  > Pruning origin
@@ -84,10 +95,6 @@ git remote set-url origin https://github.com/mrakul/ProgrammingLab.git  https://
 -- Set upstream URL
 git remote add upstream <URL>
 
--- Remove the remote branch and its local reflection:
-git push origin --delete test
--> (!) removes the remote branch (FROM THE REMOTE REPOSITORY) and its local reflection (origin/test)
--> Then you need to remove the local (not remote) branch separately
 
 -- Tie local branch to remote ('--set-upstream' == '-u')
 git branch --set-upstream-to=upstream/foo
