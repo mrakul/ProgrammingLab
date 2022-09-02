@@ -31,10 +31,13 @@ git rebase -i <branch>
 -- Move HEAD to the commit/branch. If a commit specified, then the branch in a detached state.
 git checkout <commit/branch>
 
+-- Move the HEAD for the 1-st or the second parent appropriately
+git checkout HEAD^
+git checkout HEAD^2
+git checkout HEAD~^2~2  -> move for 1 commit down, for the second parent and for 2 commits down
+
 -- Move the specified branch to the current commit (where the HEAD now), (!) BUT not checkout the branch
 git branch -f <branch>
-
--- git branch
 
 -- Moves the current branch's pointer to the commit
 git reset --hard <commit>
