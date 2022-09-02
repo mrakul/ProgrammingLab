@@ -22,10 +22,10 @@ git remote show origin
 git branch -a
 
     ### Work with branches  ###
--- Rebases <branch2> to <branch1> and checkout to <branch2>
-git rebase <branch1> <branch2>
+-- Rebases <branch2> to <branch1> AND (!) checkout to <branch2> (interactively or not [-i])
+git rebase -i <branch1> <branch2>
 
--- Interactively rebase the current branch to the specified
+-- Interactively rebase the current branch to the specified branch (pointer): includes manipulation with commits and move the pointer
 git rebase -i <branch>
 
 -- Move HEAD to the commit/branch. If a commit specified, then the branch in a detached state.
@@ -33,6 +33,8 @@ git checkout <commit/branch>
 
 -- Move the specified branch to the current commit (where the HEAD now), (!) BUT not checkout the branch
 git branch -f <branch>
+
+-- git branch
 
 -- Moves the current branch's pointer to the commit
 git reset --hard <commit>
