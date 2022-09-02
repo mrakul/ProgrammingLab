@@ -26,7 +26,7 @@ git branch -a
 git rebase -i <branch1> <branch2>
 
 -- Interactively rebase the current branch to the specified branch (pointer): includes manipulation with commits and move the pointer
-git rebase -i <branch>
+git rebase -i <branch, commit SHA>
 
 -- Move HEAD to the commit/branch. If a commit specified, then the branch in a detached state.
 git checkout <commit/branch>
