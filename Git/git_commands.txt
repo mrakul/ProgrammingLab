@@ -12,6 +12,12 @@ git log -5 --graph --decorate --pretty=oneline --abbrev-commit
 -- Show last commit or current commit
 git show
 
+-- Show files in the index and the working tree (--cached by default)
+git ls-files
+
+ -- List the contents of a tree object (what is commited?)
+git ls-tree HEAD
+
 -- Shows all remote repositories URLs
 git remote -v
 
@@ -20,6 +26,7 @@ git remote show origin
 
 -- Shows all remote and local branches
 git branch -a
+
 
     ### Work with branches  ###
 -- Rebases <branch2> to <branch1> AND (!) checkout to <branch2> (interactively or not [-i])
@@ -39,10 +46,10 @@ git checkout HEAD~^2~2  -> move for 1 commit down, for the second parent and for
 -- Move the specified branch to the current commit (where the HEAD now), (!) BUT not checkout the branch
 git branch -f <branch>
 
--- Moves the current branch's pointer to the commit
-git reset --hard <commit>
-git reset --mixed <commit>
-git reset --soft <commit>
+-- Moves the HEAD pointer AND the current branch's pointer where HEAD points to to the commit specified:
+git reset --hard <commit>   -- update all the trees with the commit's content
+git reset --mixed <commit>  -- update staging area along with pointers HEAD and the branch, but no updating working tree content
+git reset --soft <commit>   -- no update working tree and the index tree
 
 -- Creates a new branch and checkout checkout it
 git checkout -b <new branch>
