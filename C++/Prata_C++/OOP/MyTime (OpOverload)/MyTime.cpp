@@ -4,8 +4,9 @@
 MyTime::MyTime() : hours(0), minutes(0)     //use initializer list
 {}
 
-MyTime::MyTime(int hrs, int mnts) : hours(hrs), minutes(mnts)
-{}
+MyTime::MyTime(int hrs, int mnts) : hours(hrs), minutes(mnts){
+    std::cout << "MyTime constructor(int, int) is called" << std::endl;
+}
 
 MyTime::~MyTime(){
     std::cout << "MyTime destructor is called" << std::endl;

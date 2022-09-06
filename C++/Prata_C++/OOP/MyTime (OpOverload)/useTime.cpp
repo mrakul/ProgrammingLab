@@ -1,7 +1,7 @@
 #include <iostream>
 #include "MyTime.h"
 
-int main()
+int main_()
 {
     using std::cout;
     using std::endl;

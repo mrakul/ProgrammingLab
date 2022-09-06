@@ -28,8 +28,9 @@
 
                 /*** Compile options ***/
                 // "-c",                            // Only compile file (-c option), make object-files
-                "${file}",
-                // "${fileDirname}\\*.cpp",
+                // "${file}",
+                "${fileDirname}\\*.cpp",
+                //"../../OOP/MyTime (OpOverload)/*.cpp",        // To compile Smart Pointers with MyTime example
                 // Add debug info (-g option) to the object file (files)
                 "-g",
 

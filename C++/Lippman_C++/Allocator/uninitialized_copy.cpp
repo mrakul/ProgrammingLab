@@ -38,18 +38,18 @@ int main(int argc, char const *argv[])
     //Release the memory
     allocatorInt.deallocate(memToUsePtr, CNT_SIZE);
 
-/*** 2. Try make_move_iterator() adapter ***/
-    // Allocate twice an initial vector required
+    /*** 2. Try make_move_iterator() adapter ***/
+        // Allocate twice an initial vector required
     auto newVectMem = allocatorInt.allocate(CNT_SIZE * 2);
 
     // Move the elements from the initial vector: in this case it will be just copied, since primitive ints are used
     curPosPtr = uninitialized_copy(make_move_iterator(vectInts.begin()),
-                                   make_move_iterator(vectInts.end()),
-                                  newVectMem);
+                                    make_move_iterator(vectInts.end()),
+                                    newVectMem);
     // Fill the second part with reverted iterators
     curPosPtr = uninitialized_copy(make_move_iterator(vectInts.rbegin()),
-                                   make_move_iterator(vectInts.rend()),
-                                   curPosPtr);
+                                    make_move_iterator(vectInts.rend()),
+                                    curPosPtr);
 
     cout << "New mem with constructed elements: " << endl;
     while (curPosPtr != newVectMem)
@@ -61,13 +61,14 @@ int main(int argc, char const *argv[])
 
     allocatorInt.deallocate(newVectMem, CNT_SIZE * 2);
 
-/*** 3. Copy from the list to uninitialized memory ***/
+    /*** 3. Copy from the list to uninitialized memory ***/
 
     // Create a list for experiment: list content may be copied/moved (?) to the uninitialized memory using iterators
     list<int> listInts(CNT_SIZE);
     cout << "List content: " << endl;
     i = 0;
-    for (auto &num: listInts){
+    for (auto &num : listInts)
+    {
         num = 100 - i;
         cout << num << " ";
         i++;
@@ -81,6 +82,7 @@ int main(int argc, char const *argv[])
     curPosPtr = uninitialized_copy(make_move_iterator(listInts.begin()),
                                    make_move_iterator(listInts.end()),
                                    newVectMem2);
+
     // Fill the second part with reverted iterators
     curPosPtr = uninitialized_copy(make_move_iterator(listInts.rbegin()),
                                    make_move_iterator(listInts.rend()),
@@ -98,6 +100,3 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
-
-
-
