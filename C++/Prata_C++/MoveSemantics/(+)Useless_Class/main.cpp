@@ -1,5 +1,8 @@
 #include "useless.h"
 
+//Factory function to check the behavior with move semantics
+Useless objFactory();
+
 int main(int argc, char const* argv[])
 {
     cout << "\t### Starting inner block ###" << endl;
@@ -56,10 +59,18 @@ int main(int argc, char const* argv[])
         obj1.ShowData();
         cout << "object five: ";
         obj5.ShowData();
+
+        /*** Factory class checking ***/
+        Useless obj6;                                   // Use default constructor
+        obj6 = objFactory();                            // Assign rvalue of the objFactory: move constructor is called and the temporary object is deleted
     }
 
     // May be observed that obj5 has 10 elements when released, and obj1 has 30, so they swapped (if case of swap)
     // Or if the moved object is reset, then it is empty ("object is empty" output)
 
     cout << "\t### After inner block ###" << endl;
+}
+
+Useless objFactory(){
+    return Useless(5, 'X');                            // Constructor (int, char) is called
 }

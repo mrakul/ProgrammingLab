@@ -47,10 +47,12 @@ int main(int argc, char const *argv[])
         << " myTimeObj2.useCount() = " << myTimeObj2.use_count() << endl;
 
     //myTimeObj2.reset();                            // Reset the pointer, destroys the object: MyTime destructor is called
-    }                                                // Destroy existing objects here
 
+    /*** 4. timeFactory() call: ***/
     auto newSharedPtr = timeFactory(10, 30);         // Pointer is copied from the timeFactory()
     cout << "newSharedPtr.useCount() = " << newSharedPtr.use_count() << endl;       // Here it has exclusive ownership
+
+    }                                                // Destroy existing objects here
 
     return 0;
 
