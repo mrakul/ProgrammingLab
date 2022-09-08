@@ -28,7 +28,8 @@ int main(int argc, char const *argv[])
     // Create a block to observe when the destructor will be called
     {
     shared_ptr<MyTime> myTimeObj = unique_ptr<MyTime>(new MyTime(2, 3));
-    shared_ptr<MyTime> myTimeObj2 = std::make_shared<MyTime>(*myTimeObj);
+    shared_ptr<MyTime> myTimeObj2 = myTimeObj;                                  // Create another pointer, which points to the same object
+    // shared_ptr<MyTime> myTimeObj2 = std::make_shared<MyTime>(*myTimeObj);    // This form creates another one object basing on the myTimeObj, so there are two different objects
 
     cout << "myTimeObj.useCount() = " << myTimeObj.use_count()
         << " myTimeObj2.useCount() = " << myTimeObj2.use_count() << endl;       // For both it is observed that use_count() call gives 2 -- both have ownership
