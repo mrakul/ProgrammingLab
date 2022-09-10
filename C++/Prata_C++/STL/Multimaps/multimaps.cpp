@@ -5,7 +5,7 @@
 #include <algorithm>
 
 typedef int KeyType;                                    // (!) Make int KeyType
-typedef std::pair<const KeyType, std::string> Pair;     // work with paris: keys as ints and value as strings
+typedef std::pair<const KeyType, std::string> Pair;     // work with pairs: keys as ints and value as strings
 typedef std::multimap<KeyType, std::string> MyMultiMap; // Multimap with KeyType of ints and values of strings
 
 int main(int argc, const char *argv[])
@@ -18,7 +18,7 @@ int main(int argc, const char *argv[])
     cities.insert(Pair(718, "Brooklyn"));
     cities.insert(Pair(718, "Staten Island"));
     cities.insert(Pair(415, "San Rafael"));
-    cities.insert(Pair(510, "Berkeley"));
+    cities.insert(make_pair(510, "Berkeley"));          // May be added this way
 
     //Count the number of cities by codes
     cout << "Number of cities with area code 415: "
