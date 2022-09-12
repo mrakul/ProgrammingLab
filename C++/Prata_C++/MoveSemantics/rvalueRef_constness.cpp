@@ -21,7 +21,7 @@ int main(int argc, const char* argv[])
     // is initialized to the lvalue. If an rvalue is passed to the function, a const lvalue
     // reference parameter refers to a temporary copy of the value.
 
-    nconstLvalRef(w);               // is valid, and the argument rx refers to w.
+    nconstLvalRef(w);                   // is valid, and the argument rx refers to w.
     // nconstLvalRef(w + 1);	        // is an error because w + 1 is an rvalue.
     // nconstLvalRef(up(w));	        // is an error because the return value of up(w) is an rvalue.
     // In general, if an lvalue is passed to a non-const lvalue reference parameter, the
