@@ -13,9 +13,10 @@ int main(int argc, char const* argv[])
 
         /*** Move constructor using ***/
         // Notes:
-        // 1. Move constructor is called explicitly if specify move(objX + objX)
+        // 1. operator+(&) is called first and returns rvalue
+        // 2. Move constructor is called explicitly if specify move(objX + objX)
         // After the Move Constructor, the temporary object is deleted as usual
-        // 2. (!!!) If not specify move() explicitly, that is Useless objX(objX + objX), the compiler, g++ in our case, makes optimization and just transfers the name of obj4 to the object created in operator+().
+        // 3. (!!!) If not specify move() explicitly, that is Useless objX(objX + objX), the compiler, g++ in our case, makes optimization and just transfers the name of obj4 to the object created in operator+().
         // In this case, only 4 objects are created, but the result is the same, without calling move constructor, but making the same
         Useless obj4(move(obj1 + obj3));       // (!!!) calls operator+(), move constructor is called if specify move() explicitly since operator+() returns RVALUE
         // Additional note:
@@ -45,7 +46,7 @@ int main(int argc, char const* argv[])
         cout << "object five: ";
         obj5.ShowData();
         cout << "object four: ";
-        obj5.ShowData();
+        obj4.ShowData();
 
         /*** Move Assignment operator using ***/
         obj5 = move(obj1);
@@ -63,6 +64,9 @@ int main(int argc, char const* argv[])
         /*** Factory class checking ***/
         Useless obj6;                                   // Use default constructor
         obj6 = objFactory();                            // Assign rvalue of the objFactory: move constructor is called and the temporary object is deleted
+
+        Useless *obj7Ptr = new Useless{obj6};
+        cout << obj7Ptr;
     }
 
     // May be observed that obj5 has 10 elements when released, and obj1 has 30, so they swapped (if case of swap)
