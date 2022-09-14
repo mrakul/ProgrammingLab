@@ -4,67 +4,92 @@
 #include "node.h"
 
 /*** Stack template ***/
-template <typename Type>
+template <typename Data>
 class Stack
 {
 private:
-    Node<Type> *headPtr = nullptr;
-    const int MAX = 100;
+    Node<Data> *headPtr = nullptr;
+    size_t numOfElements = 0;
+    const size_t MAX_NUM_OF_ELEM = 7;
     // Auxiliary functions
-    bool isEmpty() { return (!headPtr); }                                   // Returns true if the Stack is empty
-    void releaseNodes(Node<Type> *itemToRelease);
+    bool stackIsEmpty() { return (!headPtr); }                                   // Returns true if the Stack is empty
+    bool stackIsFull() { return numOfElements == MAX_NUM_OF_ELEM; }              // Returns true if the Stack is full
+    void releaseNodes(Node<Data> *nodeToReleasePtr);
 
 public:
     Stack();
     ~Stack();
-    bool push(const Type &pushedItem);
-    bool pop(const Type &poppedItem);
+    bool push(const Data &pushedItem);
+    bool pop(Data &poppedItem);
 };
 
 /*** (!) Templated classes should exist in the same header file ***/
-template <typename Type>
-Stack<Type>::Stack() : headPtr(nullptr)
+template <typename Data>
+Stack<Data>::Stack() : headPtr(nullptr)
 {
 }
 
 /*** Push item ***/
-template <typename Type>
-bool Stack<Type>::push(const Type &pushedItem)
+template <typename Data>
+bool Stack<Data>::push(const Data &pushedItem)
 {
-    Node<Type> *newNodePtr = new Node<Type>{pushedItem};       // Obtain memory and initialize at the same time by copy constructor of Type (Person)
+    bool itemPushedSuccessfully = false;
 
-    if (!isEmpty())
-        newNodePtr->nextNodePtr = headPtr;
-    // Note: else {newNode->nextNodePtr = nullptr;} is redundant, since nextNode always initialized to nullptr
-    headPtr = newNodePtr;
+    if (!stackIsFull()){
+        Node<Data> *newNodePtr = new (std::nothrow) Node<Data>{pushedItem};       // Obtain memory and initialize at the same time by copy constructor of Data (Person)
+        // If obtained memory successfully
+        if (newNodePtr){
+            if (!stackIsEmpty())
+                newNodePtr->nextNodePtr = headPtr;
+            // Note: else {newNode->nextNodePtr = nullptr;} is redundant, since nextNode always initialized to nullptr
 
-    std::cout << "==> " << newNodePtr->nodeData;           // Print added data
-    return true;
+            headPtr = newNodePtr;
+            numOfElements++;
+            itemPushedSuccessfully = true;
+
+            std::cout << "==> " << newNodePtr->nodeData;                        // Print added data
+        }
+
+    }
+    return itemPushedSuccessfully;
 }
 
 /*** Pop item ***/
-template <typename Type>
-bool Stack<Type>::pop(const Type &poppedItem)
+template <typename Data>
+bool Stack<Data>::pop(Data &poppedItem)
 {
-    return true;
+    bool itemPoppedSuccessfully = false;
+
+    if (!stackIsEmpty()){
+        Node<Data> *nextNodePtr = headPtr->nextNodePtr;                       // Save the next pointer before deleting the head node
+        poppedItem = headPtr->nodeData;                                       // Save the data of the current head
+
+        delete headPtr;                                                       // Destroy the current head node
+        headPtr = nextNodePtr;                                                // Assign to the next. If nullptr, then reassign
+
+        numOfElements--;
+        itemPoppedSuccessfully = true;
+    }
+
+    return itemPoppedSuccessfully;
 }
 
-template <typename Type>
-void Stack<Type>::releaseNodes(Node<Type> *itemToRelease)
+template <typename Data>
+void Stack<Data>::releaseNodes(Node<Data> *nodeToReleasePtr)
 {
-    if (itemToRelease){
-        releaseNodes(itemToRelease->nextNodePtr);
+    if (nodeToReleasePtr){
+        releaseNodes(nodeToReleasePtr->nextNodePtr);
+
         // We are at the end of the stack, may go back and release memory
-        itemToRelease->printNode(itemToRelease);
-        delete itemToRelease;
+        delete nodeToReleasePtr;
     }
 }
 
-template <typename Type>
-Stack<Type>::~Stack()
+template <typename Data>
+Stack<Data>::~Stack()
 {
+    std::cout << "\t Released nodes: " << std::endl;
     releaseNodes(headPtr);
 }
-
 
 #endif

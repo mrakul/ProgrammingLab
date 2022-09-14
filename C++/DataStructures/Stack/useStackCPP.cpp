@@ -19,6 +19,11 @@ int main(int argc, char const *argv[])
         myStack.push(personTwo);
         myStack.push(personThree);
         myStack.push(Person{"PersonToAdd", "TempCreated"});     // Push temporary object, use copy constructor in push to initialize dynamic memory obtained and then destroy the temporary object
+        myStack.push(Person{"Person", "Temponit"});
+        myStack.push(Person{"Personito", "Tempito"});
+        myStack.push(Person{"Persetto", "Tempo"});
+
+        myStack.pop(personOne);                                 // Pop the head item to the personOne
 
     cout << "\t ### Inner block: exit ###" << endl;
     }

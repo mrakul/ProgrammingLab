@@ -42,13 +42,6 @@ Person::Person(string nameCreate, string surnameCreate) : ID(nextID++), name(nam
     cout << "(string, srtring) constructor, New object, ID: " << ID << " " << name << " " << surname << endl;
 }
 
-
-// Use default assignment
-// Person &Person::operator=(const Person &assignedPerson)
-// {
-//     return *this;
-// }
-
 ostream &operator<<(ostream &outStream, const Person &outPerson){
     cout << "ID: " << outPerson.ID << " " << outPerson.name << " " << outPerson.surname << endl;
     return outStream;
