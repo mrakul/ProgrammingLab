@@ -42,12 +42,12 @@ void funcToDemonstrate3(F func, T1 &&t1, T2 &&t2)
 //(!!!)If we call funcToDemonstrate3(fOut2, 42, num), num will be passed to fOut2 as an int& and 42 will be passed as an int&&.
 
 // This template works fine until we want to use it to call a function that has a reference parameter:
-void fOut(int val1, int &val2)             // note v2 is a reference
+void fOut(int val1, int &val2)             // note val2 is a reference
 {
     cout << val1 << " " << ++val2 << endl;
 }
-// Here fOut changes the value of the argument bound to v2. However, if we call fOut
-// through funcToDemonstrate, the changes made by fOut do not affect the original argument :
+// Here fOut changes the value of the argument bound to val2. However, if we call fOut
+// through funcToDemonstrate, the changes made by fOut do not affect the original argument
 
 void fOut2(int &&val1, int &val2)           //Use rvalue reference and lvalue reference types
 {
@@ -72,17 +72,23 @@ int main(int argc, char const *argv[])
     // A function parameter, like any other variable, is an lvalue expression (§ 13.6.1, p. 533).
     // As a result, the call to fOut2() in funcToDemonstrate2() passes an lvalue to fOut2’s rvalue reference parameter.
     //(!) So, with the call of fOut2 we can't bind rvalue reference to lvalue int
+    //funcToDemonstrate2(fOut2, 42, num);           // error, fOut2 call: "cannot bind rvalue reference of type 'int&&' to lvalue of type 'int'"
 
-    //==> funcToDemonstrate2(fOut2, 42, num);           // error, fOut2 call: "cannot bind rvalue reference of type 'int&&' to lvalue of type 'int'"
     funcToDemonstrate3(fOut2, 42, num);
 
     // Explanation:
     // Above call doesn't work since we cannot bind an rvalue reference to a variable defined as an rvalue reference type:
     // Like any other expression, a variable expression has the lvalue/rvalue property. Variable expressions are lvalues (!!!)
     int &&rvalRef = 42;         // ok: literals are rvalues
-    //int &&rvalRefToRef = rr1;             // (!!!) error: the expression rr1 is an lvalue!
-    int &&rvalRefToRef = move(rvalRef);     // WORKS!
-    cout << rvalRefToRef;                   // Make compiler happy
+    //int &&rvalRefToRef = rvalRef;             // (!!!) error: the expression rvalRef is an lvalue, we can't bind rvalue reference to variable expression, which is lvalue
+    int &&rvalRefToRef = move(rvalRef);         // WORKS!
+    cout << rvalRefToRef << endl;               // Make compiler happy
+
+    // Example with lvalue how it works: we may specify lvalue reference to lvalue reference (but actually, finally they both serve to referent object)
+    const int &lvalRef = num;
+    cout << &lvalRef << endl;
+    const int &lvalRefToRef = lvalRef;          // Works OK, since lvalRefToRef is a refernce to lvalue, and lvalRef is a variable expression
+    cout << &lvalRefToRef << endl;
 
     return 0;
 }
