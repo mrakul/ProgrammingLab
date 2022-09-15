@@ -21,7 +21,8 @@ public:
     ~Stack();
 
     bool push(const Data &pushedItem);
-    bool pop(Data &poppedItem);
+    bool pop();
+    Data getTopItemValue();
 };
 
 /*** (!) Templated classes should exist in the same header file ***/
@@ -55,13 +56,12 @@ bool Stack<Data>::push(const Data &pushedItem)
 
 /*** Pop item ***/
 template <typename Data>
-bool Stack<Data>::pop(Data &poppedItem)
+bool Stack<Data>::pop()
 {
     bool itemPoppedSuccessfully = false;
 
     if (!stackIsEmpty()){
         Node<Data> *nextNodePtr = headPtr->nextNodePtr;                       // Save the next pointer before deleting the head node
-        poppedItem = headPtr->nodeData;                                       // Save the data of the current head
 
         delete headPtr;                                                       // Destroy the current head node
         headPtr = nextNodePtr;                                                // Assign to the next. If nullptr, then reassign
@@ -71,6 +71,11 @@ bool Stack<Data>::pop(Data &poppedItem)
     }
 
     return itemPoppedSuccessfully;
+}
+
+template <typename Data>
+Data Stack<Data>::getTopItemValue(){
+    return headPtr->nodeData;
 }
 
 template <typename Data>

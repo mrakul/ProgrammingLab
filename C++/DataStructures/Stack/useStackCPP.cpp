@@ -23,7 +23,10 @@ int main(int argc, char const *argv[])
         myStack.push(Person{"Personito", "Tempito"});
         myStack.push(Person{"Persetto", "Tempo"});
 
-        myStack.pop(personOne);                                 // Pop the head item to the personOne
+
+        // Print the data before popping it out
+        cout << "Top data: " << myStack.getTopItemValue();      // ID is incremented by 1, it is intentionally to show that this object is temporary
+        myStack.pop();
 
     cout << "\t ### Inner block: exit ###" << endl;
     }
