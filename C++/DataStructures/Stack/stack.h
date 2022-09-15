@@ -8,26 +8,25 @@ template <typename Data>
 class Stack
 {
 private:
-    Node<Data> *headPtr = nullptr;
-    size_t numOfElements = 0;
-    const size_t MAX_NUM_OF_ELEM = 7;
+    Node<Data> *headPtr;
+    size_t numOfElements;
+    const size_t MAX_NUM_OF_ELEMENTS = 7;
     // Auxiliary functions
     bool stackIsEmpty() { return (!headPtr); }                                   // Returns true if the Stack is empty
-    bool stackIsFull() { return numOfElements == MAX_NUM_OF_ELEM; }              // Returns true if the Stack is full
+    bool stackIsFull() { return numOfElements == MAX_NUM_OF_ELEMENTS; }              // Returns true if the Stack is full
     void releaseNodes(Node<Data> *nodeToReleasePtr);
 
 public:
     Stack();
     ~Stack();
+
     bool push(const Data &pushedItem);
     bool pop(Data &poppedItem);
 };
 
 /*** (!) Templated classes should exist in the same header file ***/
 template <typename Data>
-Stack<Data>::Stack() : headPtr(nullptr)
-{
-}
+Stack<Data>::Stack() : headPtr(nullptr), numOfElements(0) {}
 
 /*** Push item ***/
 template <typename Data>
