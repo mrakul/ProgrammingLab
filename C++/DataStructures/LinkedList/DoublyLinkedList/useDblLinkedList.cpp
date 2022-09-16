@@ -16,7 +16,7 @@ int main(int argc, char const *argv[])
 
         LinkedList<Person> myList;
 
-        /* 1. AddToHead() method */
+        /* 1. Inserting methods testing */
         myList.insertToHead(personOne);
         myList.insertToHead(personTwo);
         myList.insertToHead(personThree);
@@ -35,11 +35,25 @@ int main(int argc, char const *argv[])
         indexToInsert = 10;
         myList.insertByIndex(indexToInsert, Person{"Added to:", std::to_string(indexToInsert) + " index"});
 
+        myList.insertToTail(Person{"Tail", "Person"});
+
         // Print the list nodes data in both directions
         myList.printInForwardDirection();
-        myList.printInReverseDirection();
+        //myList.printInReverseDirection();
 
-    cout << "\t ### Inner block: exit ###" << endl;
+        auto nodePtr = myList.getNodeByIndex(0);
+        myList.removeFromHead();
+        nodePtr = myList.getNodeByIndex(7);
+        myList.removeFromTail();
+        nodePtr = myList.getNodeByIndex(1);
+        myList.removeByIndex(1);
+        myList.removeByIndex(1);
+        myList.removeFromTail();
+        myList.removeFromTail();
+        // myList.removeFromHead();
+        myList.removeFromTail();
+
+        cout << "\t ### Inner block: exit ###" << endl;
     }
 
     return 0;

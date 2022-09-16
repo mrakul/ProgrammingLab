@@ -18,6 +18,8 @@ public:
     auto getHeadPtr() { return headPtr; }
     auto getTailPtr() { return tailPtr; }
     auto getNumOfElements() { return numOfElements; }
+    Node<Data> *getNodeByIndex(size_t index);
+
     // Auxiliary functions
     bool listIsEmpty() { return (!headPtr); }
     bool listIsFull() { return numOfElements == MAX_NUM_OF_ELEMENTS; }
@@ -25,13 +27,13 @@ public:
     bool insertToHead(const Data &insertedItem);
     bool insertToTail(const Data &insertedItem);
     bool insertByIndex(size_t index, const Data &insertedItem);
-
+    // Removing functions
     bool removeFromHead();
     bool removeFromTail();
     bool removeByIndex(size_t index);
-
+    // Search item
     size_t searchItem(const Data &searchedItem);
-
+    // Printing functions
     void printInForwardDirection();
     void printInReverseDirection();
 };
@@ -106,7 +108,7 @@ bool LinkedList<Data>::insertByIndex(size_t index, const Data &insertedItem)
     if (!listIsFull()){
         if (index == 0)
             itemAddedSuccessfully = insertToHead(insertedItem);
-        else if (index == numOfElements - 1)
+        else if (index == numOfElements)                                        // (!) We should insert before the index, so if index == numOfElements, consider it as inserting new tail
             itemAddedSuccessfully = insertToTail(insertedItem);
         else{
             try{
@@ -129,6 +131,9 @@ bool LinkedList<Data>::insertByIndex(size_t index, const Data &insertedItem)
                     curNode->prevNodePtr->nextNodePtr = newNodePtr;
                     curNode->prevNodePtr = newNodePtr;
 
+                    numOfElements++;
+                    itemAddedSuccessfully = true;
+
                     std::cout << "==> " << newNodePtr->nodeData;
                 }
             }
@@ -139,6 +144,123 @@ bool LinkedList<Data>::insertByIndex(size_t index, const Data &insertedItem)
     }
     return itemAddedSuccessfully;
 }
+
+template <typename Data>
+bool LinkedList<Data>::removeFromHead()
+{
+    bool itemRemovedSuccessfully = false;
+    if (!listIsEmpty()){
+        auto curHeadPtr = headPtr;
+        headPtr = headPtr->nextNodePtr;         // If no next pointer, it sets to nullptr (no nodes more)
+
+        if (headPtr)                            // If elements are still in the list
+            headPtr->prevNodePtr = nullptr;     // Resets the prevNodePtr, since now it is head
+        else                                    // No more elements in the list
+            tailPtr = nullptr;                  // Reset tailPtr also
+
+        delete curHeadPtr;
+        numOfElements--;
+        itemRemovedSuccessfully = true;
+    }
+
+    return itemRemovedSuccessfully;
+}
+
+template <typename Data>
+bool LinkedList<Data>::removeFromTail()
+{
+    bool itemRemovedSuccessfully = false;
+    if (!listIsEmpty()){
+        auto curTailPtr = tailPtr;
+        tailPtr = tailPtr->prevNodePtr;         // If no prev pointer, it sets to nullptr (no nodes more)
+
+        if (tailPtr)                            // If elements are still in the list
+            tailPtr->nextNodePtr = nullptr;     // Resets the nextNodePtr, since now it is tail
+        else                                    // No more elements in the list
+            headPtr = nullptr;                  // Reset headPtr also
+
+        delete curTailPtr;
+        numOfElements--;
+        itemRemovedSuccessfully = true;
+    }
+
+    return itemRemovedSuccessfully;
+}
+
+template <typename Data>
+bool LinkedList<Data>::removeByIndex(size_t index)
+{
+    bool itemRemovedSuccessfully = false;
+
+    if (!listIsEmpty()){
+        if (index == 0)
+            itemRemovedSuccessfully = removeFromHead();
+        else if (index == numOfElements - 1)
+            itemRemovedSuccessfully = removeFromTail();
+        else{
+            try{
+                // Check out of bounds
+                if (index >= numOfElements)
+                    throw std::out_of_range("Index is out of bounds ");
+                else{
+                    Node<Data> *curNode = headPtr;
+                    for (size_t i = 0; i < index; i++){
+                        curNode = curNode->nextNodePtr;     // curNode == required Node, so we need to remove it
+                    }
+                    // Already considered the removing from the head and from the tail, and the case when only one node
+
+                    curNode->prevNodePtr->nextNodePtr = curNode->nextNodePtr;
+                    curNode->nextNodePtr->prevNodePtr = curNode->prevNodePtr;
+
+                    delete curNode;
+                    numOfElements--;
+                    itemRemovedSuccessfully = true;
+                }
+            }
+            catch (const std::out_of_range &outOfRange){
+                std::cout << outOfRange.what() << numOfElements << " elements in the list" << std::endl;
+            }
+        }
+
+        itemRemovedSuccessfully = true;
+    }
+
+    return itemRemovedSuccessfully;
+}
+
+
+
+template <typename Data>
+Node<Data> *LinkedList<Data>::getNodeByIndex(size_t index)
+{
+    if (!listIsEmpty()){
+
+        if (index == 0)
+            return headPtr;
+        else if (index == numOfElements - 1)
+            return tailPtr;
+        else{
+            try{
+                // Check out of bounds
+                if (index >= numOfElements)
+                    throw std::out_of_range("Index is out of bounds ");
+                else{
+                    Node<Data> *curNode = headPtr;
+
+                    for (size_t i = 0; i < index; i++){
+                        curNode = curNode->nextNodePtr;     // curNode == required Node, so we need to remove it
+                    }
+                    return curNode;
+                }
+            }
+            catch (const std::out_of_range &outOfRange){
+                std::cout << outOfRange.what() << numOfElements << " elements in the list" << std::endl;
+            }
+        }
+    }
+    return nullptr;
+}
+
 
 template <typename Data>
 void LinkedList<Data>::printInForwardDirection()
