@@ -32,7 +32,7 @@ public:
     bool removeFromTail();
     bool removeByIndex(size_t index);
     // Search item
-    size_t searchItem(const Data &searchedItem);
+    int searchItem(const Data &searchedItem);
     // Printing functions
     void printInForwardDirection();
     void printInReverseDirection();
@@ -228,7 +228,19 @@ bool LinkedList<Data>::removeByIndex(size_t index)
     return itemRemovedSuccessfully;
 }
 
+template <typename Data>
+int LinkedList<Data>::searchItem(const Data &searchedItem){
 
+    if (!listIsEmpty()){
+        int index = 0;
+        for (auto curNode = headPtr; curNode != nullptr; curNode = curNode->nextNodePtr, index++){
+            if (curNode->nodeData == searchedItem)
+                return index;
+        }
+    }
+
+    return -1;          // Getting here means that the item is not found
+}
 
 template <typename Data>
 Node<Data> *LinkedList<Data>::getNodeByIndex(size_t index)

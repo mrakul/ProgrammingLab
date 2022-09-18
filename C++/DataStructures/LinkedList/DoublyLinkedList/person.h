@@ -20,6 +20,7 @@ public:
     Person(string nameCreate, string surnameCreate);
 
     Person &operator=(const Person &assignedPerson) = default;
+    bool operator==(const Person &comparedPerson);
 
     friend ostream &operator<<(ostream &outStream, const Person &outPerson);
     ~Person();
@@ -52,5 +53,11 @@ Person::~Person()
     cout << "Destroyed object, ID: " << ID << " " << name << " " << surname << endl;
 }
 
+bool Person::operator==(const Person &comparedPerson){
+    if (name == comparedPerson.name && surname == comparedPerson.surname)
+        return true;
+    else
+        return false;
+}
 
 #endif

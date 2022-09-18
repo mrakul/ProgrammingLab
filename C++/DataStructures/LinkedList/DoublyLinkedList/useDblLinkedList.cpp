@@ -25,6 +25,7 @@ int main(int argc, char const *argv[])
         myList.printInForwardDirection();
         myList.printInReverseDirection();
 
+        /* 1. Inserting functions tests */
         //while (myList.insertToTail(Person({"Cycle", "Person"})));
         int indexToInsert = 0;
         myList.insertByIndex(indexToInsert, Person{"Added to:", std::to_string(indexToInsert) + " index"});
@@ -34,18 +35,22 @@ int main(int argc, char const *argv[])
         myList.insertByIndex(indexToInsert, Person{"Added to:", std::to_string(indexToInsert) + " index"});
         indexToInsert = 10;
         myList.insertByIndex(indexToInsert, Person{"Added to:", std::to_string(indexToInsert) + " index"});
-
         myList.insertToTail(Person{"Tail", "Person"});
 
         // Print the list nodes data in both directions
         myList.printInForwardDirection();
         //myList.printInReverseDirection();
 
+        /* 2. Searching function test */
+        cout << "Finding " << myList.searchItem(Person{"Tail", "Person"}) << " <- found at index " << endl;        // Trying to find the last person's index
+
+        /* 3. Removing functions test */
         auto nodePtr = myList.getNodeByIndex(0);
+        cout << "Node to delete: " << myList.getNodeByIndex(0)->nodeData;
         myList.removeFromHead();
-        nodePtr = myList.getNodeByIndex(7);
+        (nodePtr = myList.getNodeByIndex(7)) ? (cout << "Node to delete: " << nodePtr->nodeData) : (cout << "No node for that index");
         myList.removeFromTail();
-        nodePtr = myList.getNodeByIndex(1);
+        cout << "Node to delete: " <<  myList.getNodeByIndex(1)->nodeData;
         myList.removeByIndex(1);
         myList.removeByIndex(1);
         myList.removeFromTail();
