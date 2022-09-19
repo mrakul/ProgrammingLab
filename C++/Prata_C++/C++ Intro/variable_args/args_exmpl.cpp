@@ -5,16 +5,16 @@
 using namespace std;
 
 template <typename Type>                                    // Template for single argument to stop the recursion
-void oneArgOut(const Type& funcVariable)                    // (+) Need to either call this funcOut() to have one argument call, or another like oneArgOut(), but then need to implement zero-arguments function for funcOut()
+void oneArgOut(const Type &funcVariable)                    // (+) Need to either call this funcOut() to have one argument call, or another like oneArgOut(), but then need to implement zero-arguments function for funcOut()
 {
     cout << __PRETTY_FUNCTION__ << "Current value is: " << funcVariable << endl;
 }
 
-void funcOut(){cout << "\t### Terminating LAST funcOut() ###" << endl;}          //Or the solution is to have termination function for zero arguments
+void funcOut() { cout << "\t### Terminating LAST funcOut() ###" << endl; }          //Or the solution is to have termination function for zero arguments
 
 //Variadic template to accept variadic number of arguments
 template<typename Type, typename... Args>                // (!) Note that typename... is also specifies that types are different
-void funcOut(const Type& firstArg, const Args&... args)  // recursive variadic function for several arguments. Note: the first argument is needed to identify as multiple arguments
+void funcOut(const Type &firstArg, const Args&... args)  // recursive variadic function for several arguments. Note: the first argument is needed to identify as multiple arguments
 {                                                        // "Args is a template parameter pack, and args is a function parameter pack"
     // cout << __PRETTY_FUNCTION__ << endl << "Current value is: " << firstArg << endl;
     oneArgOut(firstArg);
@@ -28,7 +28,7 @@ template <class Type>
 void initListFunc(initializer_list<Type> argsList)
 {
     for (auto curArg : argsList){
-        cout << __PRETTY_FUNCTION__ << endl << "Current value is: "<< curArg << endl;
+        cout << __PRETTY_FUNCTION__ << endl << "Current value is: " << curArg << endl;
     }
 }
 

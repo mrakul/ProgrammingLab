@@ -75,5 +75,6 @@ std::shared_ptr<MyTime> timeFactory(int hours, int minutes)
 std::unique_ptr<MyTime> timeFactoryUnique(int hours, int minutes)
 {
     // shared_ptr will take care of deleting this memory
-    return std::unique_ptr<MyTime>(new MyTime(hours, minutes));            //Constructor of MyTime is called here
+    return std::make_unique<MyTime>(hours, minutes);                          //Constructor of MyTime is called here
+    // return std::unique_ptr<MyTime>(new MyTime(hours, minutes));
 }
