@@ -78,7 +78,7 @@ int main(int argc, char const *argv[])
     cout << "Divisible by thirteen count, functor (temp object): " << count_if(numVect.begin(), numVect.end(), Divisible<int>(13)) << endl;
 
     /*** 3. Count divisible using lambdas ***/
-    cout << "Divisible by three count, lambda: " << count_if(numVect.begin(), numVect.end(), [](int curNum) {return !(curNum % 3);}) << endl;
+    cout << "Divisible by three count, lambda: " << count_if(numVect.begin(), numVect.end(), [](decltype(numVect)::value_type curNum) {return !(curNum % 3);}) << endl;
     auto mod13 = [](int curNum) {return !(curNum % 13);};              // mod13 is a name for the lambda. No return type explicitly needed when there is only return statement.
 
     // Otherwise, need to specify explicitly trailing return type:

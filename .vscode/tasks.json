@@ -6,16 +6,22 @@
             "label": "C/C++: gcc.exe build active file",
             "command": "C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe",
             "args": [
-                //"-IC:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include",
+                /*** Include section ***/
 
+                //"-IC:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include",
                 //Boost include path:   (!) Need to add to c_cpp_properties.json also
                 // "-I",
                 // "C:\\boost\\include\\",
                 // "-L", "C:\\boost\\lib\\",
+
                 /***  Warnings and errors MAXIMUM ***/
                 "-Wall", "-Werror",
                 "-pedantic-errors",
                 "-pedantic",
+                // To disable some warnings:
+                //-Wunused -Wunused-function -Wunused-label -Wunused-parameter -Wunused-value -Wunused-variable -Wunused-but-set-parameter -Wunused-but-set-variable
+                // "-Wno-unused-variable",
+                // "-Wno-unused-but-set-variable",
 
                 /*** Chose the standard ***/
                 "-std=c++2a",
@@ -28,9 +34,9 @@
 
                 /*** Compile options ***/
                 // "-c",                            // Only compile file (-c option), make object-files
-                // "${file}",
-                "${fileDirname}\\*.cpp",
-                //"../../OOP/MyTime (OpOverload)/*.cpp",        // To compile Smart Pointers with MyTime example
+                "${file}",
+                // "${fileDirname}\\*.cpp",
+                // "../../OOP/MyTime (OpOverload)/*.cpp",        // To compile Smart Pointers with MyTime example
                 // Add debug info (-g option) to the object file (files)
                 "-g",
 

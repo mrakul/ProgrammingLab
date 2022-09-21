@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
 
     //2. New MyTime unique_ptr
     unique_ptr<MyTime> myTimeUnique = unique_ptr<MyTime>(new MyTime(5, 30));
-    // unique_ptr<MyTime> MyTimeUnique2 = MyTimeUnique;                 // Compiler restricts this
+    // unique_ptr<MyTime> MyTimeUnique2 = MyTimeUnique;                 // Compiler restricts this: "use of deleted function 'std::unique_ptr<_Tp, _Dp>::unique_ptr(const std::unique_ptr<_Tp, _Dp>&)"
     myTimeUnique.reset(new MyTime(6, 45));                              // Ownership to another object, the old one is destructed, MyTime destructor is called (and the deleter is called implicitly?)
 
     MyTime *myTimePtr = myTimeUnique.release();                        // Release the ownership, so the object should be deleted by the caller for the target pointer
@@ -55,7 +55,7 @@ int main(int argc, char const *argv[])
         auto newSharedPtr = timeFactory(10, 30);         // Pointer is copied from the timeFactory()
         cout << "newSharedPtr.useCount() = " << newSharedPtr.use_count() << endl;       // Here it has exclusive ownership
 
-        auto newUniquePtr = timeFactoryUnique(20, 30);                                  // This creates unique object, compiler allows to return temporary unique_ptr here
+        auto newUniquePtr = timeFactoryUnique(20, 30);                                  // This creates unique object, compiler allows to return temporary unique_ptr here and assign by move-semantics
 
     }                                                                                    // Destroy existing objects here
 

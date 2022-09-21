@@ -19,8 +19,10 @@ public:
 };
 
 // Because class Bingo uses funcOut(char* ch) instead of funcOut(char ch), funcOut(char ch) of the Base class is hidden
-// to a Bingo object.This prevents a program from using code like the following :
+// to a Bingo object. This prevents a program from using code like the following :
 int main(){                              //main() in the header just for example
     Bingo b(10);
-    b.funcOut('@');                            // works for Action object, fails for Bingo object if not specify override
+    b.funcOut('@');                            // works for Action object, fails for Bingo object if not specify override2
+    char testString[] = "Test string";
+    b.funcOut(testString);                     // Both functions are used
 }

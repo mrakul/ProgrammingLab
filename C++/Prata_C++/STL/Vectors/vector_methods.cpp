@@ -50,7 +50,7 @@ int main(int argc, char const *argv[])
         if (num > 3)
         {
             // remove 2 items
-            books.erase(books.begin() + 1, books.begin() + 3); // remove 2-nd and 3-rd element, that is [2;3)
+            books.erase(books.begin() + 1, books.begin() + 3); // remove 2-nd and 3-rd element, that is [1;3)
             cout << "After erasure:\n";
             for (pr = books.begin(); pr != books.end(); pr++)
                 ShowReview(*pr);

@@ -37,7 +37,7 @@ void funcToDemonstrate2(F func, T1 &&t1, T2 &&t2)
 template <typename F, typename T1, typename T2>
 void funcToDemonstrate3(F func, T1 &&t1, T2 &&t2)
 {
-    func(std::forward<T1>(t1), std::forward<T2>(t2));              //(!!!) t1 has type T1&&, since 42 is passed as int&& and formal parameter is T1&&
+    func(std::forward<T1>(t1), std::forward<T2>(t2));              //(!!!) t1 has type T1&&, since 42 is passed as int&& and formal parameter is T1&&. Note: t2 works without forward<> since it is passed as lvalue reference, and val2 of the fOu2() is the lvalue reference
 }
 //(!!!)If we call funcToDemonstrate3(fOut2, 42, num), num will be passed to fOut2 as an int& and 42 will be passed as an int&&.
 
@@ -72,8 +72,10 @@ int main(int argc, char const *argv[])
     // A function parameter, like any other variable, is an lvalue expression (§ 13.6.1, p. 533).
     // As a result, the call to fOut2() in funcToDemonstrate2() passes an lvalue to fOut2’s rvalue reference parameter.
     //(!) So, with the call of fOut2 we can't bind rvalue reference to lvalue int
-    //funcToDemonstrate2(fOut2, 42, num);           // error, fOut2 call: "cannot bind rvalue reference of type 'int&&' to lvalue of type 'int'"
-
+    // funcToDemonstrate2(fOut2, 42, num);           // error, fOut2 call: "cannot bind rvalue reference of type 'int&&' to lvalue of type 'int'"
+                                                     // The reason in the first parameter of fOut2(int &&val1, int &val2):
+                                                     // in funcToDemonstrate(int &&t1, ...) t1 is passed as rval ref, but after in fOut() rval reference expression goes to lvalue, but rvalue is expected.
+                                                     // forward<T1>(t1) in funcToDemonstrate3() solves this preserving reference type
     funcToDemonstrate3(fOut2, 42, num);
 
     // Explanation:

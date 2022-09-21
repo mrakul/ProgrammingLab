@@ -103,7 +103,15 @@
 			"syncstream": "cpp",
 			"thread": "cpp",
 			"typeindex": "cpp",
-			"variant": "cpp"
+			"variant": "cpp",
+			"cassert": "cpp",
+			"cerrno": "cpp",
+			"climits": "cpp",
+			"filesystem": "cpp",
+			"ios": "cpp",
+			"locale": "cpp",
+			"queue": "cpp",
+			"cstdbool": "cpp"
 		},
 		"files.trimTrailingWhitespace": true,
 		"window.zoomLevel": -1,
