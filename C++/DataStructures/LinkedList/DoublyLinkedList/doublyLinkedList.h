@@ -10,6 +10,8 @@ private:
 
     size_t numOfElements;
     const size_t MAX_NUM_OF_ELEMENTS = 7;
+
+    void releaseNodes(Node<Data> *nodeToReleasePtr);
 public:
     LinkedList();
     ~LinkedList();
@@ -43,7 +45,27 @@ template <typename Data>
 LinkedList<Data>::LinkedList() : headPtr(nullptr), tailPtr(nullptr), numOfElements(0) {}
 
 template <typename Data>
-LinkedList<Data>::~LinkedList() {}
+void LinkedList<Data>::releaseNodes(Node<Data> *nodeToReleasePtr)
+{
+    Node<Data> *curNodePtr = nodeToReleasePtr;
+    while (curNodePtr != nullptr){
+        auto nextNodePtr = curNodePtr->nextNodePtr;
+        delete curNodePtr;
+        curNodePtr = nextNodePtr;
+    }
+
+    /*** Recursive implementation, for fun ***/
+    // if (nodeToReleasePtr)
+    //     releaseNodes(nodeToReleasePtr->nextNodePtr);
+    // delete nodeToReleasePtr;                                                // If we are the end of the list, delete is called for the NULL not to make the redundant check
+}
+
+template <typename Data>
+LinkedList<Data>::~LinkedList() {
+    std::cout << "\t ### ~LinkedList() -> Released nodes: \n";
+    if (headPtr)                                                               // If the list is non-empty
+        releaseNodes(headPtr);
+}
 
 /*** Adding items ***/
 template <typename Data>

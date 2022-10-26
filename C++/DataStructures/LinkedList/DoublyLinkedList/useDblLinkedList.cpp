@@ -48,15 +48,16 @@ int main(int argc, char const *argv[])
         auto nodePtr = myList.getNodeByIndex(0);
         cout << "Node to delete: " << myList.getNodeByIndex(0)->nodeData;
         myList.removeFromHead();
-        (nodePtr = myList.getNodeByIndex(7)) ? (cout << "Node to delete: " << nodePtr->nodeData) : (cout << "No node for that index");
+        (nodePtr = myList.getNodeByIndex(7)) ? (cout << "Node to delete: " << nodePtr->nodeData) : (cout << "No node for that index\n");
         myList.removeFromTail();
         cout << "Node to delete: " <<  myList.getNodeByIndex(1)->nodeData;
         myList.removeByIndex(1);
         myList.removeByIndex(1);
-        myList.removeFromTail();
-        myList.removeFromTail();
+        // Remain 3 elements to check the destructor
+        myList.printInForwardDirection();
+        // myList.removeFromTail();
         // myList.removeFromHead();
-        myList.removeFromTail();
+        // myList.removeFromTail();
 
         cout << "\t ### Inner block: exit ###" << endl;
     }
