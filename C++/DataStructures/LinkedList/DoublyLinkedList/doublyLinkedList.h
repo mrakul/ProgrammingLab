@@ -13,7 +13,10 @@ private:
 
     void releaseNodes(Node<Data> *nodeToReleasePtr);
 public:
+    // Constructors, Destructor, Copy-Move assignment operators
     LinkedList();
+    LinkedList(const LinkedList<Data> &copiedList);
+    LinkedList<Data> &operator=(LinkedList<Data> listToCopyAssign);
     ~LinkedList();
 
     // Get class members
@@ -40,9 +43,30 @@ public:
     void printInReverseDirection();
 };
 
-/*** Constructors, Destructor ***/
+/*** // Constructors, Destructor, Copy-Move assignment operators ***/
 template <typename Data>
 LinkedList<Data>::LinkedList() : headPtr(nullptr), tailPtr(nullptr), numOfElements(0) {}
+
+// Copy constructor
+template <typename Data>
+LinkedList<Data>::LinkedList(const LinkedList<Data> &copiedList) : headPtr(nullptr), tailPtr(nullptr), numOfElements(0)
+{
+    Node<Data> *curNodeToCopyPtr = copiedList.headPtr;
+    while (curNodeToCopyPtr){
+        insertToTail(curNodeToCopyPtr->nodeData);                           // Use existing function to DRY
+        curNodeToCopyPtr = curNodeToCopyPtr->nextNodePtr;
+    }
+}
+
+template <typename Data>
+LinkedList<Data> &LinkedList<Data>::operator=(LinkedList<Data> listToCopyAssign) {             // The trick is that listToCopyAssign created temporary by copy constructor
+    std::swap(headPtr, listToCopyAssign.headPtr);
+    std::swap(tailPtr, listToCopyAssign.tailPtr);
+    std::swap(numOfElements, listToCopyAssign.numOfElements);
+
+    return *this;                                                                              // Return the reference to itself
+}                                                                                              // Here the temporary swapped listToCopyAssign (that is the initial list) is removed
+
 
 template <typename Data>
 void LinkedList<Data>::releaseNodes(Node<Data> *nodeToReleasePtr)
@@ -67,7 +91,7 @@ LinkedList<Data>::~LinkedList() {
         releaseNodes(headPtr);
 }
 
-/*** Adding items ***/
+/*** Inserting items ***/
 template <typename Data>
 bool LinkedList<Data>::insertToHead(const Data &insertedItem)
 {

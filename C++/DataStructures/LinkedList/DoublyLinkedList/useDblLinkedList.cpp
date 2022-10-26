@@ -59,6 +59,12 @@ int main(int argc, char const *argv[])
         // myList.removeFromHead();
         // myList.removeFromTail();
 
+        /* 4. Copy Constructor and Copy Assignment operator checking */
+        LinkedList<Person> myList2 = myList;
+        myList2.printInForwardDirection();
+        myList.removeFromHead();
+        myList2 = myList;
+
         cout << "\t ### Inner block: exit ###" << endl;
     }
 
