@@ -16,7 +16,11 @@ public:
     // Constructors, Destructor, Copy-Move assignment operators
     LinkedList();
     LinkedList(const LinkedList<Data> &copiedList);
-    LinkedList<Data> &operator=(LinkedList<Data> listToCopyAssign);
+    LinkedList<Data> &operator=(const LinkedList<Data> &listToCopyAssign);      // Note: the trick can be used to pass the list by value, thus creating a temporary automatically
+
+    LinkedList(LinkedList<Data> &&movedList);
+    LinkedList<Data> &operator=(LinkedList<Data> &&listToMoveAssign);
+
     ~LinkedList();
 
     // Get class members
@@ -47,7 +51,7 @@ public:
 template <typename Data>
 LinkedList<Data>::LinkedList() : headPtr(nullptr), tailPtr(nullptr), numOfElements(0) {}
 
-// Copy constructor
+// Copy Constructor
 template <typename Data>
 LinkedList<Data>::LinkedList(const LinkedList<Data> &copiedList) : headPtr(nullptr), tailPtr(nullptr), numOfElements(0)
 {
@@ -58,15 +62,41 @@ LinkedList<Data>::LinkedList(const LinkedList<Data> &copiedList) : headPtr(nullp
     }
 }
 
+// Copy Assignment
 template <typename Data>
-LinkedList<Data> &LinkedList<Data>::operator=(LinkedList<Data> listToCopyAssign) {             // The trick is that listToCopyAssign created temporary by copy constructor
-    std::swap(headPtr, listToCopyAssign.headPtr);
-    std::swap(tailPtr, listToCopyAssign.tailPtr);
-    std::swap(numOfElements, listToCopyAssign.numOfElements);
+LinkedList<Data> &LinkedList<Data>::operator=(const LinkedList<Data> &listToCopyAssign) {
+    LinkedList<Data> tempList{listToCopyAssign};                                               // Create a temporary list by Copy Constructor and swap the bookkeeping info
+    std::swap(headPtr, tempList.headPtr);
+    std::swap(tailPtr, tempList.tailPtr);
+    std::swap(numOfElements, tempList.numOfElements);
 
     return *this;                                                                              // Return the reference to itself
-}                                                                                              // Here the temporary swapped listToCopyAssign (that is the initial list) is removed
+}                                                                                              // (!) Here the target list (contained in tempList after swapping) is destroyed
 
+// Move Constructor
+template <typename Data>
+LinkedList<Data>::LinkedList(LinkedList<Data> &&movedList) : headPtr (nullptr), tailPtr(nullptr), numOfElements(0) {
+    std::swap(headPtr, movedList.headPtr);
+    std::swap(tailPtr, movedList.tailPtr);
+    std::swap(numOfElements, movedList.numOfElements);                                         // Just swap the bookkepping info since the target list is empty with null pointers
+}
+
+// Move Assignment
+template <typename Data>
+LinkedList<Data> &LinkedList<Data>::operator=(LinkedList<Data> &&listToMoveAssign) {
+    // First, release the target List memory and reset the members
+    releaseNodes(headPtr);
+    headPtr = nullptr;
+    tailPtr = nullptr;
+    numOfElements = 0;
+
+    // After, we can just swap it as for Move Constructor
+    std::swap(headPtr, listToMoveAssign.headPtr);
+    std::swap(tailPtr, listToMoveAssign.tailPtr);
+    std::swap(numOfElements, listToMoveAssign.numOfElements);
+
+    return *this;                                                                              // Return the reference to itself
+}
 
 template <typename Data>
 void LinkedList<Data>::releaseNodes(Node<Data> *nodeToReleasePtr)

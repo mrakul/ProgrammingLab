@@ -51,7 +51,7 @@ git reset --hard <commit>   -- update all the trees with the commit's content
 git reset --mixed <commit>  -- update staging area along with pointers HEAD and the branch, but no updating working tree content
 git reset --soft <commit>   -- no update working tree and the index tree
 
--- Creates a new branch and checkout checkout it
+-- Creates a new branch and checkout to it
 git checkout -b <new branch>
 --or (not checkout to it)
 git branch <new branch>

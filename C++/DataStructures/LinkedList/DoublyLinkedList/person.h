@@ -35,12 +35,12 @@ Person::Person() : ID(nextID++), name("NoName"), surname("NoSurname")
 }
 
 Person::Person(const Person &copiedPerson) : ID(nextID++), name(copiedPerson.name), surname(copiedPerson.surname){
-    cout << "Copy constructor, New object, ID: " << ID << " " << name << " " << surname << endl;
+    cout << "Person: Copy Constructor -> New object ID: " << ID << " " << name << " " << surname << endl;
 }
 
 Person::Person(string nameCreate, string surnameCreate) : ID(nextID++), name(nameCreate), surname(surnameCreate)
 {
-    cout << "(string, srtring) constructor, New object, ID: " << ID << " " << name << " " << surname << endl;
+    cout << "Person: (string, srtring) Constructor -> New object ID: " << ID << " " << name << " " << surname << endl;
 }
 
 ostream &operator<<(ostream &outStream, const Person &outPerson){
@@ -50,7 +50,7 @@ ostream &operator<<(ostream &outStream, const Person &outPerson){
 
 Person::~Person()
 {
-    cout << "Destroyed object, ID: " << ID << " " << name << " " << surname << endl;
+    cout << "Person: Destroyed object ID: " << ID << " " << name << " " << surname << endl;
 }
 
 bool Person::operator==(const Person &comparedPerson){

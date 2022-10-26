@@ -50,7 +50,7 @@ int main(int argc, char const *argv[])
         myList.removeFromHead();
         (nodePtr = myList.getNodeByIndex(7)) ? (cout << "Node to delete: " << nodePtr->nodeData) : (cout << "No node for that index\n");
         myList.removeFromTail();
-        cout << "Node to delete: " <<  myList.getNodeByIndex(1)->nodeData;
+        cout << "Node to delete: " << myList.getNodeByIndex(1)->nodeData;
         myList.removeByIndex(1);
         myList.removeByIndex(1);
         // Remain 3 elements to check the destructor
@@ -60,13 +60,27 @@ int main(int argc, char const *argv[])
         // myList.removeFromTail();
 
         /* 4. Copy Constructor and Copy Assignment operator checking */
-        LinkedList<Person> myList2 = myList;
-        myList2.printInForwardDirection();
-        myList.removeFromHead();
-        myList2 = myList;
+        {
+            LinkedList<Person> myList2 = myList;
+            myList2.printInForwardDirection();
+            myList.removeFromHead();
+            myList2 = myList;
+        }
+
+        /* 5. Move Constructor and Move Assignment operator checking */
+        {
+            LinkedList<Person> myList3 = LinkedList<Person>(myList);                           // Just calls the copy constructor
+            //LinkedList<Person> myList4 = std::move(LinkedList<Person>(myList3));             // Move Constructor on the temporary created list based on myList3
+            LinkedList<Person> myList4 = std::move(myList3);                                   // Move Constructor on myList3
+
+            // Move Assignment
+            LinkedList<Person> myList5;
+            myList5.insertToHead(Person("myList5 ", "Person"));                                // Creates an empty List
+            myList5 = std::move(myList4);                                                      // Move Assignment
+        }
 
         cout << "\t ### Inner block: exit ###" << endl;
-    }
+    }                                                                                          // Destroy the rest of the objects
 
     return 0;
 }

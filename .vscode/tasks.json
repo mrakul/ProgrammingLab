@@ -45,7 +45,7 @@
                 // 3. Link all object files together to Program.exe, preliminary need to compile separately
                 //"${fileDirname}\\**.o",
                 "-o",
-				"${fileDirname}\\${fileBasenameNoExtension}.exe",
+				"${fileDirname}\\${fileBasenameNoExtension}.exe"
 
                 /*** Boost library compilation ***/
                 // "-lwsock32",
