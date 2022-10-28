@@ -17,12 +17,12 @@ int main(int argc, char const *argv[])
 {
     string words[]{"The", "dog", "saw", "the", "cat", "and", "thought", "the", "cat", "fat"};
     string words2[]{"The", "cat", "thought","the", "cat", "perfect"};
-    vector<string> wordsVect;       //vector of strings (wordsVect)
+    vector<string> wordsVect(words, words + 10);       //vector of strings (wordsVect). May be initialized this way: vector<string> wordsVect(words, words + 10);
 
-    //Input wordsVect and add it to the end of the vector
-    for(auto word: words)
-        wordsVect.push_back(word);
-    for(auto word: words2)
+    // Input wordsVect and add it to the end of the vector
+    // for(auto &word: words)
+    //     wordsVect.push_back(word);
+    for(auto &word: words2)
         wordsVect.push_back(word);
     //  Or use input like this:
     //string oneWord;
@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
 
     //Print out the wordsVect
     cout << "You entered the following words:\n";
-    for_each(wordsVect.begin(), wordsVect.end(), displayString);
+    for_each(wordsVect.begin(), wordsVect.end(), [](string &stringToPrint){cout << stringToPrint << " ";});
     cout << endl;
 
     //Place the wordsVect in set, converting to lowercase, to get the alphabetic order: set is ordering input automatically
@@ -58,6 +58,7 @@ int main(int argc, char const *argv[])
     cout << endl << "Word frequency:" << endl;
     for (setIter = setOfWords.begin(); setIter != setOfWords.end(); setIter++)
         cout << *setIter << ": " << mapOfWords[*setIter] << endl;
+
     return 0;
 }
 

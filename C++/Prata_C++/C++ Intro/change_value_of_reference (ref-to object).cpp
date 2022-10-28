@@ -12,7 +12,7 @@ int main(int argc, const char *argv[])
 {
     int ten = 10;
     int eleven = 11;
-    TestRef refObject(ten); // reference.reference is reference to ten
+    TestRef refObject(ten); // refObject.reference is reference to ten
 
     cout << refObject.reference << " " << ten << " " << eleven << endl; // Output: 10 10 11
 

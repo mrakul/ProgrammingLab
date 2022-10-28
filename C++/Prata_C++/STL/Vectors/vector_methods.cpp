@@ -71,7 +71,7 @@ int main(int argc, char const *argv[])
         std::sort(books.begin(), books.end(), worseThan);   //Sort using the function (descending by rating)
         for (auto x : books) ShowReview(x);
 
-        // Swap to lists
+        // Swap two lists
         books.swap(oldlist);
         cout << "Swapping oldlist with books:\n";
         for (pr = books.begin(); pr != books.end(); pr++)

@@ -74,8 +74,8 @@ int main(int argc, char const *argv[])
             LinkedList<Person> myList4 = std::move(myList3);                                   // Move Constructor on myList3
 
             // Move Assignment
-            LinkedList<Person> myList5;
-            myList5.insertToHead(Person("myList5 ", "Person"));                                // Creates an empty List
+            LinkedList<Person> myList5;                                                        // Creates an empty List
+            myList5.insertToHead(Person("myList5 ", "Person"));
             myList5 = std::move(myList4);                                                      // Move Assignment
         }
 

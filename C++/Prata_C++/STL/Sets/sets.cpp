@@ -65,12 +65,24 @@ int main(int argc, const char *argv[])
     set<string> D;
     copy(C.begin(), C.end(), insert_iterator<set<string>>(D, D.begin()));
     //copy(C.begin(), C.end(), D.begin());    //this doesn't work, since returns only read_only (constant) iterator (note: begin() allows change value, cbegin() doesn't allow)
-    for(auto strOut : D) cout << strOut << endl;    //Also works, despite that C is not a sequence
+    for(auto strOut : D) cout << strOut << endl;    //Also works, despite that D is not a sequence
     cout << endl;
 
     cout << "Showing a range:\n";
     copy(C.lower_bound("b"), C.upper_bound("i"), out);
     cout << endl;
+
+    // 3. Check inserting from vector to the set, need to also use insert_iterator<>
+    const int LIM = 5;
+    ostream_iterator<double, char> outDouble(cout, " ");
+
+    double arr1[LIM] = {4, 7, 10, 2, -6};
+    vector<double> doublesVect(arr1, arr1 + LIM);
+
+    // Create an empty set and copy the vector's values by using insert_iterator<>. Values are automatically ordered when adding to the set (surely)
+    set<double> mySet;
+    copy(doublesVect.begin(), doublesVect.end(), insert_iterator<set<double>>(mySet, mySet.begin()));
+    copy(mySet.begin(), mySet.end(), outDouble);
 
     return 0;
 }

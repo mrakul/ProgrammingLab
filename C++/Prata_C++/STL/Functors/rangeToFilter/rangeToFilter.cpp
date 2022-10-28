@@ -39,8 +39,8 @@ int main(int argc, char const *argv[])
     numbers.insert(numbers.begin(), 9);          // insert to the head
     numbers.insert(numbers.begin(), 10);         // insert to the head
     numbers.insert(numbers.begin(), 11);         // insert to the head
-    numbers.push_back(15);                       // insert to the head
-    numbers.push_front(7);                       // insert to the tail
+    numbers.push_back(15);                       // insert to the tail
+    numbers.push_front(7);                       // insert to the head
     //Make the copies of the list
     list<int> numbers2(numbers);                 // To filter by functor
     list<int> numbers3(numbers);                 // To filter by lambda
@@ -59,6 +59,7 @@ int main(int argc, char const *argv[])
 
     /*** 2. Filter list#2 by object functor ***/
     AllowedRange<int> rangeToFilter(7, 10);        //Make allowed range of (7; 10)
+    auto [firstBound, secondBound] = rangeToFilter.getBounds();
 
     //Print the current bounds and the initial list values
     std::cout << "The lower bound is: " << rangeToFilter.getBounds().first << " and the upper bound is: " << rangeToFilter.getBounds().second << std::endl;
