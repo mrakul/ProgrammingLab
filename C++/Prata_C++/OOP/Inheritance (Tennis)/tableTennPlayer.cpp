@@ -16,7 +16,7 @@ TableTennPlayer::TableTennPlayer(const string &fName, const string &lName, bool 
                                                                                           lastName(lName),
                                                                                           hasTable(tabled) {}
 
-TableTennPlayer::~TableTennPlayer() {std::cout << "Base class destructor";}
+TableTennPlayer::~TableTennPlayer() {std::cout << "Base class destructor " << std::endl;}
 
 // Functions
 void TableTennPlayer::showName() const {

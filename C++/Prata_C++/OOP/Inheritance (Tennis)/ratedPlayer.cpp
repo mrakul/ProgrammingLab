@@ -14,7 +14,7 @@ RatedPlayer::RatedPlayer(unsigned int r, const TableTennPlayer &tp) :  TableTenn
 // Functions
 void RatedPlayer::showName() const {
    TableTennPlayer::showName();
-   std::cout << " (rated player also)";
+   std::cout << "<-- this is a rated player: " << std::endl;
 }
 
 // Important: it returns the reference to itself
