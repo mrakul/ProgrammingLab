@@ -36,6 +36,8 @@ git rebase -i <branch1> <branch2>
 git rebase -i <branch, commit SHA>
 
 -- Move HEAD to the commit/branch. If a commit specified, then the branch in a detached state.
+-- This changes the working tree and the staging area corresponding to the commit/branch specified.
+-- Note: might want to save the working tree and the staging area by the git stash push (desribed below)
 git checkout <commit/branch>
 
 -- Move the HEAD for the 1-st or the second parent appropriately
@@ -50,6 +52,10 @@ git branch -f <branch>
 git reset --hard <commit>   -- update all the trees with the commit's content
 git reset --mixed <commit>  -- update staging area along with pointers HEAD and the branch, but no updating working tree content
 git reset --soft <commit>   -- no update working tree and the index tree
+
+-- Save the current working tree and the index state:
+git stash push              -- saves the current state
+git stash pop               -- returns the state back
 
 -- Creates a new branch and checkout to it
 git checkout -b <new branch>

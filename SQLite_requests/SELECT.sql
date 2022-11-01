@@ -3,7 +3,7 @@
 -- ### This setting is to follow refferantial constraing ###
 PRAGMA foreign_keys = 1;
 
--- SELECE basics: LIKE
+-- SELECT basics: LIKE
     -- SELECT cust_id, cust_name
     -- FROM Customers
     -- WHERE cust_name LIKE "%Toy%";

@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-void printArray(int *const arrayPtr, const int arraySize){
+void printArray(int const *const arrayPtr, const int arraySize){
     for (int i = 0; i < arraySize; i++)
         cout << arrayPtr[i] << " ";
     cout << endl;
