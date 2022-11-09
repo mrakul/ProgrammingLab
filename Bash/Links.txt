@@ -1,0 +1,4 @@
+Find command:
+https://www.tecmint.com/35-practical-examples-of-linux-find-command/
+https://www.geeksforgeeks.org/find-command-in-linux-with-examples/
+

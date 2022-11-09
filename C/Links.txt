@@ -1,0 +1,4 @@
+C types declarations:
+https://cdecl.org/
+http://unixwiz.net/techtips/reading-cdecl.html
+

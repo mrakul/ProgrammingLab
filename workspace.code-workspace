@@ -111,7 +111,9 @@
 			"ios": "cpp",
 			"locale": "cpp",
 			"queue": "cpp",
-			"cstdbool": "cpp"
+			"cstdbool": "cpp",
+			"reversedynamicarray": "cpp",
+			"ctype.h": "c"
 		},
 		"files.trimTrailingWhitespace": true,
 		"window.zoomLevel": -1,
