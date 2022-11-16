@@ -6,7 +6,6 @@
 // Define constants
 #define NUM_OF_ITEMS_TO_ADD 100
 #define BUFFER_SIZE 10
-
 #define NUM_OF_PRODUCERS 10
 #define NUM_OF_CONSUMERS 1
 
@@ -30,7 +29,7 @@ void *producer(void *arg)
 
         pthread_mutex_lock(&mutexToLock);                                   // Need to lock the mutex/other threads to work with shared memory
         buffer[numOfItemsInBuffer++] = addedItem;                           // Add an item and increment the current index. Note: no need to check boundaries by using semaphores
-        pthread_mutex_unlock(&mutexToLock);
+        pthread_mutex_unlock(&mutexToLock);                                 // Unlock the mutex
 
         sem_post(&semBufferIsEmpty);                                        // Increment the semBufferIsEmpty, since an item was just added
     }
@@ -40,17 +39,16 @@ void *producer(void *arg)
 
 void *consumer(void *arg)
 {
-    while (1){                                         // Infinite loop. OR wait for the condition of the main loop
+    while (1){                                                          // Usually, consumers and producers are working in infinite loop. Note: producers are making finite work in our case
 
         sem_wait(&semBufferIsEmpty);                                    // Before starting to retrieve an item, check the semaphore if the buffer is empty. If so, wait when items will be added
 
         pthread_mutex_lock(&mutexToLock);                               // Need to lock the mutex/other threads to work with shared memory
         int retrievedItem = buffer[--numOfItemsInBuffer];               // Retrieve an item and decrement the current index
         printf("Retrieved number: %d\n", retrievedItem);                // Item is not retrieved, that is counter is 0
-        pthread_mutex_unlock(&mutexToLock);
+        pthread_cond_signal(&condVar);                                  // signal the waiting thread (main is waiting). If this happend before the main is waiting, then main will just pass the condition
+        pthread_mutex_unlock(&mutexToLock);                             // Unlock the mutex
 
-        if (numOfItemsInBuffer == 0)                                    // Check every time if all the items are got
-            pthread_cond_signal(&condVar);                              // signal the waiting thread (main is waiting). If this happend before the main is waiting, then main will just pass the condition
 
         sem_post(&semBufferIsFull);                                     // Increment the semBufferIsFull, since we just processed one item by the consumer
     }
@@ -75,7 +73,7 @@ int main(int argc, char **argv)
     for (int i = 0; i < NUM_OF_CONSUMERS; i++)
         pthread_create(&consumerThreads[i], NULL, consumer, NULL);
 
-    // 2. Wait for the threads to finish
+    // 2. Wait for the Producers threads to finish
     for (int i = 0; i < NUM_OF_PRODUCERS; i++)
         pthread_join(producerThreads[i], NULL);
     printf("==> Right after all the Producers finished their work\n");
@@ -86,9 +84,9 @@ int main(int argc, char **argv)
     // 3. Producers finished their work. Need to check if the buffer IS empty
     pthread_mutex_lock(&mutexToLock);
     while (numOfItemsInBuffer){                                                 // If this happened before the main is waiting, then main will just pass the condition with no lock
-            printf("==> Main thread is locked\n");
-            pthread_cond_wait(&condVar, &mutexToLock);                          // This unlocks the mutex for the consumers
-        }
+        printf("==> Main thread is locked\n");
+        pthread_cond_wait(&condVar, &mutexToLock);                          // This atomically locks the current thread on the condition variable AND unlocks the mutex for the consumers
+    }
     pthread_mutex_unlock(&mutexToLock);
 
     printf("Num of items in the buffer after the end of the processing: %d\n", numOfItemsInBuffer);

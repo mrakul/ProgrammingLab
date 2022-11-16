@@ -26,7 +26,7 @@ void *threadFunc(void *parm)
         // As if the current task took the work
         workToDo = 0;                                                       // Here we imitating that there is no work to take
         pthread_mutex_unlock(&myMutex);
-
+        sleep(1);
     }
     return NULL;
 }
@@ -53,13 +53,13 @@ int main(int argc, char **argv)
         // In the real world, all the threads might be busy, and we would add work to a queue instead of simply using a flag
         //  In that case the boolean predicate might be some boolean statement like: if (the-queue-contains-work)
         if (workToDo)
-            printf("Work already present, likely threads are busy\n");
+            printf("Work already presents, likely threads are busy\n");
 
         workToDo = 1;
 
-        pthread_cond_signal(&cond);
+        pthread_cond_signal(&cond);                                             // If no threads are waiting, this has no effect, that is the statement above notifies that work already presents
         pthread_mutex_unlock(&myMutex);
-        sleep(1);
+        // sleep(1);
     }
 
     return 0;

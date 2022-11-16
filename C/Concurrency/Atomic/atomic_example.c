@@ -2,7 +2,7 @@
 #include <pthread.h>
 #include <stdatomic.h>
 
-#define NUM_OF_THREADS 10
+#define NUM_OF_THREADS 100
 
 //Specify two types of counter: atomic and non-atomic
 atomic_int atomicCounter;

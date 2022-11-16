@@ -2,3 +2,11 @@ Find command:
 https://www.tecmint.com/35-practical-examples-of-linux-find-command/
 https://www.geeksforgeeks.org/find-command-in-linux-with-examples/
 
+
+
+VIM links:
+--Learn Vim For the Last Time: A Tutorial and Primer
+https://danielmiessler.com/study/vim/
+
+-- VIM Cheatsheet:
+https://vim.rtorr.com/

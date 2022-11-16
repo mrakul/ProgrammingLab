@@ -4,8 +4,8 @@
 
 #define _MULTI_THREADED
 /***
-/* My understanding is that pthread_cond_broadcast is used when different types of threads are used.
-/* By checking the condition to unlock the threads, we can unlock some threads staying another locked.
+// My understanding is that pthread_cond_broadcast is used when different types of threads are used.
+// By checking the condition to unlock the threads, we can unlock some threads staying another locked.
 ***/
 
 
@@ -78,7 +78,7 @@ int main(int argc, char **argv)
         printf("===> Condition changed to: %d. Main thread sleeps for 3 seconds...\n", i);
 
         pthread_mutex_unlock(&myMutex);
-        sleep(3);
+        sleep(3);                                                               // This is to wait until all the threads will be in waiting state
     }
 
     // 3. Wait for all the threads

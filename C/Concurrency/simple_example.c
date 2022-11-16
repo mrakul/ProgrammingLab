@@ -15,7 +15,7 @@ void *funcToThread(void *num)                                                   
     printf("Inside thread: num = %d\n", *((int *)num));
 
     // pthread_exit(NULL);                                                          // pthread_exit() terminates THE CALLING THREAD (main, in our case),
-    return num;
+    return num;                                                                     // Here we return an address of the passed address as input parameter, just as example
 }
 
 int main(int argc, const char **argv)
@@ -27,12 +27,13 @@ int main(int argc, const char **argv)
         pthread_create(&myThreads[i], NULL, funcToThread, (void *)&localNum);       // Create threads in parallel and pass the parameter localNum's address
 
     void *retFromThread;                                                            // Return from thread (pointer to void)
-    // int intRCThread;                                                             // int representation of retFromThread
+    int intRCThread;                                                             // int representation of retFromThread
 
     for (int i = 0; i < NUM_OF_THREADS; i++){
-        pthread_join(myThreads[i], &retFromThread);                                 // Wait for the thread to terminate and get the return value from it
-        // intRCThread = *(int *)retFromThread;
-        // printf("Outside thread, which returned %d\n", intRCThread);
+        pthread_join(myThreads[i], (void **)&retFromThread);                                 // Wait for the thread to terminate and get the return value from it
+
+        intRCThread = *(int *)retFromThread;
+        printf("Outside thread, which returned %d\n", intRCThread);
     }
 
     printf("After the threads finished, localNum is: %d\n", localNum);
