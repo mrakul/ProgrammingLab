@@ -2,3 +2,10 @@ C types declarations:
 https://cdecl.org/
 http://unixwiz.net/techtips/reading-cdecl.html
 
+
+GCC:
+-- Compiling C files with GCC, step-by-step:
+https://medium.com/@laura.derohan/compiling-c-files-with-gcc-step-by-step-8e78318052
+
+-- 15 most frequently used commands of GCC:
+https://www.thegeekstuff.com/2012/10/gcc-compiler-options/

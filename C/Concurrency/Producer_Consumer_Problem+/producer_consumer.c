@@ -49,7 +49,6 @@ void *consumer(void *arg)
         pthread_cond_signal(&condVar);                                  // signal the waiting thread (main is waiting). If this happend before the main is waiting, then main will just pass the condition
         pthread_mutex_unlock(&mutexToLock);                             // Unlock the mutex
 
-
         sem_post(&semBufferIsFull);                                     // Increment the semBufferIsFull, since we just processed one item by the consumer
     }
 

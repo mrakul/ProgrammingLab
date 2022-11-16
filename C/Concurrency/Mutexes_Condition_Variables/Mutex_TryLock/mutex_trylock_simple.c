@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <pthread.h>
-#include <semaphore.h>
 
 // Define constants
 #define NUM_OF_THREADS 10
@@ -27,7 +26,7 @@ int main(int argc, char **argv)
 {
     pthread_t myThreads[NUM_OF_THREADS];
 
-    // 0. Initialize semaphores, mutex and conditional variables
+    // 0. Initialization
     pthread_mutex_init(&mutexToLock, NULL);
 
     // 1. Create threads sequentially
@@ -38,7 +37,6 @@ int main(int argc, char **argv)
     for (int i = 0; i < NUM_OF_THREADS; i++)
         pthread_join(myThreads[i], NULL);
     printf("==> Right after all the Producers finished their work\n");
-
 
     pthread_mutex_destroy(&mutexToLock);
 
