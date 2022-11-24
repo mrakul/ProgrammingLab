@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 // Define constants
-#define NUM_OF_THREADS 10
+#define NUM_OF_THREADS 10                                               // Note: if NUM_OF_THREADS is divisible on BARRIER_LEVEL, in the configuration below the barrier will allow to pass by portions immediately (21 and 7, for example)
 #define BARRIER_LEVEL 7
 
 // Define synchronization variables
@@ -16,7 +16,8 @@ void *funcToDo(void *arg)
 {
     while (1){
         printf("A thread waiting before the barrier ...\n");
-        sleep(1);
+        sleep(1);                                                       // Delay to have a chance to see that all the threads are waiting
+
         pthread_barrier_wait(&myBarrier);                               // Here, the waiting BARRIER_LEVEL num of threads are passed the barrier, but leaves the rest until BARRIER_LEVEL will be reached
         printf("A thread passed the barrier here. \n");
         sleep(1);

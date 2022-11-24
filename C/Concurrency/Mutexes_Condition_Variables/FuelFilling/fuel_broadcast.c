@@ -10,7 +10,7 @@ pthread_cond_t condFuel;
 #define FUEL_PORTION 60
 #define CAR_TANK_CAPACITY 40
 
-int fuelLevel;
+int fuelLevel = 0;
 
 void *fillGasStation(void *arg)
 {

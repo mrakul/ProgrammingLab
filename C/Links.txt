@@ -9,3 +9,16 @@ https://medium.com/@laura.derohan/compiling-c-files-with-gcc-step-by-step-8e7831
 
 -- 15 most frequently used commands of GCC:
 https://www.thegeekstuff.com/2012/10/gcc-compiler-options/
+
+
+General issues:
+https://en.wikipedia.org/wiki/Memory_ordering
+https://en.wikipedia.org/wiki/Memory_barrier
+
+
+Dynamic memory allocation:
+https://www.ibm.com/docs/ru/aix/7.1?topic=concepts-system-memory-allocation-using-malloc-subsystem
+
+
+Virtual Memory:
+https://lwn.net/Articles/253361/
