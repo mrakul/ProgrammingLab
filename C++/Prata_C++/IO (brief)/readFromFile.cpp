@@ -3,16 +3,16 @@
 #include <cstdlib> // to include exit() function
 const int SIZE = 60;
 
-int main()
+int main(int argc, const char **argv)
 {
     using namespace std;
     char filename[SIZE];
-    ifstream inFile; // object for handling file input
+    ifstream inFile;                            // object for handling file input
     cout << "Enter name of data file: ";
-    cin.getline(filename, SIZE);
-    inFile.open(filename); // associate inFile with a file
+    cin.getline(filename, SIZE);//
+    inFile.open(argv[1]);                       // associate inFile with a file (use the first argument in this case, floats.txt is required)
 
-    if (!inFile.is_open()) // failed to open file
+    if (!inFile.is_open())                      // failed to open file
     {
         cout << "Could not open the file " << filename << endl;
         cout << "Program terminating.\n";
@@ -20,16 +20,16 @@ int main()
     }
     double value;
     double sum = 0.0;
-    int count = 0;        // number of items read
+    int count = 0;                                              // number of items read
 
     //inFile >> value; // first read to check inFile.good()
     //while (inFile.good()) // while input good and not at EOF
-    while (inFile >> value) // read and test for success, since inFileinFile, when placed in a context in which a bool value expected, evaluates to inFile.good()—that is, to true or false
+    while (inFile >> value)                                     // read and test for success, since inFileinFile, when placed in a context in which a bool value expected, evaluates to inFile.good()—that is, to true or false
     {
         cout << "Current read value: " << value << endl;
-        ++count;         // count read numbers
-        sum += value;    // calculate total value
-        inFile >> value; // get next value
+        ++count;                                                // count read numbers
+        sum += value;                                           // calculate total value
+        //inFile >> value;                                      // get next value
     }
 
     //If an error or EOF encountered, or unknown reason

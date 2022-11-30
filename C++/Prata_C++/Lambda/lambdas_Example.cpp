@@ -5,8 +5,8 @@
 using namespace std;
 
 //Make two predicates (takes one argument and returns bool):
-bool divBy3(int x) { return !(x % 3); }           //The same as x % 3 == 0;
-bool divBy13(int x) { return x % 13 == 0; }
+bool divBy3(int curNum) { return !(curNum % 3); }           //The same as curNum % 3 == 0;
+bool divBy13(int curNum) { return curNum % 13 == 0; }
 
 template <typename Type>
 class Divisible
@@ -79,15 +79,14 @@ int main(int argc, char const *argv[])
 
     /*** 3. Count divisible using lambdas ***/
     cout << "Divisible by three count, lambda: " << count_if(numVect.begin(), numVect.end(), [](decltype(numVect)::value_type curNum) {return !(curNum % 3);}) << endl;
-    auto mod13 = [](int curNum) {return !(curNum % 13);};              // mod13 is a name for the lambda. No return type explicitly needed when there is only return statement.
+    auto mod13 = [](int curNum) {return !(curNum % 13);};              // mod13 is a name for the lambda. No return type explicitly needed when there is only return statement. // Otherwise, need to specify explicitly trailing return type: []()->int{} like this
 
-    // Otherwise, need to specify explicitly trailing return type:
     cout << "Divisible by thirteen count, lambda: " << count_if(numVect.begin(), numVect.end(), mod13) << endl;
 
     // lambda can use any automatic variable in scope, for example: [](double x)->double{int y = x; return x – y;}
     // [&] - access to all automatic variables in scope by reference, [=] - access by value
     int count13 = 0;    //may create two variables and use by lambda
-    std::for_each(numVect.begin(), numVect.end(), [&count13](int x) {count13 += x % 13 == 0;});     // works as -> count13 += ((x % 13) == 0). If true, count13 incremented by 1 (true converted to 1)
+    std::for_each(numVect.begin(), numVect.end(), [&count13](const int &curNum) {count13 += curNum % 13 == 0;});     // works as -> count13 += ((curNum % 13) == 0). If true, count13 incremented by 1 (true converted to 1)
     cout << "Divisible by thirteen count, lambda and 'external' variable: " << count13 << endl;
 
 

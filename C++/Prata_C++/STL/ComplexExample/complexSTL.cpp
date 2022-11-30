@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
     // Input wordsVect and add it to the end of the vector
     // for(auto &word: words)
     //     wordsVect.push_back(word);
-    for(auto &word: words2)
+    for (auto &word : words2)
         wordsVect.push_back(word);
     //  Or use input like this:
     //string oneWord;
@@ -38,8 +38,8 @@ int main(int argc, char const *argv[])
     //Place the wordsVect in set, converting to lowercase, to get the alphabetic order: set is ordering input automatically
     set<string> setOfWords;
     transform(wordsVect.begin(), wordsVect.end(),
-              insert_iterator<set<string>>(setOfWords, setOfWords.begin()),     //need to use insert_iterator to adjust the size automatically
-              ToLowerString);
+        insert_iterator<set<string>>(setOfWords, setOfWords.begin()),     //need to use insert_iterator to adjust the size automatically
+        ToLowerString);
 
     //Print out the words, they are stored in alphabetic order automatically and NO dublicates
     cout << endl << "Alphabetic list of words:" << endl;
@@ -58,6 +58,12 @@ int main(int argc, char const *argv[])
     cout << endl << "Word frequency:" << endl;
     for (setIter = setOfWords.begin(); setIter != setOfWords.end(); setIter++)
         cout << *setIter << ": " << mapOfWords[*setIter] << endl;
+
+    // Display the map content by iterating on the map (output is the same as above)
+    cout << endl << "Word frequency by iterating on the map:" << endl;
+    for (auto mapIter = mapOfWords.begin(); mapIter != mapOfWords.end(); mapIter++)
+        // cout << (*mapIter).first << ": " << mapOfWords[(*mapIter).first] << endl;
+        cout << (*mapIter).first << ": " << (*mapIter).second << endl;
 
     return 0;
 }

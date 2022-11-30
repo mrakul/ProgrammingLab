@@ -40,7 +40,7 @@ Person::Person(const Person &copiedPerson) : ID(nextID++), name(copiedPerson.nam
 
 Person::Person(string nameCreate, string surnameCreate) : ID(nextID++), name(nameCreate), surname(surnameCreate)
 {
-    cout << "Person: (string, srtring) Constructor -> New object ID: " << ID << " " << name << " " << surname << endl;
+    cout << "Person: (string, string) Constructor -> New object ID: " << ID << " " << name << " " << surname << endl;
 }
 
 ostream &operator<<(ostream &outStream, const Person &outPerson){

@@ -4,7 +4,7 @@
         {
             "type": "process",
             "label": "C/C++: gcc.exe build active file",
-            "command": "C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe",
+            "command": "C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe",                       // Need to use gcc for C compilation
             "args": [
                 /*** Include section ***/
 

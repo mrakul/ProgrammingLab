@@ -11,6 +11,8 @@
 // Define synchronization variables
 sem_t semLogin;
 
+
+
 // Define other values
 
 void *loginProcessor(void *arg)

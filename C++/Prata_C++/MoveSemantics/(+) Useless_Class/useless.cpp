@@ -5,7 +5,8 @@
 
 int Useless::countObjects = 0;
 
-Useless::Useless(){
+Useless::Useless()
+{
     ++countObjects;
     numElements = 0;
     ptrData = nullptr;
@@ -13,14 +14,16 @@ Useless::Useless(){
     ShowObject();
 }
 
-Useless::Useless(int numToCreate) : numElements(numToCreate){
+Useless::Useless(int numToCreate) : numElements(numToCreate)
+{
     ++countObjects;
     cout << "! int Constructor called, number of objects: " << countObjects << endl;
     ptrData = new char[numElements];
     ShowObject();
 }
 
-Useless::Useless(int numToCreate, char charToFill) : numElements(numToCreate){
+Useless::Useless(int numToCreate, char charToFill) : numElements(numToCreate)
+{
     ++countObjects;
     cout << "! (int, char) Constructor called, number of objects: " << countObjects << endl;
     ptrData = new char[numElements];
@@ -30,7 +33,8 @@ Useless::Useless(int numToCreate, char charToFill) : numElements(numToCreate){
 }
 
 //Copy constructor
-Useless::Useless(const Useless& sourceObj) : numElements(sourceObj.numElements){
+Useless::Useless(const Useless &sourceObj) : numElements(sourceObj.numElements)
+{
     ++countObjects;
     cout << "! Copy Constructor called, number of objects: " << countObjects << endl;
     ptrData = new char[numElements];
@@ -40,7 +44,7 @@ Useless::Useless(const Useless& sourceObj) : numElements(sourceObj.numElements){
 }
 
 // Move Constructor: creates an object actually and swaps bookkeeping info with the rvalue object
-Useless::Useless(Useless&& sourceObj) : numElements(sourceObj.numElements)
+Useless::Useless(Useless &&sourceObj) : numElements(sourceObj.numElements)
 {
     ++countObjects;
     cout << "! Move constructor called, number of objects: " << countObjects << endl;
@@ -51,7 +55,7 @@ Useless::Useless(Useless&& sourceObj) : numElements(sourceObj.numElements)
 }
 
 //Note: operator+() doesn't create object automatically as constructors, needs to create it explicitly
-Useless Useless::operator+(const Useless& addedObj) const        //Returning rvalue (temp object, not the reference to itself)
+Useless Useless::operator+(const Useless &addedObj) const                                                //Returning rvalue (temp object, not the reference to itself)
 {
     cout << "Entering operator+()" << endl;
     //Create another one temp object concatenating both objects (length of sum of both)
@@ -70,7 +74,8 @@ Useless Useless::operator+(const Useless& addedObj) const        //Returning rva
 }
 
 //Assignment operator of lvalue (copy assignment operator)
-Useless& Useless::operator=(const Useless& assignedObj){
+Useless &Useless::operator=(const Useless &assignedObj)
+{
     if (this == &assignedObj)                               //If assign an object to itself, then just return itself
         return *this;
 
@@ -85,7 +90,8 @@ Useless& Useless::operator=(const Useless& assignedObj){
 }
 
 //Assignment operator of rvalue (move assignment operator)
-Useless& Useless::operator=(Useless&& movedObj){
+Useless &Useless::operator=(Useless &&movedObj)
+{
     if (this == &movedObj)                               //If move an object to itself, then just return itself
         return *this;
 
@@ -115,7 +121,7 @@ Useless::~Useless()
 void Useless::ShowObject() const
 {
     cout << "Number of elements: " << numElements;
-    cout << " Data address: " << (void*)ptrData << endl;
+    cout << " Data address: " << (void *)ptrData << endl;
 }
 
 void Useless::ShowData() const

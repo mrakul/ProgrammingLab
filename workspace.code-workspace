@@ -113,7 +113,10 @@
 			"queue": "cpp",
 			"cstdbool": "cpp",
 			"reversedynamicarray": "cpp",
-			"ctype.h": "c"
+			"ctype.h": "c",
+			"semaphore.h": "c",
+			"unistd.h": "c",
+			"stdbool.h": "c"
 		},
 		"files.trimTrailingWhitespace": true,
 		"window.zoomLevel": -1,

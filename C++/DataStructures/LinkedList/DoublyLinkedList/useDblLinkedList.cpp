@@ -9,9 +9,9 @@ int main(int argc, char const *argv[])
 {
     cout << "\t ### Inner block: enter ###" << endl;
     {
-        /*** 0. Creating persons to push then to the Stack ***/
+        /*** 0. Creating persons to add then to the Linked LIst ***/
         Person personOne;                                // Default constructor: ID = 0
-        Person personTwo = Person{"Cringe", "Famous"};   // (string, string): ID = 1
+        Person personTwo = Person{"Cringe", "Famous"};   // (string, string): ID = 1, no Copy Constructor
         Person personThree = personTwo;                  // Copy constructor of Person class: ID = 2
 
         LinkedList<Person> myList;
@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
         /* 1. Inserting functions tests */
         //while (myList.insertToTail(Person({"Cycle", "Person"})));
         int indexToInsert = 0;
-        myList.insertByIndex(indexToInsert, Person{"Added to:", std::to_string(indexToInsert) + " index"});
+        myList.insertByIndex(indexToInsert, Person{"Added to:", std::to_string(indexToInsert) + " index"});             // Temporary object is created, copied by Copy Constructor to the dynamically allocated memory, and temporary is destroyed
         indexToInsert = 3;
         myList.insertByIndex(indexToInsert, Person{"Added to:", std::to_string(indexToInsert) + " index"});
         indexToInsert = 2;
@@ -69,7 +69,7 @@ int main(int argc, char const *argv[])
 
         /* 5. Move Constructor and Move Assignment operator checking */
         {
-            LinkedList<Person> myList3 = LinkedList<Person>(myList);                           // Just calls the copy constructor
+            LinkedList<Person> myList3 = LinkedList<Person>{myList};                           // Just calls the copy constructor
             //LinkedList<Person> myList4 = std::move(LinkedList<Person>(myList3));             // Move Constructor on the temporary created list based on myList3
             LinkedList<Person> myList4 = std::move(myList3);                                   // Move Constructor on myList3
 
