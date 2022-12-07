@@ -14,7 +14,7 @@ void *funcToThread(void *num)                                                   
     pthread_mutex_unlock(&mutexToSync);
     printf("Inside thread: num = %d\n", *((int *)num));
 
-    // pthread_exit(NULL);                                                          // pthread_exit() terminates THE CALLING THREAD (main, in our case),
+    // pthread_exit(NULL);
     return num;                                                                     // Here we return an address of the passed address as input parameter, just as example
 }
 

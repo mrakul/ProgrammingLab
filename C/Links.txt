@@ -24,6 +24,11 @@ https://www.ibm.com/docs/ru/aix/7.1?topic=concepts-system-memory-allocation-usin
 https://lwn.net/Articles/250967/
 
 
+-- Memory ordering:
+https://gcc.gnu.org/wiki/Atomic/GCCMM/AtomicSync
+https://en.wikipedia.org/wiki/Memory_ordering
+https://en.wikipedia.org/wiki/Memory_barrier
+
 --Understand std::atomic::compare_exchange_weak() in C++11: 
 https://www.codeproject.com/Articles/808305/Understand-std-atomic-compare-exchange-weak-in-Cpl
 
