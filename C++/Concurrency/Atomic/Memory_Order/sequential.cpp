@@ -26,10 +26,11 @@ void read_x_then_y()
     while (!x.load(std::memory_order_seq_cst));                 // As I understood, here the thread knows that somewhere x is changed by store()
 
     if (y.load(std::memory_order_seq_cst)){
-       // std::cout << " read x then y\n";
+        // std::cout << " read x then y\n";
         z++;
-    }                      // And here, the thread knows that y is changed elsewhere, so those two loads are not mixed
+    }                                                           // And here, the thread knows that y is changed elsewhere, so those two loads are not mixed, no optimization made
 }
+// Note: my understanding is that all the threads see as if it is one timeline, so no optimization made when it may break the logic
 
 void read_y_then_x()
 {

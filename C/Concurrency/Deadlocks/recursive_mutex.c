@@ -17,12 +17,14 @@ void *fillGasStation(void *arg)
     pthread_mutex_lock(&recursiveMutex);
     // pthread_mutex_lock(&mutexFuel);                                          // If work with non-recursive mutex, this leads to deadlock
     // pthread_mutex_lock(&mutexFuel);
+    printf("Fuil is being filled by %llu thread", pthread_self());
+    sleep(1);                                                                   // Just to see delay between threads (for example, if only one filling input, but they are doing some work excepting filling, before locking the mutex)
+
     fuelLevel += FUEL_PORTION;
     printf("==> Fuel was filled: %d\n", fuelLevel);
     pthread_mutex_unlock(&recursiveMutex);
     pthread_mutex_unlock(&recursiveMutex);                                      // ... then mutex should be unlocked the same number of times
 
-    sleep(1);
     return NULL;
 }
 

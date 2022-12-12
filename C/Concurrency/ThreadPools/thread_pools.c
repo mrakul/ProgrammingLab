@@ -28,7 +28,7 @@ void sum(int a, int b)
 
 void multiplication(int a, int b)
 {
-    printf("Multiplication of % d and %d is %d\n", a, b, (a * b));
+    printf("Multiplication of %d and %d is %d\n", a, b, (a * b));
 }
 
 void *processTask(TaskToDo *task)

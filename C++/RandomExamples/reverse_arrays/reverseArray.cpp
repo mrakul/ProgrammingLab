@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-void printArray(array<int, 11> &arrayToPrint){
+void printArray(array<int, ARRAY_SIZE> &arrayToPrint){
     for(const &curInt : arrayToPrint)
         cout << curInt << " ";
     cout << endl;

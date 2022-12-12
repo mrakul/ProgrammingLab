@@ -11,10 +11,6 @@
 // Define synchronization variables
 sem_t semLogin;
 
-
-
-// Define other values
-
 void *loginProcessor(void *arg)
 {
     printf("(%llu) Waiting in the login queue\n", pthread_self());
@@ -22,7 +18,7 @@ void *loginProcessor(void *arg)
 
     sem_wait(&semLogin);
     printf("(%llu) Logged IN\n", pthread_self());
-    sleep(rand() % 5 + 1);
+    sleep(rand() % 5 + 1);                                                          // As if a user making some work and the unlogon
     printf("(%llu) Logged OUT\n", pthread_self());
     sem_post(&semLogin);
 

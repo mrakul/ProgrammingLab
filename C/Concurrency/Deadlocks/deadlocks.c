@@ -44,13 +44,6 @@ int main(int argc, char const *argv[])
     pthread_mutex_init(&mutexFuel, NULL);
     pthread_mutex_init(&mutexWater, NULL);
 
-    //recursive mutex example
-    pthread_mutex_t recursiveMutex;
-    pthread_mutex_init(&recursiveMutex, NULL);
-    pthread_mutexattr_t mutexRecursiveAttributes;
-    pthread_mutexattr_init(&mutexRecursiveAttributes);
-    pthread_mutexattr_settype(&mutexRecursiveAttributes, PTHREAD_MUTEX_RECURSIVE);
-
     // Create fillers
     for (int i = 0; i < NUM_OF_FILLERS; i++)
         pthread_create(&threadFiller[i], NULL, &fillGasStation, NULL);
@@ -62,8 +55,6 @@ int main(int argc, char const *argv[])
     // Destroy mutex and cond variable
     pthread_mutex_destroy(&mutexFuel);
     pthread_mutex_destroy(&mutexWater);
-    pthread_mutex_destroy(&recursiveMutex);
-    pthread_mutexattr_destroy(&mutexRecursiveAttributes);
 
     return 0;
 }

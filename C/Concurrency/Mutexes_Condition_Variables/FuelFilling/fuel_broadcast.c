@@ -15,11 +15,14 @@ int fuelLevel = 0;
 void *fillGasStation(void *arg)
 {
     for (int i = 0; i < NUM_OF_FILLING_CYCLES; i++){
+
         pthread_mutex_lock(&mutexFuel);
+
         fuelLevel += FUEL_PORTION;
         printf("==> Fuel was filled: %d\n", fuelLevel);
-        pthread_cond_broadcast(&condFuel);                           // Here, all the car threads are awake. Note: this may be in or out of the mutex locked. However, if predictable scheduling behavior is required, then the mutex shall be locked by the thread
         printf(">>> BROADCASTING <<<\n");                            // Other threads are not starting until this thread release the mutex
+        pthread_cond_broadcast(&condFuel);                           // Here, all the car threads are awake. Note: this may be in or out of the mutex locked. However, if predictable scheduling behavior is required, then the mutex shall be locked by the thread
+
         pthread_mutex_unlock(&mutexFuel);
         sleep(1);
     }
@@ -36,7 +39,7 @@ void *fillCar(void *arg)
         // 1. pthread_mutex_unlock();
         // 2. wait for signal on condFuel
         // (!) 3. pthread_mutex_lock(): "The thread(s) that are unblocked shall contend for the mutex according to the scheduling policy (if applicable), and as if each had called pthread_mutex_lock()."
-        printf("A car thread is unclocked... \n");
+        printf("A car thread is unlocked... \n");
     }
     fuelLevel -= CAR_TANK_CAPACITY;
     printf("A car got the fuel. Now left: %d\n", fuelLevel);

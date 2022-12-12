@@ -43,7 +43,9 @@ void *consumer(void *arg)
         pthread_mutex_lock(&mutexToLock);                               // Need to lock the mutex/other threads to work with shared memory
         int retrievedItem = buffer[--numOfItemsInBuffer];               // Retrieve an item and decrement the current index
         printf("Retrieved number: %d\n", retrievedItem);                // Item is not retrieved, that is counter is 0
-        pthread_cond_signal(&condVar);                                  // signal the waiting thread (main is waiting). If this happend before the main is waiting, then main will just pass the condition
+
+        if (numOfItemsInBuffer == 0)                                    // May check or make cond_signal unconditionally: when producers finished their work, main is waiting for this signal (this condition may occur before the producers finished)
+            pthread_cond_signal(&condVar);                              // Signal the waiting thread (main is waiting). If this happend before the main is waiting, then main will just pass the condition
         pthread_mutex_unlock(&mutexToLock);                             // Unlock the mutex
 
         sem_post(&semBufferIsFull);                                     // Increment the semBufferIsFull, since we just processed one item by the consumer
@@ -79,8 +81,8 @@ int main(int argc, char **argv)
 
     // 3. Producers finished their work. Need to check if the buffer IS empty
     pthread_mutex_lock(&mutexToLock);
-    while (numOfItemsInBuffer){                                                 // If this happened before the main is waiting, then main will just pass the condition with no lock
-        printf("==> Main thread is locked\n");
+    while (numOfItemsInBuffer){                                             // If this happened before the main is waiting, then main will just pass the condition with no lock by pthread_cond_wait()
+        printf("==> Main thread is locked\n");                              // Consumers are stil consuming
         pthread_cond_wait(&condVar, &mutexToLock);                          // This atomically locks the current thread on the condition variable AND unlocks the mutex for the consumers
     }
     pthread_mutex_unlock(&mutexToLock);
