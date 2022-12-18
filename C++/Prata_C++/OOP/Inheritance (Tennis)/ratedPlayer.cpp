@@ -1,8 +1,18 @@
 #include <iostream>
 #include "ratedPlayer.h"
 
+RatedPlayer::RatedPlayer() : TableTennPlayer(), rating(0) {}
+
+// Copy Constructor
+RatedPlayer::RatedPlayer(const RatedPlayer &ratedPlayerToCopyConstruct) : TableTennPlayer(ratedPlayerToCopyConstruct), rating(ratedPlayerToCopyConstruct.rating)
+{
+   // this->rating = ratedPlayerToCopyConstruct.rating;
+}
+
 RatedPlayer::RatedPlayer(unsigned int r, const string &fName, const string &lName, bool tabled) : TableTennPlayer(fName, lName, tabled), rating(r)
-{this->rating = 23;}
+{
+   //this->rating = 23;
+}
 // If omit TableTennPlayer(fn, ln, ht) constructor, then default TableTennPlayer() is called implicitly:
 // RatedPlayer::RatedPlayer(unsigned int r, const string &fn, const string &ln, bool ht) : TableTennPlayer(), rating(r){}
 
@@ -18,7 +28,7 @@ void RatedPlayer::showName() const {
 }
 
 // Important: it returns the reference to itself
-RatedPlayer &RatedPlayer::operator=(RatedPlayer & ratedPlayer){
+RatedPlayer &RatedPlayer::operator=(RatedPlayer &ratedPlayer){
    this->rating = ratedPlayer.rating;
    return *this;
 }

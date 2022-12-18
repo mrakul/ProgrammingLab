@@ -10,19 +10,19 @@
 using namespace std;
 
 string &ToLowerString(string &stringToLow);
-char toLowerChar(char ch) { return tolower(ch); }
+// char toLowerChar(char ch) { return tolower(ch); }
 void displayString(const string &stringToPrint);
 
 int main(int argc, char const *argv[])
 {
     string words[]{"The", "dog", "saw", "the", "cat", "and", "thought", "the", "cat", "fat"};
-    string words2[]{"The", "cat", "thought","the", "cat", "perfect"};
+    string wordsToAdd[]{"The", "cat", "thought","the", "cat", "perfect"};
     vector<string> wordsVect(words, words + 10);       //vector of strings (wordsVect). May be initialized this way: vector<string> wordsVect(words, words + 10);
 
     // Input wordsVect and add it to the end of the vector
     // for(auto &word: words)
     //     wordsVect.push_back(word);
-    for (auto &word : words2)
+    for (auto &word : wordsToAdd)
         wordsVect.push_back(word);
     //  Or use input like this:
     //string oneWord;
@@ -70,7 +70,7 @@ int main(int argc, char const *argv[])
 
 //Go through the string char-by-char using iterators, transform every symbol and out is the same string
 string &ToLowerString(string &stringToLow){
-    transform(stringToLow.begin(), stringToLow.end(), stringToLow.begin(), toLowerChar);
+    transform(stringToLow.begin(), stringToLow.end(), stringToLow.begin(), [](char &curChar){return tolower(curChar);});        // Use lambda for transforming chars
     return stringToLow;
 }
 

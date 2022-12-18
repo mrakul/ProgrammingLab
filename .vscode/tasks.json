@@ -4,7 +4,8 @@
         {
             "type": "process",
             "label": "C/C++: gcc.exe build active file",
-            "command": "C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe",                       // Need to use gcc for C compilation
+            // "command": "C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe",                       // C++ compilation
+            "command": "C:\\Program Files\\mingw\\mingw64\\bin\\gcc.exe",                       // C compilation
             "args": [
                 /*** Include section ***/
 
@@ -24,20 +25,22 @@
                 // "-Wno-unused-but-set-variable",
 
                 /*** Choose the standard ***/
-                "-std=c++2a",
+                // C++:
+                // "-std=c++2a",
                 // "-std=c++11",
                 //-std=c++98",
-                // "-ansi",
-                // "-std=c17",                         // C compilation
 
-                // > Zero optimization
-                // "-O0",
+                // C:
+                "-std=c17",                                   // C compilation
+                // "-ansi",
+                /***************************/
+
 
                 /*** Compile options ***/
-                // "-c",                            // Only compile file (-c option), make object-files
+                // "-c",                                         // Only compile file (-c option), make object-files
                 // "${file}",
-                "${fileDirname}\\*.cpp",            // C++ files
-                // "${fileDirname}\\*.c",           // C files
+                // "${fileDirname}\\*.cpp",            // C++ files
+                "${fileDirname}\\*.c",           // C files
                 // "../../OOP/MyTime (OpOverload)/*.cpp",        // To compile Smart Pointers with MyTime example
                 // Add debug info (-g option) to the object file (files)
                 "-g",
@@ -46,6 +49,11 @@
                 //"${fileDirname}\\**.o",
                 "-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe"
+
+                // Optimization level:
+                // "-O3",
+                // "-O0",
+                // "-Og",                                           // Optimize debugging experience
 
                 /*** Boost library compilation ***/
                 // "-lwsock32",

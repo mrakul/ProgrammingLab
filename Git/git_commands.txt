@@ -28,13 +28,26 @@ git remote show origin
 git branch -a
 
 
-    ### Work with branches  ###
+    ### Branching ###
+-- Creates a new branch and checkout to it
+git checkout -b <new branch>
+--or (not checkout to it)
+git branch <new branch>
+
+
+    ### Move commits from one branch to another: merge, rebase, cherry-pick  ###
 -- Rebases <branch2> to <branch1> AND (!) checkout to <branch2> (interactively or not [-i])
 git rebase -i <branch1> <branch2>
 
--- Interactively rebase the current branch to the specified branch (pointer): includes manipulation with commits and move the pointer
+-- Interactively rebase the current branch to the specified branch (pointer): includes manipulation with commits and move the pointer to the target branch
 git rebase -i <branch, commit SHA>
 
+-- Cherry-pick
+git cherry-pick <C1, C2 ... Cn>
+-- pick up the specified commits for the current branch and move the branch to the last specified commit
+
+
+    ### Moving HEAD and the branches pointers ###
 -- Move HEAD to the commit/branch. If a commit specified, then the branch in a detached state.
 -- This changes the working tree and the staging area corresponding to the commit/branch specified.
 -- Note: might want to save the working tree and the staging area by the git stash push (desribed below)
@@ -45,7 +58,7 @@ git checkout HEAD^
 git checkout HEAD^2
 git checkout HEAD~^2~2  -> move for 1 commit down, for the second parent and for 2 commits down
 
--- Move the specified branch to the current commit (where the HEAD now), (!) BUT not checkout the branch
+-- Move the specified branch to the current commit (where the HEAD now), (!) BUT not checkout to the branch
 git branch -f <branch>
 
 -- Moves the HEAD pointer AND the current branch's pointer where HEAD points to to the commit specified:
@@ -57,18 +70,6 @@ git reset --soft <commit>   -- no update working tree and the index tree
 git stash push              -- saves the current state
 git stash pop               -- returns the state back
 
--- Creates a new branch and checkout to it
-git checkout -b <new branch>
---or (not checkout to it)
-git branch <new branch>
-
-    ### Cherry-pick ###
-git cherry-pick <C1, C2 ... Cn>
--- pick up the specified commits for the current branch and move the branch to the last specified commit
-
-    ### Garbage collector ###
--- Removes the orphaned nodes
-git gc
 
     ### Remotes ###
 -- Forcely push the changes to the main of remote origin
@@ -113,9 +114,13 @@ git remote set-url origin https://github.com/mrakul/ProgrammingLab.git  https://
 -- Set upstream URL
 git remote add upstream <URL>
 
-
 -- Tie local branch to remote ('--set-upstream' == '-u')
 git branch --set-upstream-to=upstream/foo
 --or
 git branch --set-upstream-to=upstream/foo foo
 -> specify foo if it is not the current one
+
+
+    ### Garbage collector ###
+-- Removes the orphaned nodes
+git gc

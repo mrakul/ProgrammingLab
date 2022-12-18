@@ -26,7 +26,7 @@ void TableTennPlayer::showName() const {
 //Virtual functions check
 //void TableTennPlayer::showType(void) const {std::cout << "This ia an Ordinary Player";}
 
-TableTennPlayer &TableTennPlayer::operator=(TableTennPlayer & tennPlayer){
+TableTennPlayer &TableTennPlayer::operator=(TableTennPlayer &tennPlayer){
     this->firstName = tennPlayer.firstName;
     this->lastName = tennPlayer.lastName;
     this->hasTable = tennPlayer.hasTable;
