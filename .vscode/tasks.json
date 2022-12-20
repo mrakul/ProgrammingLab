@@ -4,8 +4,8 @@
         {
             "type": "process",
             "label": "C/C++: gcc.exe build active file",
-            // "command": "C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe",                       // C++ compilation
-            "command": "C:\\Program Files\\mingw\\mingw64\\bin\\gcc.exe",                       // C compilation
+            "command": "C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe",                       // C++ compilation
+            // "command": "C:\\Program Files\\mingw\\mingw64\\bin\\gcc.exe",                    // C compilation
             "args": [
                 /*** Include section ***/
 
@@ -26,21 +26,20 @@
 
                 /*** Choose the standard ***/
                 // C++:
-                // "-std=c++2a",
+                "-std=c++2a",
                 // "-std=c++11",
                 //-std=c++98",
 
                 // C:
-                "-std=c17",                                   // C compilation
+                // "-std=c17",                                   // C compilation
                 // "-ansi",
                 /***************************/
-
 
                 /*** Compile options ***/
                 // "-c",                                         // Only compile file (-c option), make object-files
                 // "${file}",
-                // "${fileDirname}\\*.cpp",            // C++ files
-                "${fileDirname}\\*.c",           // C files
+                "${fileDirname}\\*.cpp",            // C++ files
+                // "${fileDirname}\\*.c",           // C files
                 // "../../OOP/MyTime (OpOverload)/*.cpp",        // To compile Smart Pointers with MyTime example
                 // Add debug info (-g option) to the object file (files)
                 "-g",

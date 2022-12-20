@@ -36,6 +36,7 @@ public:
     bool insertToHead(const Data &insertedItem);
     bool insertToTail(const Data &insertedItem);
     bool insertByIndex(size_t index, const Data &insertedItem);
+    bool appendList(LinkedList<Data> &&listToAppend);
     // Removing functions
     bool removeFromHead();
     bool removeFromTail();
@@ -49,7 +50,7 @@ public:
 
 /*** // Constructors, Destructor, Copy-Move assignment operators ***/
 template <typename Data>
-LinkedList<Data>::LinkedList() : headPtr(nullptr), tailPtr(nullptr), numOfElements(0) {}
+LinkedList<Data>::LinkedList(): headPtr(nullptr), tailPtr(nullptr), numOfElements(0) {}
 
 // Copy Constructor
 template <typename Data>
@@ -64,7 +65,8 @@ LinkedList<Data>::LinkedList(const LinkedList<Data> &copiedList) : headPtr(nullp
 
 // Copy Assignment
 template <typename Data>
-LinkedList<Data> &LinkedList<Data>::operator=(const LinkedList<Data> &listToCopyAssign) {
+LinkedList<Data> &LinkedList<Data>::operator=(const LinkedList<Data> &listToCopyAssign)
+{
     LinkedList<Data> tempList{listToCopyAssign};                                               // Create a temporary list by Copy Constructor and swap the bookkeeping info
     std::swap(headPtr, tempList.headPtr);
     std::swap(tailPtr, tempList.tailPtr);
@@ -75,7 +77,8 @@ LinkedList<Data> &LinkedList<Data>::operator=(const LinkedList<Data> &listToCopy
 
 // Move Constructor
 template <typename Data>
-LinkedList<Data>::LinkedList(LinkedList<Data> &&movedList) : headPtr (nullptr), tailPtr(nullptr), numOfElements(0) {
+LinkedList<Data>::LinkedList(LinkedList<Data> &&movedList): headPtr(nullptr), tailPtr(nullptr), numOfElements(0)
+{
     std::swap(headPtr, movedList.headPtr);
     std::swap(tailPtr, movedList.tailPtr);
     std::swap(numOfElements, movedList.numOfElements);                                         // Just swap the bookkepping info since the target list is empty with null pointers
@@ -83,7 +86,8 @@ LinkedList<Data>::LinkedList(LinkedList<Data> &&movedList) : headPtr (nullptr), 
 
 // Move Assignment
 template <typename Data>
-LinkedList<Data> &LinkedList<Data>::operator=(LinkedList<Data> &&listToMoveAssign) {
+LinkedList<Data> &LinkedList<Data>::operator=(LinkedList<Data> &&listToMoveAssign)
+{
     // First, release the target List memory and reset the members
     releaseNodes(headPtr);
     headPtr = nullptr;
@@ -115,7 +119,8 @@ void LinkedList<Data>::releaseNodes(Node<Data> *nodeToReleasePtr)
 }
 
 template <typename Data>
-LinkedList<Data>::~LinkedList() {
+LinkedList<Data>::~LinkedList()
+{
     std::cout << "\t ### ~LinkedList() -> Released nodes: \n";
     if (headPtr)                                                               // If the list is non-empty
         releaseNodes(headPtr);
@@ -221,6 +226,35 @@ bool LinkedList<Data>::insertByIndex(size_t index, const Data &insertedItem)
     return itemAddedSuccessfully;
 }
 
+// Append another list using move-semantics
+template <typename Data>
+bool LinkedList<Data>::appendList(LinkedList<Data> &&listToAppend)
+{
+    if (this == &listToAppend)                                          // If try to append the list to itself
+        return false;                                                   // Can't append the list to itself
+    else                                                                // Appending another list
+        if (listToAppend.headPtr != nullptr){                           // Append only if the appended list is non-empty
+            if (this->headPtr == nullptr){                              // If source is empty, just transit pointers and num of elements exists
+                this->headPtr = listToAppend.headPtr;
+                this->tailPtr = listToAppend.tailPtr;
+                this->numOfElements = listToAppend.numOfElements;
+            }
+            else{                                                         // If source is non-empty, link the last node of the source to the head of the appended list
+                this->tailPtr->nextNodePtr = listToAppend.headPtr;
+                listToAppend.headPtr->prevNodePtr = this->tailPtr;
+                this->tailPtr = listToAppend.tailPtr;
+                this->numOfElements += listToAppend.numOfElements;        // And also change the number of elements
+            }
+        }
+    // Reset the appended list pointers and number of elements in any case
+    listToAppend.tailPtr = nullptr;
+    listToAppend.headPtr = nullptr;
+    listToAppend.numOfElements = 0;
+
+    return true;
+}
+
+
 template <typename Data>
 bool LinkedList<Data>::removeFromHead()
 {
@@ -305,7 +339,8 @@ bool LinkedList<Data>::removeByIndex(size_t index)
 }
 
 template <typename Data>
-int LinkedList<Data>::searchItem(const Data &searchedItem){
+int LinkedList<Data>::searchItem(const Data &searchedItem)
+{
 
     if (!listIsEmpty()){
         int index = 0;

@@ -5,6 +5,8 @@
 
 using namespace std;
 
+LinkedList<Person> returnListToAppend();                // To check the move semantics of appendList method
+
 int main(int argc, char const *argv[])
 {
     cout << "\t ### Inner block: enter ###" << endl;
@@ -79,8 +81,38 @@ int main(int argc, char const *argv[])
             myList5 = std::move(myList4);                                                      // Move Assignment
         }
 
+        /* 6. Append functions checking */
+        {
+            LinkedList<Person> myList6 = LinkedList<Person>{myList};                           // Just calls the copy constructor
+            LinkedList<Person> listToAppend = LinkedList<Person>{myList};                      // The same list
+            myList6.printInForwardDirection();                                                 // Print the initial value
+
+            // Append the local list
+            myList6.appendList(move(listToAppend));                                            // Append the list
+            myList6.printInForwardDirection();                                                 // Print after appending
+
+            // Append the local list
+            myList6.appendList(returnListToAppend());                                          // Append the list from the function: move-semantics is used for the temporary object
+            myList6.printInForwardDirection();                                                 // Print after appending
+
+            // Append to an empty list
+            LinkedList<Person> emptyList;
+            emptyList.appendList(returnListToAppend());
+            emptyList.printInForwardDirection();
+
+        }
+
         cout << "\t ### Inner block: exit ###" << endl;
     }                                                                                          // Destroy the rest of the objects
 
     return 0;
+}
+
+LinkedList<Person> returnListToAppend()
+{
+    LinkedList<Person> listToReturn;
+    listToReturn.insertToTail({"Person1", "Inserted"});
+    listToReturn.insertToTail({"Person2", "Inserted"});
+
+    return listToReturn;
 }
