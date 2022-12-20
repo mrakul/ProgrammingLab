@@ -111,7 +111,7 @@ int main(int argc, char const *argv[])
 LinkedList<Person> returnListToAppend()
 {
     LinkedList<Person> listToReturn;
-    listToReturn.insertToTail({"Person1", "Inserted"});
+    listToReturn.insertToTail({"Person1", "Inserted"});                                         // Type of Person is determined automatically
     listToReturn.insertToTail({"Person2", "Inserted"});
 
     return listToReturn;

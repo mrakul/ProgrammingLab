@@ -11,7 +11,7 @@ private:
     size_t numOfElements;
     const size_t MAX_NUM_OF_ELEMENTS = 7;
 
-    void releaseNodes(Node<Data> *nodeToReleasePtr);
+    void releaseNodes(Node<Data> *nodeToReleasePtr);                            // Auxiliary function to use in Destructor and Move Assignment operator
 public:
     // Constructors, Destructor, Copy-Move assignment operators
     LinkedList();
