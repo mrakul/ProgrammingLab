@@ -61,7 +61,9 @@ int main(int argc, char const *argv[])
     // 2. Second form of transform() with 5 arguments: apply plus<double>() binary function for two elements in vectors.
     // Note: transform doesn't checks the bounds!
     cout << "Sum of vector elements: " << endl;
-    transform(doublesVect.begin(), doublesVect.end(), doublesVect2.begin(), out, plus<double>());   // plus is binary function, that is takes 2 arguments from both vectors
+
+    plus<double> doubleAddition;                                                                    // Plus is binary function, that is takes 2 arguments from both vectors
+    transform(doublesVect.begin(), doublesVect.end(), doublesVect2.begin(), out, plus<double>());   // Pass doubleAddition or create temporary object of plus<doule> by default constructor.
     cout << endl;
 
     // count_if() example to count even numbers in the Vector3:

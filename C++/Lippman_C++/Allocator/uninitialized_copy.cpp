@@ -12,16 +12,16 @@ int main(int argc, char const *argv[])
     allocator<int> allocatorInt;                // Allocator for ints
     vector<int> vectInts(CNT_SIZE);             // Create a source vector of ints
 
-    //Fill the vector and list with values
+    // Fill the vector with values
     int i = 0;                                  // Counter
     for (auto it = vectInts.begin(); it != vectInts.end(); it++)
         *it = i++;
 
     // Allocate the new memory area, unconstructed
-    int *memToUsePtr = allocatorInt.allocate(vectInts.size() * 2);        // Allocate triple memory elements as vectorholds, or 'auto memToUsePtr'
+    int *memToUsePtr = allocatorInt.allocate(vectInts.size() * 2);        // Allocate double of memory elements as vector holds, or 'auto memToUsePtr'
 
     // Construct elements at the first half of the memory as the copy of vectInts and returns one past the constructed objects
-    auto curPosPtr = uninitialized_copy(vectInts.begin(), vectInts.end(), memToUsePtr);     // Construct elements starting at memToUsePtr as copies of elements in vi
+    auto curPosPtr = uninitialized_copy(vectInts.begin(), vectInts.end(), memToUsePtr);     // Construct elements starting at memToUsePtr as copies of elements in vectInts
 
     // Construct the remaining elements as 42. Note: assign returned value to curPosPtr and pass it as forward iterator, works well
     curPosPtr = uninitialized_fill_n(curPosPtr, vectInts.size(), 42);

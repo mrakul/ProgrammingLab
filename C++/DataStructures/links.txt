@@ -1,0 +1,16 @@
+Algotithms:
+1. Graph:
+
+Short explanation:
+https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/
+https://www.interviewcake.com/concept/java/dfs
+https://www.interviewcake.com/concept/java/bfs
+
+Implementation:
++ https://www.softwaretestinghelp.com/cpp-dfs-program-to-traverse-graph/#BFS_vs_DFS
++ https://www.softwaretestinghelp.com/cpp-bfs-program-to-traverse-graph/
+https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/
+https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
+https://www.geeksforgeeks.org/find-longest-path-directed-acyclic-graph/
+https://www.geeksforgeeks.org/shortest-path-faster-algorithm/
+https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/

@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
     // 1. Without using allocator class
     string *const stringsArr = new string[SIZE];        // Obtains memory for SIZE strings AND construct SIZE empty strings at the same time
     string inputString;
-    string *curStrPtr = stringsArr;                     // cirStrPtr points to the first string
+    string *curStrPtr = stringsArr;                     // curStrPtr points to the first string
     // while (cin >> inputString && curStrPtr != stringsArr + SIZE)
     //     *curStrPtr++ = inputString;                     // Assign input value to *curStrPtr
 

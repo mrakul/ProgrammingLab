@@ -3,6 +3,12 @@
 
 using namespace std;
 
+/*
+*   Note: This header differs from BinarySearchTree.h only in printInOrder() and releaseNodes() implementation.
+*   Recursion stops not at nullptr (lack of subtree), but the function processed till the end.
+*   There are more checks, but such implementation looks more clear to me, so save it just in case.
+*/
+
 template <typename Key>
 class BST
 {
@@ -32,8 +38,6 @@ bool BST<Key>::insertNode(Key itemToInsert)                                     
     return insertNode(itemToInsert, treeRoot);                                     // Call the function with passing the current root
 }
 
-// TODO: need to rework and remove checks of subtree presenting, so stop at nullptr encountering.
-// Need to think of whether return bool or TreeNode<Key> and solve value presenting checking with this approach
 template<typename Key>
 bool BST<Key>::insertNode(Key itemToInsert, TreeNode<Key> *curSubTreeRoot)         // (!!!) We're inserting data/key, nodes are created basing on the key
 {
@@ -74,14 +78,13 @@ void BST<Key>::printInOrder()                                                   
 template<typename Key>
 void BST<Key>::printInOrder(TreeNode<Key> *curSubTreeRoot)
 {
-    if (curSubTreeRoot == nullptr)                                                  // Stop the recusion
-        return;
+    if (curSubTreeRoot->leftSubTreePtr != nullptr)                                // If has left subree
+        printInOrder(curSubTreeRoot->leftSubTreePtr);                             // Move on in traversal
 
-    printInOrder(curSubTreeRoot->leftSubTreePtr);                                   // Check the left subtree, go left as deep as possible
+    cout << curSubTreeRoot->key << ' ';                                           // If no left subtree, this node is the minimum for now, print out it
 
-    cout << curSubTreeRoot->key << ' ';                                             // If no left subtree, this node is the minimum for now, print out it
-
-    printInOrder(curSubTreeRoot->rightSubTreePtr);                                  // Check the right subtree, go right as deep as possible
+    if (curSubTreeRoot->rightSubTreePtr != nullptr)                               // Continue with checking right subtree of the node
+        printInOrder(curSubTreeRoot->rightSubTreePtr);                            // Move on in traversal
 
     // cout << "Return from " << curSubTreeRoot->key << ' ';
 }

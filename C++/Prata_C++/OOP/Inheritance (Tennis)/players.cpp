@@ -4,7 +4,7 @@
 
 int main(int argc, char const *argv[])
 {
-    //Base class objects and functions calls
+    // 1. Base class objects and functions calls
     TableTennPlayer simplePlayer1 {"Michael", "Pims", true};
     TableTennPlayer simplePlayer2 {"John", "Lane", false};
     simplePlayer1.showName();
@@ -14,17 +14,16 @@ int main(int argc, char const *argv[])
     simplePlayer2.HasTable() ? std::cout << "has table " : std::cout << " has no table ";
     std::cout << std::endl;
 
-    //Derived class objects
+    //2. Derived class objects
     RatedPlayer ratedPlayer1 {5, simplePlayer1};                            // (!) use copy constructor with the base object type
     RatedPlayer ratedPlayer2 {10 , "Cringe", "Dinge", false};               // Calls the RatedPlayer with 4 arguments constructor -> TableTennPlayer with 3 arguments constructor
     RatedPlayer ratedPlayer3 = ratedPlayer2;                                // (!)Use the Copy constuctor: The same as write: RatedPlayer ratedPlayer3 = RatedPlayer(ratedPlayer2).
-
     ratedPlayer1.showRating();                                              //  Can be called directly by the object
     ratedPlayer2.showName();
     ratedPlayer3.showName();
     std::cout << ratedPlayer3.showRating() << '\n';
 
-    //Examples of virtual functions calls
+    // 3. Examples of virtual functions calls
     TableTennPlayer &refSimplePlayer1 = simplePlayer1;
     TableTennPlayer &refRatedPlayer1 = ratedPlayer1;
     TableTennPlayer *ptrRatedPlayer1 = &ratedPlayer1;       // By pointer
@@ -33,7 +32,7 @@ int main(int argc, char const *argv[])
     refRatedPlayer1.showName();                             // Call overriden function (since it is virtual)
     ptrRatedPlayer1->showName();                            // Call overriden function by using pointer
 
-    //Assignment operator checks
+    // 4. Assignment operator checks
     refRatedPlayer1 = refSimplePlayer1;                     // refRatedPlayer1.operator=(refSimplePlayer1);     => uses Base class operator=
     refSimplePlayer1 = refRatedPlayer1;                     // refSimplePlayer1.operator=(refRatedPlayer1);     => uses Base class operator=
     refRatedPlayer1 = refRatedPlayer1;                      // Uses Base class assignment
