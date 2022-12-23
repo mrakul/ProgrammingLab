@@ -3,11 +3,10 @@
 
 int main(int argc, char const *argv[])
 {
-
-    // 1. Checking nodes inserting
     {
         BST<int> myBSTree;
 
+        // 1. Checking nodes inserting and printing the tree
         myBSTree.insertNode(5);
         myBSTree.insertNode(3);
         myBSTree.insertNode(7);
@@ -17,8 +16,10 @@ int main(int argc, char const *argv[])
         myBSTree.insertNode(8);
         myBSTree.insertNode(2);
         myBSTree.insertNode(6);
-        // Checking print in order
-        myBSTree.printInOrder();
+
+        // 2. Check printing function
+        myBSTree.printInOrderRecursion();
+        myBSTree.printInOrderIteratively();
 
         // Check of adding the value already existing in the tree
         std::cout << (myBSTree.insertNode(9) ? "Value 9 successfully added " : "Value 9 already exists") << '\n';
@@ -27,4 +28,3 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
-

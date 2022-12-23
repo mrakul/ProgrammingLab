@@ -1,5 +1,5 @@
-Algotithms:
-1. Graph:
+Algorithms:
+1. Graph and Binary Tree:
 
 Short explanation:
 https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/
@@ -7,8 +7,10 @@ https://www.interviewcake.com/concept/java/dfs
 https://www.interviewcake.com/concept/java/bfs
 
 Implementation:
+https://www.enjoyalgorithms.com/blog/iterative-binary-tree-traversals-using-stack
 + https://www.softwaretestinghelp.com/cpp-dfs-program-to-traverse-graph/#BFS_vs_DFS
 + https://www.softwaretestinghelp.com/cpp-bfs-program-to-traverse-graph/
+https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
 https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/
 https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
 https://www.geeksforgeeks.org/find-longest-path-directed-acyclic-graph/
