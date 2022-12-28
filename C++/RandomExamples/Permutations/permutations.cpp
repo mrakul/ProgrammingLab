@@ -7,10 +7,9 @@ const int NUM_OF_LETTERS = 10;
 
 void printPermutations(char *stringToPermute, int startIndex, int endIndex);
 
-
 int main(int argc, char const *argv[])
 {
-    char charArray[NUM_OF_LETTERS]{'A', 'B', 'C', 'D'};                    // char charArray[NUM_OF_LETTERS]{"ABCD"} is allowed
+    char charArray[NUM_OF_LETTERS]{'A', 'B', 'C'};                    // char charArray[NUM_OF_LETTERS]{"ABCD"} is allowed
     printPermutations(charArray, 0, strlen(charArray) - 1);                // Pass the ending index in array
 
     // By using std::next_permutation()                                    // To use this function a string should be in ascending order, that is the last state is descending order
@@ -28,7 +27,7 @@ void printPermutations(char *stringToPermute, int startIndex, int endIndex)
         std::cout << stringToPermute << endl;
     else
         for (int i = startIndex; i <= endIndex; i++){
-            swap(stringToPermute[startIndex], stringToPermute[i]);                          // Place the current letter at the first position, and the first letter to the current position
+            swap(stringToPermute[startIndex], stringToPermute[i]);                          // Place the current letter at the first position, and the first letter to the current position (at first iteration the first letter stays at its own position)
             printPermutations(stringToPermute, startIndex + 1, endIndex);                   // Make the same with subset without the first letter
             swap(stringToPermute[startIndex], stringToPermute[i]);                          // Return everything back
         }
