@@ -18,7 +18,3 @@ https://www.geeksforgeeks.org/shortest-path-faster-algorithm/
 https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
 https://medium.com/basecs/breaking-down-breadth-first-search-cebe696709d9
 https://medium.com/basecs/demystifying-depth-first-search-a7c14cccf056
-
-Algorithms:
-1. Sorting:
-https://www.geeksforgeeks.org/quick-sort-vs-merge-sort/

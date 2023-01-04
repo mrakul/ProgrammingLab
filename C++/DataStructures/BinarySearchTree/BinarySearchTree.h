@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stack>
 #include <queue>
+#include <map>
 
 using namespace std;
 
@@ -23,8 +24,14 @@ public:
     void printInOrderRecursion();                                                // Wrapper function
     void printInOrderRecursion(TreeNode<Key> *curSubTreeRoot);                   // Depth-first search using call stack recursion
 
+    void printPostOrderRecursion();                                              // Wrapper function
+    void printPostOrderRecursion(TreeNode<Key> *curSubTreeRoot);                 // Depth-first search using call stack recursion
+
     void printInOrderIteratively();                                              // Wrapper function
-    void printInOrderIteratively(TreeNode<Key> *curSubTreeRoot);                 // Depth-first search using stack implementation
+    void printInOrderIteratively(TreeNode<Key> *curSubTreeRoot);                 // Print InOrdersearch using stack implementation
+
+    void printDFSIeratively();                                                   // Wrapper function
+    void printDFSIeratively(TreeNode<Key> *curSubTreeRoot);                      // Depth-first search using stack
 
     void printBFS();                                                             // Wrapper function
     void printBFS(TreeNode<Key> *curSubTreeRoot);                                // Breadth-first search using queue
@@ -117,8 +124,6 @@ void BST<Key>::printInOrderRecursion(TreeNode<Key> *curSubTreeRoot)
     cout << curSubTreeRoot->key << ' ';                                             // If no left subtree, this node is the minimum for now, print out it
 
     printInOrderRecursion(curSubTreeRoot->rightSubTreePtr);                         // Check the right subtree, go right as deep as possible
-
-    // cout << "Return from " << curSubTreeRoot->key << ' ';
 }
 
 // Or to stop before getting to nullptr, but above is canonical
@@ -135,6 +140,25 @@ void BST<Key>::printInOrderRecursion(TreeNode<Key> *curSubTreeRoot)
 //
 //     // cout << "Return from " << curSubTreeRoot->key << ' ';
 // }
+
+template<typename Key>
+void BST<Key>::printPostOrderRecursion()                                              // Wrapper function
+{
+    printPostOrderRecursion(treeRoot);                                                // Call the function with passing the current root
+}
+
+template<typename Key>
+void BST<Key>::printPostOrderRecursion(TreeNode<Key> *curSubTreeRoot)
+{
+    if (curSubTreeRoot == nullptr)                                                  // Stop the recursion
+        return;
+
+    printPostOrderRecursion(curSubTreeRoot->leftSubTreePtr);                          // Check the left subtree, go left as deep as possible
+
+    printPostOrderRecursion(curSubTreeRoot->rightSubTreePtr);                         // Check the right subtree, go right as deep as possible
+
+    cout << curSubTreeRoot->key << ' ';                                             // If no left subtree, this node is the minimum for now, print out it
+}
 
 template <typename Key>
 void BST<Key>::printInOrderIteratively()
@@ -161,9 +185,43 @@ void BST<Key>::printInOrderIteratively(TreeNode<Key> *curSubTreeRoot)
 }
 
 template <typename Key>
+void BST<Key>::printDFSIeratively()
+{
+    printDFSIeratively(treeRoot);
+}
+
+// Note: printDFSIteratively() should give the same output as printPostOrder() using recursion
+template <typename Key>
+void BST<Key>::printDFSIeratively(TreeNode<Key> *curSubTreeRoot)
+{
+    stack<TreeNode<Key> *> nodesToProcess;
+    TreeNode<Key> *curNodeToProcess{nullptr};
+    map<Key, bool> isVisited;                                                        // Map to mark nodes as visited, the key is the node number
+
+    nodesToProcess.push(curSubTreeRoot);                                             // Add the root to the stack
+    while (!nodesToProcess.empty()){                                                 // Till have nodes to process
+        curNodeToProcess = nodesToProcess.top();                                     // Check the top node of the stack
+
+        if (!isVisited[curNodeToProcess->key]){                                      // If it is not visited yet
+            isVisited[curNodeToProcess->key] = true;                                 // Mark it as visited
+
+            if (curNodeToProcess->rightSubTreePtr)                                   // Add right subtree first if exists
+                nodesToProcess.push(curNodeToProcess->rightSubTreePtr);
+
+            if (curNodeToProcess->leftSubTreePtr)                                    // Add left subtree if exists after the right, so it will be processed before the right
+                nodesToProcess.push(curNodeToProcess->leftSubTreePtr);
+        }
+        else{                                                                        // If we are returning up (the node is visited already), or it is the node without subtrees, that is we checked it twice as non-visited and then check it as visited
+            cout << nodesToProcess.top()->key << ' ';                                // Process the node
+            nodesToProcess.pop();                                                    // And pop it out from the stack
+        }
+    }
+}
+
+template <typename Key>
 void BST<Key>::printBFS()
 {
-    printBFS(treeRoot);                                                      // Start with the root of the tree
+    printBFS(treeRoot);                                                               // Start with the root of the tree
 }
 
 template <typename Key>

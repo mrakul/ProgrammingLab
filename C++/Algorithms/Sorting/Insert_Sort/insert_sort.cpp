@@ -5,7 +5,7 @@ using namespace std;
 
 /*** Inserting sort implementation ***/
 // The idea is to mark the part of the array as sorted. Initially, only one element is sorted.
-// Next value after sorted part is compared sequentially back to the firist element and placed to the correct place (stop when it is more than some of the )
+// Next value after sorted part is compared sequentially back to the first element and placed to the correct place, stop when the current is more than encountered from the sorted part.
 
 void insertSort(int *arrayToSort, const int arraySize);
 void printArray(int const *const arrayPtr, const int arraySize);
@@ -35,7 +35,7 @@ void insertSort(int *arrayToSort, const int arraySize)
             swap(arrayToSort[sortedPartIdx], arrayToSort[sortedPartIdx + 1]);                           // Swap if sorted is more than the current to check
             sortedPartIdx--;                                                                            // Move sorted part back for one element (before where the current is placed) and move till the beginning of the array
         }
-        printArray(arrayToSort, arraySize);                    // Print after every checking
+        printArray(arrayToSort, arraySize);                        // Print after finding the current minimum
     }
 }
 

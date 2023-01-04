@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
 
 void bubbleSort(int *arrayToSort, int const arraySize)
 {
-    for (int i = 0; i < arraySize - 1; i++){                           // Number of cycles: 9 compares for 10-length array
+    for (int i = 0; i < arraySize - 1; i++){                           // Number of cycles: 9 max findings for 10-length array
         for (int j = 0; j < arraySize - i - 1; j++){                   // Type of the cycle depending on the iteration, cutting of the previous maximum
             if (arrayToSort[j] > arrayToSort[j + 1])                   // If the current is more than the next
                 swap(arrayToSort[j], arrayToSort[j + 1]);              // Swap them

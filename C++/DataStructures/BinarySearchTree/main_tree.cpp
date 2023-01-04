@@ -21,11 +21,19 @@ int main(int argc, char const *argv[])
         std::cout << (myBSTree.insertNode(10) ? "Value 10 successfully added " : "Value 10 already exists") << '\n';
 
         // 2. Check DFS printing functions
+        cout << "Print InOrder recursively: \n";
         myBSTree.printInOrderRecursion();
+        cout << "Print InOrder iteratively: \n";
         myBSTree.printInOrderIteratively();
         cout << '\n';
 
+        cout << "Print PostOrder: \n";
+        myBSTree.printPostOrderRecursion();
+        cout << "Print DFS: \n";
+        myBSTree.printDFSIeratively();
+
         // 3. Print BFS printing function
+        cout << "Print breadth-first search: \n";
         myBSTree.printBFS();
     }
 

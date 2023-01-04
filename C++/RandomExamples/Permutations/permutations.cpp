@@ -9,7 +9,7 @@ void printPermutations(char *stringToPermute, int startIndex, int endIndex);
 
 int main(int argc, char const *argv[])
 {
-    char charArray[NUM_OF_LETTERS]{'A', 'B', 'C'};                    // char charArray[NUM_OF_LETTERS]{"ABCD"} is allowed
+    char charArray[NUM_OF_LETTERS]{'A', 'B', 'C', 'D'};                    // char charArray[NUM_OF_LETTERS]{"ABCD"} is allowed
     printPermutations(charArray, 0, strlen(charArray) - 1);                // Pass the ending index in array
 
     // By using std::next_permutation()                                    // To use this function a string should be in ascending order, that is the last state is descending order

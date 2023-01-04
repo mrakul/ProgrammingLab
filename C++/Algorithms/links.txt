@@ -1,0 +1,5 @@
+Algorithms:
+1. Sorting:
+https://www.geeksforgeeks.org/quick-sort-vs-merge-sort/
+https://www.interviewkickstart.com/learn/quicksort-vs-merge-sort
+https://www.geeksforgeeks.org/quick-sort/
