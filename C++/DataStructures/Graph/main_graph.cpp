@@ -14,12 +14,18 @@ int main(int argc, char const *argv[])
     myGraph.addEdge(1, 2);
 
     myGraph.addEdge(2, 3);
+
     myGraph.addEdge(3, 3);
     myGraph.addEdge(3, 1);
 
     // 2. Check the DFS recursively
-    cout << "Depth-first traversal output:" << endl;
+    cout << "Depth-first search recursively:" << endl;
     myGraph.DFSRecursively(3);
+    cout.put('\n');
+
+    cout << "Depth-first search iteratively:" << endl;
+    myGraph.DFSIteratively(3);
+    cout.put('\n');
 
     return 0;
 }
