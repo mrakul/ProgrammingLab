@@ -7,7 +7,7 @@ using namespace std;
 
 class Graph
 {
-    int numOfVertices;                                                      // Number of vertices
+    int numOfVertices;                                                      // Number of vertices: vertices are numbered from 0 sequentially
     list<int> *adjacentLists;                                               // Adjacent vertexes lists, just a pointer initially
 public:
     Graph(int verticesNumber): numOfVertices(verticesNumber), adjacentLists(new list<int>[numOfVertices]) {}
@@ -18,7 +18,7 @@ public:
     // Depth-first search methods
     void DFSRecursively(int vertexToStart);                                 // Starting point of the Depth-First Search
     void DFSTraversing(int vertexNum, vector<bool> &visited);               // DFSTraversing is used for recursive calls of DFSRecursively
-    void DFSIteratively(int vertexNum);                                     // Make Depth-First Search iteratively
+    void DFSIteratively(int vertexToStart);                                 // Make Depth-First Search iteratively
 
     // Determine cycles methods
     bool isCycledRecursively(int vertexToStart);                            // Determine if a graph have cycle for a starting point using DFS recursively, based on the DFSRecursively()
@@ -51,8 +51,8 @@ void Graph::DFSTraversing(int vertexNum, vector<bool> &visited)
 
 void Graph::DFSIteratively(int vertexNum)
 {
-    vector<bool> visited(numOfVertices, false);                             // Visited vertices
     stack<int> nodesToProcess;                                              // Vertices which are still to be processed. They can be visited or not yet
+    vector<bool> visited(numOfVertices, false);                             // Visited vertices
     int curNodeToProcess{vertexNum};                                        // Current node for processing
 
     nodesToProcess.push(curNodeToProcess);                                  // Push the initial vertex to the stack
@@ -75,9 +75,9 @@ void Graph::DFSIteratively(int vertexNum)
 /*** Cycles determination methods ***/
 bool Graph::isCycledRecursively(int vertexToStart)
 {
-    bool hasCycle{false};                                                   // Return value: true if the graph has cycles
     vector<bool> visited(numOfVertices, false);                             // Create the vector of booleans here and pass it through DFSTraversing calls
     vector<bool> curVerticesPath(numOfVertices, false);                     // Current path of encountered vertices
+    bool hasCycle{false};                                                   // Return value: true if the graph has cycles
 
     hasCycle = isCycledTraverseRecursively(vertexToStart, visited, curVerticesPath);   // Start the recursion for the starting vertex
 
@@ -107,9 +107,38 @@ bool Graph::isCycledTraverseRecursively(int vertexNum, vector<bool> &visited, ve
     return hasCycle;
 }
 
-bool Graph::isCycledIteratively(int vertexToStart){
+bool Graph::isCycledIteratively(int vertexToStart)
+{
+    stack<int> nodesToProcess;                                              // Vertices which are still to be processed. They can be visited or not yet
+    vector<bool> visited(numOfVertices, false);                             // Visited vertices
+    vector<bool> curVerticesPath(numOfVertices, false);                     // Current path of encountered vertices
+    bool hasCycle{false};                                                   // Return value: true if the graph has cycles
 
+    int curNodeToProcess{vertexToStart};                                    // Current node for processing
 
+    nodesToProcess.push(curNodeToProcess);                                  // Push the initial vertex to the stack
+    while (!nodesToProcess.empty() && !hasCycle){                           // While have vertices for processing AND still not found cycles
+
+        curNodeToProcess = nodesToProcess.top();                            // Read the current vertex data
+        if (!visited[curNodeToProcess]){                                    // If it is not visited
+
+            visited[curNodeToProcess] = true;                               // Mark it as visited
+            curVerticesPath[curNodeToProcess] = true;                       // Mark the vertex position at the current path
+            // cout << curNodeToProcess << " ";                             // Process the vertex (optionally)
+
+            for (auto nextConnectedVertexIt = adjacentLists[curNodeToProcess].rbegin(); nextConnectedVertexIt != adjacentLists[curNodeToProcess].rend() && !hasCycle; nextConnectedVertexIt++)      // Additional condition !hasCycle to stop immediately when cycling encountered
+                if (curVerticesPath[*nextConnectedVertexIt])                // If next vertex to process already encountered on the way
+                    hasCycle = true;                                        // Mark it to stop the loop
+                else if (!visited[*nextConnectedVertexIt])                  // If no cycles determined, check if non-visited vertex to push on the stack
+                    nodesToProcess.push(*nextConnectedVertexIt);            // Add non-visited vertices to the stack
+        }
+        else{                                                               // If the vertex is visited
+            curVerticesPath[curNodeToProcess] = false;                      // Reset the vertex's current path mark when popping it out
+            nodesToProcess.pop();                                           // Pop the vertex out of the stack
+        }
+    }
+
+    return hasCycle;
 }
 
 Graph::~Graph()

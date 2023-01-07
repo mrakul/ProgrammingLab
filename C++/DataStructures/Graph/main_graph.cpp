@@ -33,6 +33,9 @@ int main(int argc, char const *argv[])
     // 3. Cycles determination
     cout << "Graph has cycles: " << (myGraph.isCycledRecursively(3) ? "yes" : "no") << '\n';
     cout << "Graph has cycles: " << (myGraph2.isCycledRecursively(0) ? "yes" : "no") << '\n';
+    // Determine iteratively
+    cout << "Graph has cycles: " << (myGraph.isCycledIteratively(3) ? "yes" : "no") << '\n';
+    cout << "Graph has cycles: " << (myGraph2.isCycledIteratively(0) ? "yes" : "no") << '\n';
 
     return 0;
 }
