@@ -7,13 +7,13 @@ int main(int argc, char const *argv[])
     Graph myGraph(5);
     Graph myGraph2(4);
 
-    // myGraph.addEdge(0, 1);
+    myGraph.addEdge(0, 1);          //
     myGraph.addEdge(0, 2);
     myGraph.addEdge(0, 4);
     myGraph.addEdge(1, 0);
     myGraph.addEdge(1, 2);
     myGraph.addEdge(2, 3);
-    // myGraph.addEdge(3, 3);
+    myGraph.addEdge(3, 3);          //
     myGraph.addEdge(3, 1);
 
     myGraph2.addEdge(0, 1);
@@ -21,11 +21,11 @@ int main(int argc, char const *argv[])
     myGraph2.addEdge(0, 3);
     myGraph2.addEdge(3, 3);
 
-    // 2. Check the DFS recursively
+    // 2. Check DFS recursively
     cout << "Depth-first search recursively:" << endl;
     myGraph.DFSRecursively(3);
     cout.put('\n');
-
+    // DFS iteratively
     cout << "Depth-first search iteratively:" << endl;
     myGraph.DFSIteratively(3);
     cout.put('\n');
@@ -36,6 +36,10 @@ int main(int argc, char const *argv[])
     // Determine iteratively
     cout << "Graph has cycles: " << (myGraph.isCycledIteratively(3) ? "yes" : "no") << '\n';
     cout << "Graph has cycles: " << (myGraph2.isCycledIteratively(0) ? "yes" : "no") << '\n';
+
+    // 4. Check BFS
+    myGraph.BFS(3);
+    myGraph2.BFS(0);
 
     return 0;
 }

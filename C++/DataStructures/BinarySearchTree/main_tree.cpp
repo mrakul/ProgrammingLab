@@ -37,7 +37,7 @@ int main(int argc, char const *argv[])
         myBSTree.printDFSIeratively();
         cout << '\n';
 
-        // 3. Print BFS printing function
+        // 3. Check BFS printing function
         cout << "Print breadth-first search: \n";
         myBSTree.printBFS();
     }

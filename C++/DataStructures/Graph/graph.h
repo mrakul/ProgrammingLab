@@ -2,6 +2,7 @@
 #include <list>
 #include <vector>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -19,6 +20,8 @@ public:
     void DFSRecursively(int vertexToStart);                                 // Starting point of the Depth-First Search
     void DFSTraversing(int vertexNum, vector<bool> &visited);               // DFSTraversing is used for recursive calls of DFSRecursively
     void DFSIteratively(int vertexToStart);                                 // Make Depth-First Search iteratively
+    // Breadth-first search method
+    void BFS(int vertexToStart);                                            // Breadth-first search
 
     // Determine cycles methods
     bool isCycledRecursively(int vertexToStart);                            // Determine if a graph have cycle for a starting point using DFS recursively, based on the DFSRecursively()
@@ -49,11 +52,11 @@ void Graph::DFSTraversing(int vertexNum, vector<bool> &visited)
     }
 }
 
-void Graph::DFSIteratively(int vertexNum)
+void Graph::DFSIteratively(int vertexToStart)
 {
     stack<int> nodesToProcess;                                              // Vertices which are still to be processed. They can be visited or not yet
     vector<bool> visited(numOfVertices, false);                             // Visited vertices
-    int curNodeToProcess{vertexNum};                                        // Current node for processing
+    int curNodeToProcess{vertexToStart};                                        // Current node for processing
 
     nodesToProcess.push(curNodeToProcess);                                  // Push the initial vertex to the stack
     while (!nodesToProcess.empty()){                                        // While have vertices for processing
@@ -61,14 +64,14 @@ void Graph::DFSIteratively(int vertexNum)
         curNodeToProcess = nodesToProcess.top();                            // Read the current vertex data
         if (!visited[curNodeToProcess]){                                    // If it is not visited
             visited[curNodeToProcess] = true;                               // Mark it as visited
-            cout << curNodeToProcess << " ";                                // And process the vertex
+            cout << curNodeToProcess << " ";                                // And process the vertex (PreOrder analogue)
 
             for (auto nextConnectedVertexIt = adjacentLists[curNodeToProcess].rbegin(); nextConnectedVertexIt != adjacentLists[curNodeToProcess].rend(); nextConnectedVertexIt++)
                 if (!visited[*nextConnectedVertexIt])                       // Cycle above from the end of the list to process first which are in the beginning of adj.list
                     nodesToProcess.push(*nextConnectedVertexIt);            // Add non-visited vertices to the stack
         }
         else                                                                // If the vertex is visited
-            nodesToProcess.pop();                                           // Pop the vertex out of the stack
+            nodesToProcess.pop();                                           // Pop the vertex out of the stack. Note: may be done unconditionally, but if we want PostOrder analogue, need to save them in the stack and make processing when going back
     }
 }
 
@@ -139,6 +142,30 @@ bool Graph::isCycledIteratively(int vertexToStart)
     }
 
     return hasCycle;
+}
+
+void Graph::BFS(int vertexToStart)
+{
+    queue<int> nodesToProcess;                                              // Queue to place vertices for processing
+    vector<bool> visited(numOfVertices, false);                             // Visited vertices
+    int curNodeToProcess{vertexToStart};                                    // Current node for processing
+
+    nodesToProcess.push(curNodeToProcess);                                  // Push the starting vertex
+    while (!nodesToProcess.empty()){                                        // While the queue contains vertices to process
+
+        curNodeToProcess = nodesToProcess.front();                          // Read the top of the queue
+
+        if (!visited[curNodeToProcess]){                                    // If the node is not visited yet
+            visited[curNodeToProcess] = true;                               // Mark as visited
+            cout << curNodeToProcess << " ";                                // Process it immediately
+
+            for (auto nextConnectedVertexIt = adjacentLists[curNodeToProcess].begin(); nextConnectedVertexIt != adjacentLists[curNodeToProcess].end(); nextConnectedVertexIt++)
+                if (!visited[*nextConnectedVertexIt])                       // If the next connected vertex is not visited
+                    nodesToProcess.push(*nextConnectedVertexIt);            // Push it back to the queue
+        }
+        // else
+        nodesToProcess.pop();                                               // Can be popped out unconditionally regardless of visited or non-visited. For the DFS, has specifics
+    }
 }
 
 Graph::~Graph()
