@@ -24,6 +24,7 @@ void *producer(void *arg)
         int addedItem = rand() % 100;
 
         sem_wait(&semBufferIsFull);                                         // Before starting to add an item, check the semaphore if there is a pool to add to the buffer (semaphore is non-zero)
+
         pthread_mutex_lock(&mutexToLock);                                   // Need to lock the mutex/other threads to work with shared memory
         buffer[numOfItemsInBuffer++] = addedItem;                           // Add an item and increment the current index. Note: no need to check boundaries by using semaphores
         pthread_mutex_unlock(&mutexToLock);                                 // Unlock the mutex
