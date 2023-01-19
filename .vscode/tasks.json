@@ -8,11 +8,9 @@
             // "command": "C:\\Program Files\\mingw\\mingw64\\bin\\gcc.exe",                    // C compilation
             "args": [
                 /*** Include section ***/
-
                 //"-IC:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include",
-                //Boost include path:   (!) Need to add to c_cpp_properties.json also
-                // "-I",
-                // "C:\\boost\\include\\",
+                // Boost include path (need to add to c_cpp_properties.json also):
+                // "-I", "C:\\boost\\include\\",
                 // "-L", "C:\\boost\\lib\\",
 
                 /***  Warnings and errors MAXIMUM ***/
@@ -31,15 +29,15 @@
                 //-std=c++98",
 
                 // C:
-                // "-std=c17",                                   // C compilation
+                // "-std=c17",                                      // C compilation
                 // "-ansi",
                 /***************************/
 
                 /*** Compile options ***/
                 // "-c",                                         // Only compile file (-c option), make object-files
                 // "${file}",
-                "${fileDirname}\\*.cpp",            // C++ files
-                // "${fileDirname}\\*.c",           // C files
+                "${fileDirname}\\*.cpp",                         // C++ files
+                // "${fileDirname}\\*.c",                           // C files
                 // "../../OOP/MyTime (OpOverload)/*.cpp",        // To compile Smart Pointers with MyTime example
                 // Add debug info (-g option) to the object file (files)
                 "-g",

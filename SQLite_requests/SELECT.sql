@@ -1,26 +1,31 @@
--- SQLite,
+-- ### SQLite SQL examples ###
 
 -- ### This setting is to follow refferantial constraing ###
 PRAGMA foreign_keys = 1;
 
+-- ### Print out SCHEMA definitions for SQLite ###
+SELECT sql
+FROM sqlite_master;                             -- shows the entire schema: tables, triggers and so on
+-- WHERE name = 'Customers';                    -- or particular entity
+
 -- SELECT basics: LIKE
-    -- SELECT cust_id, cust_name
-    -- FROM Customers
-    -- WHERE cust_name LIKE "%Toy%";
+    SELECT cust_id, cust_name
+    FROM Customers
+    WHERE cust_name LIKE "%Toy%";
 
 --  GLOB:
-    -- SELECT * FROM Customers
-    -- WHERE cust_state GLOB '[^AM]*' -- not A or M letter
-    -- /* WHERE cust_email IS NULL -- not A or M letter */
-    -- ORDER BY cust_contact LIMIT 5;
+    SELECT * FROM Customers
+    WHERE cust_state GLOB '[^AM]*'      -- the first letter is neither A nor M
+    ORDER BY cust_contact LIMIT 5;
 
 -- Concatenation, RTRIM
-    -- SELECT RTRIM(LTRIM(vend_id || ' ' || vend_name || '         '))
-    -- AS INFORMATION FROM Vendors;
+    SELECT RTRIM(LTRIM(vend_id || ' ' || vend_name || '         '))     -- The last added right part is trimmed
+    AS INFORMATION FROM Vendors;
 
 -- INNER JOIN
-    -- SELECT OrderItems.order_num, order_item, prod_id, quantity, Orders.cust_id FROM OrderItems
-    -- INNER JOIN Orders
+    SELECT OrderItems.order_num, order_item, prod_id, quantity, Orders.cust_id FROM OrderItems
+    INNER JOIN Orders
+    -- ON TRUE;
     -- ON OrderItems.order_num = Orders.order_num;
 
 -- Calculated field
@@ -295,7 +300,7 @@ PRAGMA foreign_keys = 1;
     -- DELETE FROM departments WHERE department_id = 2;
     -- DELETE FROM employees WHERE employee_id BETWEEN 5 AND 12;
 
-    -- INNER JOIN departments <-> employees
+    -- ## INNER JOIN departments <-> employees
     -- SELECT employees.department_id, department_name, COUNT(employee_id) AS NUM_OF_EMPLOYEES
     -- FROM employees
     -- INNER JOIN departments ON employees.department_id = departments.department_id
