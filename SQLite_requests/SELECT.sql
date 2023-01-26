@@ -22,173 +22,203 @@ FROM sqlite_master;                             -- shows the entire schema: tabl
     SELECT RTRIM(LTRIM(vend_id || ' ' || vend_name || '         '))     -- The last added right part is trimmed
     AS INFORMATION FROM Vendors;
 
--- INNER JOIN
-    SELECT OrderItems.order_num, order_item, prod_id, quantity, Orders.cust_id FROM OrderItems
-    INNER JOIN Orders
-    -- ON TRUE;
-    -- ON OrderItems.order_num = Orders.order_num;
-
 -- Calculated field
-    -- SELECT DISTINCT order_num, -- order_item, quantity, item_price, --  prod_id, quantity, item_price,
-    -- quantity * item_price AS total_item_price
-    -- FROM OrderItems
+    SELECT DISTINCT order_num, -- order_item, quantity, item_price, --  prod_id, quantity, item_price,
+    quantity * item_price AS total_item_price
+    FROM OrderItems
     -- WHERE order_num = 20008;
 
--- FUNCTIONS:
- -- DATE() and TIME()
-    -- SELECT DATE('now') AS current_date;
-    -- SELECT strftime('%H:%M:%S') /* TIME() */ AS current_time;
+-- ### Functions ###
+-- DATE() and TIME()
+    SELECT DATE('now') AS current_date;
+    SELECT strftime('%H:%M:%S') /* TIME() */ AS current_time;
  -- UPPER, LENGTH
-    -- SELECT vend_name,
-    --        UPPER(vend_name) AS vend_name_upcase,
-    --        vend_address,
-    --        LENGTH(vend_address)
-    -- FROM Vendors
-    -- ORDER BY vend_name;
+    SELECT vend_name,
+           UPPER(vend_name) AS vend_name_upcase,
+           vend_address,
+           LENGTH(vend_address)
+    FROM Vendors
+    ORDER BY vend_name;
 
 -- DATE comparing
-    -- SELECT *
-    -- FROM Orders
-    -- WHERE strftime('%m', order_date) = "01" AND
-    --       strftime('%Y', order_date) = "2020";
+    SELECT *
+    FROM Orders
+    WHERE strftime('%m', order_date) = "01" AND
+          strftime('%Y', order_date) = "2020";
     -- OR =>  CAST(strftime('%m', order_date) as decimal) = 01;
 
--- *** Data Manipulation Functions and Summarazing Functions ***
+-- ### Data Manipulation Functions and Summarazing Functions ###
 -- 1:
-    -- SELECT AVG(prod_price) AS AVG_PRICE,
-    --        MAX(prod_price) AS MAX_PRICE,
-    --        MIN(prod_name) AS FIRST_PRODUCT, -- check test Products
-    --        COUNT(*) AS NUM_OF_PRODUCTS
-    -- FROM Products;
--- 2: subquery
-    -- SELECT *
-    -- FROM Products
-    -- WHERE prod_price = (SELECT MIN(prod_price) FROM Products)
-    --  OR prod_price = (SELECT MAX(prod_price) FROM Products);
+    SELECT AVG(prod_price) AS AVG_PRICE,
+           MAX(prod_price) AS MAX_PRICE,
+           MIN(prod_name) AS FIRST_PRODUCT, -- check test Products
+           COUNT(*) AS NUM_OF_PRODUCTS
+    FROM Products;
+
+-- 2: Subqueries:
+    SELECT *
+    FROM Products
+    WHERE prod_price = (SELECT MIN(prod_price) FROM Products)
+     OR prod_price = (SELECT MAX(prod_price) FROM Products);
+
 -- 3: SUM
-    -- SELECT SUM(quantity) AS ORDERED_NUMBER,
-    --        SUM(item_price * quantity) AS TOTAL_PRICE
-    -- FROM OrderItems
-    -- WHERE order_num = 20005;
+    SELECT SUM(quantity) AS ORDERED_NUMBER,
+           SUM(item_price * quantity) AS TOTAL_PRICE
+    FROM OrderItems
+    WHERE order_num = 20005;
+
 -- 4. SUBSTR example
-    -- SELECT UPPER(cust_id) AS ID,
-    --        UPPER(cust_name) AS NAME,
-    --        UPPER(cust_contact) AS CONTACT,
-    --        UPPER(cust_city) AS CITY,
-    --        UPPER(SUBSTR(cust_contact, 1, 2) || SUBSTR(cust_city, 1, 3)) AS LOGIN
-    -- FROM Customers
-    -- ORDER BY cust_id;
+    SELECT UPPER(cust_id) AS ID,
+           UPPER(cust_name) AS NAME,
+           UPPER(cust_contact) AS CONTACT,
+           UPPER(cust_city) AS CITY,
+           UPPER(SUBSTR(cust_contact, 1, 2) || SUBSTR(cust_city, 1, 3)) AS LOGIN
+    FROM Customers
+    ORDER BY cust_id;
 -- 4: AVG by unique values (DISTINCT keyword)
-    -- SELECT AVG(DISTINCT prod_price) AS AVERAGE_OF_UNIQUE_PRICES
-    -- FROM Products
-    -- WHERE vend_id = 'DLL01';
+    SELECT AVG(DISTINCT prod_price) AS AVERAGE_OF_UNIQUE_PRICES
+    FROM Products
+    WHERE vend_id = 'DLL01';
 
-    -- SELECT MAX(prod_price) AS MaxPrice
-    -- FROM Products
-    -- WHERE prod_price < 10; -- WHERE has more priority than MAX
+    SELECT MAX(prod_price) AS MaxPrice
+    FROM Products
+    WHERE prod_price < 10; -- WHERE has more priority than MAX
 
--- *** GROUP BY ***
--- 1.
-    -- SELECT vend_id, COUNT() AS NUM_OF_PRODUCTS_PER_VENDOR --, prod_id, COUNT()
-    -- FROM Products
-    -- -- WHERE prod_price >= 4
-    -- GROUP BY vend_id HAVING COUNT() >= 0 AND vend_id GLOB "[BDF]*";
+-- ### GROUP BY ###
+-- 1. First, WHERE filters the result for all rows. And HAVING filters after grouping
+    SELECT vend_id, COUNT(*) AS NUM_OF_PRODUCTS_PER_VENDOR --, prod_id, COUNT()
+    FROM Products
+        WHERE prod_price >= 4
+    GROUP BY vend_id
+        HAVING COUNT(*) >= 2 AND vend_id GLOB "[BDF]*";
 -- 2.
-    -- SELECT order_num, SUM(quantity)
-    -- FROM OrderItems
-    -- GROUP BY order_num
-    -- ORDER BY order_num;
+    SELECT order_num, SUM(quantity)
+    FROM OrderItems
+    GROUP BY order_num
+    ORDER BY order_num;
 -- 3 Challenge from Book:
-    -- SELECT vend_id, COUNT(*) AS num_prods
-    -- FROM Products
-    -- GROUP BY vend_id HAVING COUNT(*) >= 2 AND prod_price >= 4;
--- Number of items (positions) in every orders
-    -- SELECT order_num, COUNT() AS NUM_OF_ITEMS_PER_ORDER
-    -- FROM OrderItems
-    -- GROUP BY order_num
-    -- ORDER BY order_num;
+    SELECT vend_id, COUNT(*) AS num_prods
+        FROM Products
+    GROUP BY vend_id
+        HAVING COUNT(*) >= 2 AND prod_price >= 4;
+-- Number of items (positions) in every order
+    SELECT order_num, COUNT() AS NUM_OF_ITEMS_PER_ORDER
+    FROM OrderItems
+    GROUP BY order_num
+    ORDER BY order_num;
+
 -- MIN_PRICE of a vendor's items
-    -- SELECT vend_id, MIN(prod_price) as MIN_PRICE
-    -- FROM Products
-    -- GROUP BY vend_id
-    -- ORDER BY MIN_PRICE;
+    SELECT vend_id, MIN(prod_price) as MIN_PRICE
+    FROM Products
+    GROUP BY vend_id
+    ORDER BY MIN_PRICE;
+
 -- Orders having more than 200 total items
-    -- SELECT order_num, SUM(quantity)
-    -- FROM OrderItems
-    -- GROUP BY order_num
-    -- HAVING SUM(quantity) >= 100;
---  Total price (>= 1000) for orders by Customers (using INNER JOIN to show cust_id from Orders and cust_name from Customers)
-    -- SELECT OrderItems.order_num, SUM(item_price * quantity) AS MONEY_SPENT, Orders.cust_id, Customers.cust_name
-    -- FROM OrderItems
-    -- INNER JOIN Orders ON OrderItems.order_num = Orders.order_num
-    -- INNER JOIN Customers ON Orders.cust_id = Customers.cust_id
-    -- GROUP BY OrderItems.order_num HAVING MONEY_SPENT >= 1000;
+    SELECT order_num, SUM(quantity)
+    FROM OrderItems
+    GROUP BY order_num
+    HAVING SUM(quantity) >= 100;
+
+-- Print out orders, money spent, customer ID and name for the orders having price more than 1000
+-- (use INNER JOIN to show cust_id from Orders and cust_name from Customers)
+    SELECT OrderItems.order_num, SUM(item_price * quantity) AS MONEY_SPENT, Orders.cust_id, Customers.cust_name
+    FROM OrderItems
+        INNER JOIN Orders ON OrderItems.order_num = Orders.order_num
+        INNER JOIN Customers ON Orders.cust_id = Customers.cust_id
+    GROUP BY OrderItems.order_num
+    HAVING MONEY_SPENT >= 1000;
 
 -- #11, Book: SUBQUERIES
 -- 1. OrderItems -> Orders -> Customers
-    -- SELECT * FROM Customers
-    -- WHERE cust_id IN (SELECT cust_id
-    --                   FROM Orders
-    --                   WHERE order_num IN (SELECT order_num
-    --                                       FROM OrderItems
-    --                                       WHERE prod_id = 'RGAN01'));
+-- Print out Customers info who ordered 'RGAN01' product:
+    SELECT * FROM Customers
+    WHERE cust_id IN (SELECT cust_id
+                      FROM Orders
+                      WHERE order_num IN (SELECT order_num
+                                          FROM OrderItems
+                                          WHERE prod_id = 'RGAN01'));
 -- Strange example of a subquery
-    -- SELECT cust_name,
-    --        cust_state,
-    --        cust_id,
-    --        (SELECT COUNT(*)
-    --         FROM Orders
-    --         WHERE Customers.cust_id = Orders.cust_id) AS ORDERS
--- FROM Customers
--- ORDER BY cust_id;
+-- FROM Customers executed first. Then outer SELECT processed, and inner SELECT is executed for each customer row
+    SELECT cust_name,
+        cust_state,
+        cust_id,
+        (SELECT COUNT(*)
+            FROM Orders
+            WHERE Customers.cust_id = Orders.cust_id) AS ORDERS
+    FROM Customers
+    ORDER BY cust_id;
+
+
+-- #12, Book: JOINS
+-- INNER JOIN
+-- The request below prints out vendors and products info for the vendors who has products, that is
+-- there are products in the Products table.
+-- (LEFT JOIN will print out vendors also who has no products)
+    SELECT ROW_NUMBER() OVER() ROW_NUM,
+           Vendors.vend_id, vend_name, prod_name, prod_price
+    FROM Vendors
+    INNER JOIN Products
+        ON Vendors.vend_id = Products.vend_id;
+
 -- Crossjoin (result as INNER JOIN)
     -- SELECT Vendors.vend_id, Products.vend_id, vend_name, prod_name
     -- FROM Vendors, Products
     -- WHERE Vendors.vend_id = Products.vend_id;
--- #12, Book: JOINS
--- INNER JOIN
-    -- SELECT Vendors.vend_id, vend_name, prod_name, prod_price
-    -- FROM Products
-    -- LEFT JOIN Vendors
-    -- ON Vendors.vend_id = Products.vend_id;
+
  -- INNER JOIN on the same table (use AS):
--- SELECT *
--- FROM Customers AS T1
--- INNER JOIN Customers ON T1.cust_id = Customers.cust_id;
- -- CrossJOIN: OrderItems, Products, Vendors
-    -- SELECT prod_name, vend_name, prod_price, quantity
-    -- FROM OrderItems, Products, Vendors
-    -- WHERE Products.vend_id = Vendors.vend_id
-    -- AND OrderItems.prod_id = Products.prod_id
-    -- AND order_num = 20007;
--- INNER JOIN: OrderItems->Products->Vendors
-    -- SELECT prod_name, vend_name, prod_price, quantity, order_num
-    -- FROM OrderItems
-    -- INNER JOIN Products ON OrderItems.prod_id = Products.prod_id
-    -- INNER JOIN Vendors ON Products.vend_id = Vendors.vend_id
-    -- WHERE order_num = 20007;
+-- Prints info of Customers twice in a row
+    SELECT *
+    FROM Customers AS T1
+    INNER JOIN Customers
+    ON T1.cust_id = Customers.cust_id;
+
+-- INNER JOIN:
+-- Print out Product, Vendor and OrderItems info for items of a specific order
+-- Vendors->Products->OrderItems
+    SELECT P.prod_name, P.prod_price, V.vend_name, OI.quantity, OI.order_num
+    FROM Vendors V
+    INNER JOIN Products P ON V.vend_id = P.vend_id
+    INNER JOIN OrderItems OI ON P.prod_id = OI.prod_id
+    WHERE OI.order_num = 20007;
+
+ -- CrossJOIN (the same as INNER above):
+    SELECT prod_name, vend_name, prod_price, quantity
+    FROM OrderItems, Products, Vendors
+    WHERE Products.vend_id = Vendors.vend_id
+    AND OrderItems.prod_id = Products.prod_id
+    AND order_num = 20007;
 
 -- #13 Book: Advanced Joins
--- 1. Show customer's order numbers (or count how much order numbers it has)
-    -- SELECT Customers.cust_id, order_num-- + COUNT(order_num) AS ORDERS_NUMBER-- Orders.order_num
-    -- FROM Customers
-    -- LEFT JOIN Orders
-    -- ON Customers.cust_id = Orders.cust_id;
-    -- + GROUP BY Customers.cust_id;
+-- 1. Show customer's order numbers:
+    SELECT C.cust_id, O.order_num
+    FROM Customers C
+        INNER JOIN Orders O
+        ON C.cust_id = O.cust_id
+    ORDER BY C.cust_id;
+
+--Count how much orders every customer has:
+    SELECT C.cust_id, COUNT(order_num) AS NUM_OF_ORDERS
+    FROM Customers C
+        LEFT JOIN Orders O
+        ON C.cust_id = O.cust_id
+    GROUP BY C.cust_id
+    ORDER BY C.cust_id;
+
 --2. Count how many orders have a particular product
-    -- SELECT Products.prod_id, prod_name, COUNT(order_num)
-    -- FROM Products
-    --   LEFT JOIN OrderItems
-    --   ON Products.prod_id = OrderItems.prod_id
-    -- GROUP BY Products.prod_id
-    -- ORDER BY prod_name;
--- !!! 3. How many products has every Vendor
-    -- SELECT Vendors.vend_id, COUNT(prod_id) AS NUM_OF_PRODUCTS-- prod_id, prod_name --COUNT(prod_id)
-    -- FROM Vendors
-    --   LEFT JOIN Products
-    --   ON Vendors.vend_id = Products.vend_id
-    -- GROUP BY prod_id
-    -- ORDER BY prod_id;
+SELECT P.prod_id, P.prod_name, COUNT(OI.order_num) INCLUDED_IN_ORDERS
+FROM Products P
+    LEFT JOIN OrderItems OI
+    ON P.prod_id = OI.prod_id
+GROUP BY P.prod_id
+ORDER BY P.prod_id;
+
+-- 3. How many products has every Vendor
+SELECT V.vend_id, V.vend_name, COUNT(P.vend_id) NUM_OF_PRODUCTS
+FROM Vendors V
+    LEFT JOIN Products P
+    ON V.vend_id = P.vend_id
+GROUP BY V.vend_id
+ORDER BY V.vend_id;
 
 -- #14 Book: UNIONS
 -- 1. Example from the book
