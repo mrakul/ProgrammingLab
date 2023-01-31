@@ -1,6 +1,7 @@
 {
     "version": "2.0.0",
     "tasks": [
+        /*** GCC compiler ***/
         {
             "type": "process",
             "label": "C/C++: gcc.exe build active file",
@@ -9,9 +10,14 @@
             "args": [
                 /*** Include section ***/
                 //"-IC:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include",
-                // Boost include path (need to add to c_cpp_properties.json also):
+
+                /*** Boost includes (need to add to c_cpp_properties.json also) ***/
                 // "-I", "C:\\boost\\include\\",
                 // "-L", "C:\\boost\\lib\\",
+
+                /*** SFML includes ***/
+                // "-I${workspaceFolder}\\SFML-2.5.1\\include\\",  //"-DSFML_STATIC",
+                // "-L${workspaceFolder}\\SFML-2.5.1\\lib\\",
 
                 /***  Warnings and errors MAXIMUM ***/
                 "-Wall", "-Werror",
@@ -25,6 +31,7 @@
                 /*** Choose the standard ***/
                 // C++:
                 "-std=c++2a",
+                // "-std=gnu++11"
                 // "-std=c++11",
                 //-std=c++98",
 
@@ -35,8 +42,8 @@
 
                 /*** Compile options ***/
                 // "-c",                                         // Only compile file (-c option), make object-files
-                // "${file}",
-                "${fileDirname}\\*.cpp",                         // C++ files
+                "${file}",
+                // "${fileDirname}\\*.cpp",                         // C++ files
                 // "${fileDirname}\\*.c",                           // C files
                 // "../../OOP/MyTime (OpOverload)/*.cpp",        // To compile Smart Pointers with MyTime example
                 // Add debug info (-g option) to the object file (files)
@@ -45,18 +52,20 @@
                 // 3. Link all object files together to Program.exe, preliminary need to compile separately
                 //"${fileDirname}\\**.o",
                 "-o",
-				"${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
 
                 // Optimization level:
                 // "-O3",
                 // "-O0",
                 // "-Og",                                           // Optimize debugging experience
 
-                /*** Boost library compilation ***/
+                /*** Boost libraries linking ***/
                 // "-lwsock32",
                 // "-lboost_filesystem-mgw11-mt-d-x64-1_80",
                 // "-lboost_system-mgw11-mt-d-x64-1_80"
 
+                /*** SFML libraries linking ***/
+                // "-lsfml-graphics", "-lsfml-window", "-lsfml-system",
 
                 //"-nostartfiles"
                 //Explicitly specify the language to compile (WORKS BAD!)
@@ -76,15 +85,16 @@
                 "isDefault": true
             },
             "detail": "compiler: \"C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe\""
-            // "detail": "compiler: \"C:\\Program Files\\mingw\\mingw64\\bin\\g++.exe\""
-
         }
-        // MSVC compiler parameters:
+
+        /*** MSVC compiler ***/
+        // (!) Note: to run MSVC compiler correclty, need to run the VSCode under the Developer Command Prompt for VS 2019 (type "Developer" to find it undert the Start menu)
         // {
         //     "type": "cppbuild",
         //     "label": "cl.exe build active file",
         //     "command": "cl.exe",
         //     "args": [
+        //       // "/I", "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\VC\\Tools\\MSVC\\14.29.30133\\include",
         //       "/Zi",
         //       "/EHsc",
         //       "/Fe:",

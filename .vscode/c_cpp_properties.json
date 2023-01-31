@@ -1,12 +1,19 @@
 {
     "configurations": [
+        /*** GCC compiler ***/
         {
             "name": "GCC",
             "includePath": [
             //"C:\\Program Files\\mingw-w64\\mingw64\\x86_64-w64-mingw32\\include"
+
+            /*** BOOST includes ***/
             // "C:\\boost\\boost_1_80_0\\",
             // "C:\\boost\\include\\",
             // "C:\\boost\\lib\\"
+
+            /*** SFML includes ***/
+            // "${workspaceFolder}\\SFML-2.5.1\\include\\",
+            // "${workspaceFolder}\\SFML-2.5.1\\lib\\"
             ],
             "defines": [
                 "_DEBUG",
@@ -19,6 +26,7 @@
             "cppStandard": "c++20",
             "intelliSenseMode": "windows-gcc-x64"
         }
+        /*** MSVC compiler ***/
         // {
         //     "name": "Win32",
         //     "includePath": [
@@ -34,7 +42,7 @@
         //     "cStandard": "c11",
         //     "cppStandard": "c++17",
         //     "intelliSenseMode": "msvc-x64"
-        // },
+        // }
     ],
     "version": 4
 }

@@ -1,0 +1,7 @@
+/*** STL links ***/
+C++ STL Algorithms Tutorial Series' Articles
+https://dev.to/sandordargo/series/362
+
+/*** Lambdas ***/
+Demystifying C++ lambdas
+https://blog.feabhas.com/2014/03/demystifying-c-lambdas/

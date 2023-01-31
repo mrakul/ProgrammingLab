@@ -1,37 +1,37 @@
---C types declarations:
+/*** C types declarations ***/
 https://cdecl.org/
 http://unixwiz.net/techtips/reading-cdecl.html
 
 
---GCC:
--- Compiling C files with GCC, step-by-step:
+/*** GCC ***/
+Compiling C files with GCC, step-by-step:
 https://medium.com/@laura.derohan/compiling-c-files-with-gcc-step-by-step-8e78318052
 
--- 15 most frequently used commands of GCC:
+15 most frequently used commands of GCC:
 https://www.thegeekstuff.com/2012/10/gcc-compiler-options/
 
 
---General issues:
+/*** General issues ***/
 https://en.wikipedia.org/wiki/Memory_ordering
 https://en.wikipedia.org/wiki/Memory_barrier
 
 
---Dynamic memory allocation:
+/*** Dynamic memory allocation ***/
 https://www.ibm.com/docs/ru/aix/7.1?topic=concepts-system-memory-allocation-using-malloc-subsystem
 
 
---What every programmer should know about memory, Part 1:
+/*** What every programmer should know about memory, Part 1 ***/
 https://lwn.net/Articles/250967/
 
 
--- Memory ordering:
+/*** Memory ordering ***/
 https://gcc.gnu.org/wiki/Atomic/GCCMM/AtomicSync
 https://en.wikipedia.org/wiki/Memory_ordering
 https://en.wikipedia.org/wiki/Memory_barrier
 
---Understand std::atomic::compare_exchange_weak() in C++11: 
+Understand std::atomic::compare_exchange_weak() in C++11:
 https://www.codeproject.com/Articles/808305/Understand-std-atomic-compare-exchange-weak-in-Cpl
 
 
---Memory sharing in Linux with MMAP:
+/*** Memory sharing in Linux with MMAP ***/
 https://blog.minhazav.dev/memory-sharing-in-linux/

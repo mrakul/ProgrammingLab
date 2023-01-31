@@ -7,6 +7,7 @@
 #include <iterator>
 #include <algorithm>
 #include <cctype>
+
 using namespace std;
 
 string &ToLowerString(string &stringToLow);
