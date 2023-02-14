@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
     it != mySet.end() ? (cout << "Found item is: " << *it << endl) : (cout << "Item is not found." << endl);
 
     // 3. find_if_not()
-    it = find_if_not(mySet.begin(), mySet.end(), [](const int &curNum){return (curNum - 1 == 7);});                 // Find first having not value of 6
+    it = find_if_not(mySet.begin(), mySet.end(), [](const int &curNum){return (curNum - 1 == 7);});                 // Find first having no value of 6
     it != mySet.end() ? (cout << "Found item is: " << *it << endl) : (cout << "Item is not found." << endl);
 
     // 4. find_end: finds subsequent from the end (searches for the last occurrence of the sequence [s_first, s_last) in the range [first, last))
@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
 
     // Mini-test of prefix and postfix operators
     // it = mySet.begin();
-    // cout << *(it++++++) << endl;                                                // (!) This increments iterator itself ONCE: since associativity is left to right, iterator's value is taken, scheduled for decrementing in the sequence point and initial value is passed to the next postfix ++ for decrementing, so it doesn't make sense
+    // cout << *(it++++++) << endl;                                                // (!) This increments iterator itself ONCE: since associativity is left to right, iterator's value is taken, scheduled for decrementing in the sequence point and initial value is passed by value to the next postfix ++ for decrementing, so it doesn't make sense
     // cout << *it << endl;                                                        // So, this is the second element always
     // cout << *(++++++it) << endl;                                                // Gives 5-th element, since prefix returns a reference with right-to-left associativity
     // int i = 10;
@@ -43,13 +43,35 @@ int main(int argc, char const *argv[])
 
     // 5. find_first_of(): finds what item is the closest to the beginning of the first container comparing with all from the second
     // (finds the first occurence of any of the second pair of iterators within the first pair of iterators
-    vector<int> myVector{1, 2, 3, 4, 5, 7, 8, 9};                               // Use vectors here to subtract iterator value with the myVector.begin() after the finding to have an index
-    set<int> subVector{5, 7, 8, 2};                                             // May be used not vector
+    vector<int> myVector{1, 2, 3, 4, 5, 7, 8, 9};                               // Use vector here to subtract iterator value with the myVector.begin() after the finding to have an index
+    vector<int> subVector{5, 7, 8, 2};                                          // May be used not vector (set or another container)
 
     auto it2 = find_first_of(myVector.begin(), myVector.end(), subVector.begin(), subVector.end());                                                               // Just compares by value
     it2 = find_first_of(myVector.begin(), myVector.end(), subVector.begin(), subVector.end(), [](const int &vectItem, const int &subVectItem){return (vectItem == subVectItem);});    // Or using binary predicate (should find value of 2)
     if (it2 != myVector.end())
         cout << "find_first_of(): " << *it2 << " at position: " << it2 - myVector.begin() << endl;
+
+    // 6. search(): finds subsequence from the beginning, two variations
+    subVector.pop_back();            // Remove 2 from subVector to have 5, 7, 8
+    it2 = search(myVector.begin(), myVector.end(), subVector.begin(), subVector.end(), [](const int &setItem, const int &subSetItem){return (setItem == subSetItem);});        // Use a binary predicate
+    it2 = search(myVector.begin(), myVector.end(), subVector.begin(), subVector.end());                                                                                        // This just compares numbers
+    it2 != myVector.end() ? (cout << "Subsequent is found: "  << endl) : (cout << "Subsequent is not found. " << endl);
+
+    // 7. search_n(): finds a sequence of n elements equal to specified (consecutive), or satisfying the condition
+    it2 = search_n(myVector.begin(), myVector.end(), 1, 7);
+    it2 != myVector.end() ? (cout << "Subsequent is found at: "  << it2 - myVector.begin() << endl) : (cout << "Subsequent is not found. " << endl);
+    // search three elements more-equal than 4. Note: need to specify value in any case and use it as value
+    it2 = search_n(myVector.begin(), myVector.end(), 3, 4, [](const int &curItem, const int &value){return (curItem >= value);});
+    it2 != myVector.end() ? (cout << "Subsequent is found at: "  << it2 - myVector.begin() << endl) : (cout << "Subsequent is not found. " << endl);
+
+    // 8. adjacent_find(): looks for any two neighbouring elements that are matching, or any two consecutive elements satisfying a condition passed in with the predicate
+    myVector.push_back(9);                                      // Add 9 at the end to have two equal alements
+    it2 = adjacent_find(myVector.begin(), myVector.end());      // Find to equal elements
+    it2 != myVector.end() ? (cout << "Subsequent is found at: "  << it2 - myVector.begin() << endl) : (cout << "Subsequent is not found. " << endl);
+
+    // Find two consecutive satisfying the condition. (!!) Need to check both items AND order is important: 2, 3 works. 3, 2 - doesn't work
+    it2 = adjacent_find(myVector.begin(), myVector.end(), [](const int &firstItem, const int &secondItem){return (firstItem == 2) && (secondItem == 3);});
+    it2 != myVector.end() ? (cout << "Subsequent is found at: "  << it2 - myVector.begin() << endl) : (cout << "Subsequent is not found. " << endl);
 
     return 0;
 }

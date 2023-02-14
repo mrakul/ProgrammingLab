@@ -158,7 +158,8 @@ FROM sqlite_master;                             -- shows the entire schema: tabl
            Vendors.vend_id, vend_name, prod_name, prod_price
     FROM Vendors
     INNER JOIN Products
-        ON Vendors.vend_id = Products.vend_id;
+        ON Vendors.vend_id = Products.vend_id
+    ORDER BY Vendors.vend_id;
 
 -- Crossjoin (result as INNER JOIN)
     -- SELECT Vendors.vend_id, Products.vend_id, vend_name, prod_name
@@ -189,14 +190,14 @@ FROM sqlite_master;                             -- shows the entire schema: tabl
     AND order_num = 20007;
 
 -- #13 Book: Advanced Joins
--- 1. Show customer's order numbers:
+-- 1. Show Customer's Order numbers (LEFT JOIN will print out Customers which haven't done orders yet):
     SELECT C.cust_id, O.order_num
     FROM Customers C
-        INNER JOIN Orders O
+    INNER JOIN Orders O
         ON C.cust_id = O.cust_id
     ORDER BY C.cust_id;
 
---Count how much orders every customer has:
+--(+) Count how many Orders every Customer has:
     SELECT C.cust_id, COUNT(order_num) AS NUM_OF_ORDERS
     FROM Customers C
         LEFT JOIN Orders O
@@ -204,21 +205,23 @@ FROM sqlite_master;                             -- shows the entire schema: tabl
     GROUP BY C.cust_id
     ORDER BY C.cust_id;
 
---2. Count how many orders have a particular product
-SELECT P.prod_id, P.prod_name, COUNT(OI.order_num) INCLUDED_IN_ORDERS
-FROM Products P
+--2. Count in how many Orders a particular Product presents:
+-- LEFT JOIN is used to print out Products which are not ordered at all;
+-- COUNT(OI.order_num) is used to not count NULLs
+    SELECT P.prod_id, P.prod_name, COUNT(OI.order_num) INCLUDED_IN_ORDERS
+    FROM Products P
     LEFT JOIN OrderItems OI
-    ON P.prod_id = OI.prod_id
-GROUP BY P.prod_id
-ORDER BY P.prod_id;
+        ON P.prod_id = OI.prod_id
+    GROUP BY P.prod_id
+    ORDER BY P.prod_id;
 
--- 3. How many products has every Vendor
-SELECT V.vend_id, V.vend_name, COUNT(P.vend_id) NUM_OF_PRODUCTS
-FROM Vendors V
-    LEFT JOIN Products P
-    ON V.vend_id = P.vend_id
-GROUP BY V.vend_id
-ORDER BY V.vend_id;
+-- 3. How many Products every Vendor has
+    SELECT V.vend_id, V.vend_name, COUNT(P.prod_id) NUM_OF_PRODUCTS
+    FROM Vendors V
+        LEFT JOIN Products P
+        ON V.vend_id = P.vend_id
+    GROUP BY V.vend_id
+    ORDER BY V.vend_id;
 
 -- #14 Book: UNIONS
 -- 1. Example from the book

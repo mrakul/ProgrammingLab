@@ -33,12 +33,14 @@ int main(int argc, char const *argv[])
     auto num1 = intsVect.size();
     auto num2 = intsVect.capacity();        // 5/5
 
+    // 1. Try quick_remove_at() which uses an index of an element to remove
     quick_remove_at(intsVect, 2);
     num1 = intsVect.size();
     num2 = intsVect.capacity();             // 4/5
     for (int i : intsVect){ std::cout << i << ", "; }
     std::cout << '\n';
 
+    // 2. Try quick_remove_at() which uses an iterator to remove
     quick_remove_at(intsVect, std::find(std::begin(intsVect), std::end(intsVect), 123));
     num1 = intsVect.size();
     num2 = intsVect.capacity();            // 3/5
@@ -46,8 +48,8 @@ int main(int argc, char const *argv[])
     for (int i : intsVect){ std::cout << i << ", "; }
     std::cout << '\n';
 
+    // 3. Try empty vector to check boundaries
     std::vector<int> vect2;
-
     quick_remove_at(vect2, 0);
 
     return 0;

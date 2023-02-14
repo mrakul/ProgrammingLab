@@ -42,10 +42,8 @@ int main(int argc, char const *argv[])
     // 1. C-array time test
     clock_t point1 = clock();
     clock_t point2;
-    for (auto i = 1; i != CYCLE; i++)
-    {
-        for (auto it = begin(Carray); it != end(Carray); it++)
-        {
+    for (auto i = 1; i != CYCLE; i++){
+        for (auto it = begin(Carray); it != end(Carray); it++){
             *it = i;
             //  cout << endl << i << " element: " << *i;
             *it = pow(static_cast<int>(*it), 5);
@@ -59,10 +57,8 @@ int main(int argc, char const *argv[])
     // 2. C++ array time test
     array<float, SIZE> array1 = {0.0};
     point1 = clock();
-    for (auto i = 1; i != CYCLE; i++)
-    {
-        for (auto it = array1.begin(); it != array1.cend(); it++)
-        {
+    for (auto i = 1; i != CYCLE; i++){
+        for (auto it = array1.begin(); it != array1.cend(); it++){
             *it = i;
             //  cout << endl << i << " element: " << *i;
             *it = pow(static_cast<int>(*it), 5);
@@ -76,10 +72,8 @@ int main(int argc, char const *argv[])
     // 3. Vector time test
     vector<float> vector1(SIZE, 0.0);
     point1 = clock();
-    for (auto i = 1; i != CYCLE; i++)
-    {
-        for (auto it = array1.begin(); it != array1.cend(); it++)
-        {
+    for (auto i = 1; i != CYCLE; i++){
+        for (auto it = array1.begin(); it != array1.cend(); it++){
             *it = i;
             //  cout << endl << i << " element: " << *i;
             *it = pow(static_cast<int>(*it), 5);
@@ -90,13 +84,13 @@ int main(int argc, char const *argv[])
     point2 = clock();
     cout << "Vector spent time is: " << (point2 - point1) / (double)CLOCKS_PER_SEC << endl;
 
-    char endChar;
-    cin.get(endChar);
-    while (!cin.fail()) // test for EOF or while (cin.get(ch)), since cin.get(ch) returns reference to cin, which converted to bool false if EOF
-    //while ((ch = cin.get()) != EOF) // or this way,
-    {       cout << "Current char is: " << endChar << endl;
-            cin.get(endChar); // attempt to read another char
-    }
+    // 4. Mini-test with pointers subtraction
+    int arrayInt[10];
+    int *p1, *p2;
+    p1 = arrayInt;
+    p2 = arrayInt + 1;
+    cout << (ptrdiff_t)p2 - (ptrdiff_t)p1 << endl;                      // Gives 4
+    cout << p2 - p1 << endl;                                            // Gives 1
 
     return 0;
 }

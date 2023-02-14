@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+// #pragma pack(push, 1)
 
 struct TestRef
 {
@@ -12,13 +13,15 @@ int main(int argc, const char *argv[])
 {
     int ten = 10;
     int eleven = 11;
-    TestRef refObject(ten); // refObject.reference is reference to ten
+    // 1. Set refObject.reference be pointint to main's ten
+    TestRef refObject(ten);                                                 // refObject.reference is reference to ten
+    cout << refObject.reference << " " << ten << " " << eleven << endl;     // Output: 10 10 11
 
-    cout << refObject.reference << " " << ten << " " << eleven << endl; // Output: 10 10 11
-
-    int64_t *p = (int64_t *)&refObject; // int32_t in 32 bit OS;
+    // 2. Change starting address of the structure to the address of eleven
+    int64_t *p = (int64_t *) &refObject;                                    // int32_t in 32 bit OS;
+    *p = (int64_t) &eleven;
     // Note:
-    // p is the address of TestRef reference and also the address of the reference refObject.reference
+    // p is the address of TestRef and also the address of the reference refObject.reference
     // *p is the address of ten variable
     //
     // Difficult to understand? refObject.reference indeed a pointer to ten variable
@@ -27,11 +30,12 @@ int main(int argc, const char *argv[])
     // this statement is true: *p == &ten
     // ------>
     // now we change the value of *p to the address of eleven
-    // then reference.reference will be the reference of eleven instead the reference of ten
+    // then refObject.reference will be the reference of eleven instead the reference of ten
 
-    *p = (int64_t)&eleven;          // int32_t in 32 bit OS;
+    printf("%zu", sizeof(int));
 
-    cout << refObject.reference << " " << ten << " " << eleven << endl; // Output: 11 10 11
+    cout << refObject.reference << " " << ten << " " << eleven << endl;     // Output: 11 10 11
+    printf("Reference %d ", *(*(int**)p));
+
     return 0;
-
 }
