@@ -23,10 +23,10 @@
                 "-Wall", "-Werror",
                 "-pedantic-errors",
                 "-pedantic",
-                // To disable some warnings:
                 //-Wunused -Wunused-function -Wunused-label -Wunused-parameter -Wunused-value -Wunused-variable -Wunused-but-set-parameter -Wunused-but-set-variable
-                // "-Wno-unused-variable",
-                // "-Wno-unused-but-set-variable",
+                // To disable some warnings:
+                "-Wno-unused-variable",
+                "-Wno-unused-but-set-variable",
 
                 /*** Choose the standard ***/
                 // C++:
