@@ -10,7 +10,7 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    // 0. Create two vectors: source is filled and empty target. Note: for sets, replace() doesn't work since the keys are unchangeble things, so need to erase end
+    // 0. Create two vectors: source is filled and empty target. Note: for sets, replace() doesn't work since the keys are unchangeble things, so need to erase and insert a new data
     vector<int> sourceVector{1, 2, 3, 4, 5, 7, 8, 9};
     vector<int> targetVector;
     printContainer(sourceVector);
