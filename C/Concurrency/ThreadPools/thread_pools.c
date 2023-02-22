@@ -21,14 +21,12 @@ TaskToDo tasksQueue[NUM_OF_TASKS];
 int queueSize = 0;
 
 // Create several different functions to assign it to a task and make it by threads as required
-void sum(int a, int b)
-{
-    printf("Sum of % d and %d is %d\n", a, b, (a + b));
+void sum(int a, int b){
+    printf("Sum: %d + %d = %d\n", a, b, (a + b));
 }
 
-void multiplication(int a, int b)
-{
-    printf("Multiplication of %d and %d is %d\n", a, b, (a * b));
+void multiplication(int a, int b){
+    printf("Mult: %d * %d = %d\n", a, b, (a * b));
 }
 
 void *processTask(TaskToDo *task)
@@ -49,17 +47,17 @@ void submitTask(TaskToDo taskToSubmit)                                  // Main 
     pthread_cond_signal(&condQueue);                                    // Signal only one task, since we are adding only one task
 }
 
-void *processingThread(void *args)                                  // Processing tasks are waiting here for a job
+void *processingThread(void *args)                                      // Processing tasks are waiting here for a job
 {
     while (1){
-        TaskToDo taskToAssign;
+        TaskToDo taskToAssign;                                          // Use local TaskToDo to copy the assigned task and release the queue
 
         pthread_mutex_lock(&mutexQueue);
-        while (queueSize == 0)
-            pthread_cond_wait(&condQueue, &mutexQueue);             // Wait on the condition variable (again, lock the current thread and unlock the mutex atomically, so the others may come or a new task submitted)
-        // Initially, this example used checking of whether the work is found with no sleeping tasks
-        taskToAssign = tasksQueue[0];                               // Take the first element
-        for (int i = 0; i < queueSize - 1; i++)                     // Move the rest to the beginning, just a simple simulation
+        while (queueSize == 0)                                          // Wait until tasks are added to the queue
+            pthread_cond_wait(&condQueue, &mutexQueue);                 // Wait on the condition variable (again, lock the current thread and unlock the mutex atomically, so the others may come or a new task submitted)
+
+        taskToAssign = tasksQueue[0];                                   // Take the first element
+        for (int i = 0; i < queueSize - 1; i++)                         // Move the rest to the beginning, just a simple queue simulation
             tasksQueue[i] = tasksQueue[i + 1];
         queueSize--;
         pthread_mutex_unlock(&mutexQueue);
@@ -90,12 +88,12 @@ int main(int argc, char **argv)
                               .numTwo = rand() % 100 });
 
     // 2. Wait for the threads to finish
-            for (int i = 0; i < NUM_OF_PROCESSING_THREADS; i++)
-                if (pthread_join(myThreads[i], NULL) != 0)
-                    printf("Failed to join a thread %d\n", i);
+    for (int i = 0; i < NUM_OF_PROCESSING_THREADS; i++)
+        if (pthread_join(myThreads[i], NULL) != 0)
+            printf("Failed to join a thread %d\n", i);
 
-        pthread_mutex_destroy(&mutexQueue);
-        pthread_cond_destroy(&condQueue);
+    pthread_mutex_destroy(&mutexQueue);
+    pthread_cond_destroy(&condQueue);
 
-        return 0;
-    }
+    return 0;
+}

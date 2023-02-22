@@ -42,7 +42,7 @@ void *consumer(void *arg)
         sem_wait(&semBufferIsEmpty);                                    // Before starting to retrieve an item, check the semaphore if the buffer is empty. If so, wait when items will be added
 
         pthread_mutex_lock(&mutexToLock);                               // Need to lock the mutex/other threads to work with shared memory
-        int retrievedItem = buffer[--numOfItemsInBuffer];               // Retrieve an item and decrement the current index
+        int retrievedItem = buffer[--numOfItemsInBuffer];               // Decrement the current index (evaluate to the previous filled) and save the item
         printf("Retrieved number: %d\n", retrievedItem);                // Item is not retrieved, that is counter is 0
 
         if (numOfItemsInBuffer == 0)                                    // May check or make cond_signal unconditionally: when producers finished their work, main is waiting for this signal (this condition may occur before the producers finished)
