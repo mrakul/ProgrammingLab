@@ -4,6 +4,10 @@
 
 using namespace std;
 
+/* Note: the link below explains why for_each() is in the non-modifying sequence operations category, but can modify items actually
+/*       https://stackoverflow.com/questions/662845/why-is-stdfor-each-a-non-modifying-sequence-operation
+*/
+
 int main(int argc, char const *argv[])
 {
     vector<int> myVector{1, 2, 3, 4, 5};
