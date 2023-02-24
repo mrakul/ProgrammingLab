@@ -30,5 +30,19 @@ int main(int argc, char const *argv[])
     areEqual = equal(myVector1.begin(), myVector1.end(), myVector2.begin(), [](const int &firstRangeItem, const int &secondRangeItem){return (firstRangeItem == secondRangeItem);});
     areEqual ? (cout << "Ranges are equal. " << endl) : (cout << "Ranges are not equal." << endl);
 
+    // 3. equal() example to compare vector and set
+    set<int> mySet{};
+    vector<int> myVector3{5, 4, 3, 2, 1};
+    copy(myVector3.begin(), myVector3.end(), insert_iterator<set<int>>(mySet, mySet.begin()));
+    for_each(mySet.begin(), mySet.end(), [](const int &curItem){cout << curItem << " ";});
+
+    // Check in forward direction => Not equal
+    areEqual = equal(myVector3.begin(), myVector3.end(), mySet.begin());
+    areEqual ? (cout << "Ranges are equal. " << endl) : (cout << "Ranges are not equal." << endl);
+
+    // Check in reverse direction => Equal
+    areEqual = equal(myVector3.rbegin(), myVector3.rend(), mySet.begin());
+    areEqual ? (cout << "Ranges are equal. " << endl) : (cout << "Ranges are not equal." << endl);
+
     return 0;
 }
