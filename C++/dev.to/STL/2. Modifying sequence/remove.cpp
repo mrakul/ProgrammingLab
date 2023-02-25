@@ -4,7 +4,12 @@
 #include <algorithm>
 #include "person.h"
 
-/*** remove() examples:
+/*** remove() examples
+ * Note: the 5th part contains example with the Person.h.
+ * It clearly emonstrates that Destructor is called only when container::erase() is called or, for the list, when list::remove()
+ * With the debugger it can be observed that non-removed items are moved by using move-semantics at the place of the removed items
+ * The rest parts are just general usage of std::remove(), [vector/list]::erase() and list::remove
+ *
 ***/
 
 void printVector(auto &vectToOut);
@@ -49,11 +54,32 @@ int main(int argc, char const *argv[])
     for_each(myList2.begin(), myList2.end(), [](const int &curItem){cout << curItem << " ";});
     cout.put('\n');
 
-    myList2.remove(3);
+    myList2.remove(3);                                                                          // Can be done in one statement for the list
     for_each(myList2.begin(), myList2.end(), [](const int &curItem){cout << curItem << " ";});
     cout.put('\n');
 
-    // (!) 3. Check with Person.h: demonstrate that Destructor is called only when container::erase() is called or, for the list, when list::remove()
+    // 3. remove_if() example: uses predicate as a criteria of removing
+    vector<int> myVector2{1, 2, 3, 4, 5, 6, 7, 8, 9};
+    printVector(myVector2);
+
+    removedPartVect = remove_if(myVector2.begin(), myVector2.end(), [](int &curItem){return (curItem & 1);});                   // Remove odd myVector2
+    printVector(myVector2);
+    myVector2.erase(removedPartVect, myVector2.end());                                                                          // Cut off unwanted part
+    printVector(myVector2);
+
+    myVector2.erase(remove_if(myVector2.begin(), myVector2.end(), [](int &curItem){return (curItem % 4);}), myVector2.end());   // Or use remove_if() right in vector::erase() in one statement not to save iterator
+    printVector(myVector2);                                                                                                     // Remove all but divisible by 4
+
+    // 4. remove_copy(), remove_copy_if(): copies all elements which weren't removed (satisfied the condition).
+    // Opinion: more meaningful name might be copy_unless(), for example
+    vector<int> myVector3{1, 2, 3, 4, 5, 6, 7, 8, 9};
+    vector<int> nonRemovedNumbers(myVector3.size());
+    printVector(myVector3);
+
+    remove_copy_if(myVector3.begin(), myVector3.end(), nonRemovedNumbers.begin(), [](int &curItem){return curItem % 3;});      // Fill nonRemovedItems vector with only divisible by 3
+    printVector(nonRemovedNumbers);                                                                                            // Only divisible by 3 is copied, the rest are zeroes
+
+    // (!) 5. Check with Person.h: demonstrate that Destructor is called only when container::erase() is called or, for the list, when list::remove()
     vector<Person> vectorOfPersons{{"One", "Cringe"}, {"Second", "Binge"}, {"Third", "Dringe"}, {"Fourth", "Fourth"}};
     list<Person> listOfPersons{{"One", "Cringe"}, {"Second", "Binge"}, {"Third", "Dringe"}, {"Fourth", "Fourth"}};
     list<Person> listOfPersons2{{"One", "Cringe"}, {"Second", "Binge"}, {"Third", "Dringe"}, {"Fourth", "Fourth"}};
