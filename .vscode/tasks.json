@@ -31,6 +31,7 @@
                 /*** Choose the standard ***/
                 // C++:
                 "-std=c++2a",
+                // "-std=c++17",
                 // "-std=gnu++11"
                 // "-std=c++11",
                 //-std=c++98",

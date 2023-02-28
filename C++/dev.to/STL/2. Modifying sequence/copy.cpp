@@ -15,6 +15,7 @@ int main(int argc, char const *argv[])
     auto printNum = [](const int &numToPrint){cout << numToPrint << ' ';};
 
     // 1. copy() example
+    // Note from https://en.cppreference.com/w/cpp/algorithm/copy: the behavior is undefined if d_last is within (first, last]. std::copy must be used instead of std::copy_backward in that case.
     // copy(sourceVector.begin(), sourceVector.end(), targetVector.begin());                // This gives segmentation fault since copy just incrementing iterators, and targetVector doesn't contain elements at all
     copy(sourceVector.begin(), sourceVector.end(), insert_iterator<vector<int>>(targetVector, targetVector.begin()));           // Need to use insert_iterator() to insert and change the size of the vector
     // for_each(targetVector.begin(), targetVector.end(), printNum);
@@ -39,7 +40,6 @@ int main(int argc, char const *argv[])
     printVector(targetVector);
 
     // 4. copy_backward(): copies in the backward direction using bidirectional iterators (starting from the last going to the first preserving relative order of the items)
-    // Note from https://en.cppreference.com: the behavior is undefined if d_last is within (first, last]. std::copy must be used instead of std::copy_backward in that case.
     std::vector<int> inputNumbers{1, 2, 3, 4, 5, 6, 7};
     std::vector<int> outputNumbers(inputNumbers.size());
 

@@ -11,13 +11,14 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    // 0. Create two vectors of the same size and print their states. Person Class have Move Assignment operator defined
+    // 0. Create two vectors of the same size and print their states. Person Class has Move Assignment operator defined
     vector<Person> sourceVector{{"Lane", "Fane"}, {"Wow", "Cringe"}, {"Jane", "Rain"}};
     vector<Person> targetVector(sourceVector.size());
     printVector(sourceVector);
     printVector(targetVector);
 
-    // 1. Use move() to move data from the target to the source vector
+    // 1. Use move() to move data from the target to the source vector: move-semantics is used since it is defined in the Person class
+    // Note: the ranges shall not overlap in such a way that result points to an element in the range [first,last). For such cases, see move_backward.
     move(sourceVector.begin(), sourceVector.end(), targetVector.begin());
 
     // 2. Print the vectors again: target contains the data of the source, source data is empty, as expected
