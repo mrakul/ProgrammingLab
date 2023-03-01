@@ -56,6 +56,7 @@ ostream &operator<<(ostream &outStream, const Person &outPerson)
 Person &Person::operator=(Person &&movedPerson)
 {
     // Note: ID is set during creation, so no move it
+    // Reminder: move() is not doing anything, just allow to consider movedPerson.name as rvalue, so Move Assignment is applied
     this->name = move(movedPerson.name);
     this->surname = move(movedPerson.surname);
 
