@@ -2,7 +2,7 @@
 #include <vector>
 #include <list>
 #include <algorithm>
-#include "person.h"
+#include "../PersonClass/person.h"
 
 /*** remove() examples
  * Note: the 5th part contains example with the Person.h.

@@ -3,7 +3,7 @@
 #include <set>
 #include <list>
 #include <algorithm>
-#include "person.h"
+#include "../PersonClass/person.h"
 
 /*** Partitioning algorithms examples ***/
 

@@ -2,7 +2,7 @@
 #include <vector>
 #include <set>
 #include <algorithm>
-#include "person.h"
+#include "../PersonClass/person.h"
 
 /*** move() examples ***/
 
