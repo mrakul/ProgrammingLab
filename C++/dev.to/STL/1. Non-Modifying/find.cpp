@@ -13,6 +13,8 @@ int main(int argc, char const *argv[])
     set<int> subSet{5, 7, 8};
 
     // 1. Check find(), finds the first match
+    // Note: std::find() is used on the set just for example to demonstrate that these functions can be used for associative containers also.
+    // Sets have its own set::find() member function having O(logN) time complexity (surely), not the O(N) as a general std::find()
     auto it = find(mySet.begin(), mySet.end(), 7);
     it != mySet.end() ? (cout << "Found item is: " << *it << endl) : (cout << "Item is not found." << endl);
 
