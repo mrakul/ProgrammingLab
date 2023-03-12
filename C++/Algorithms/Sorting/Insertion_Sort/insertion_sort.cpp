@@ -3,11 +3,12 @@
 
 using namespace std;
 
-/*** Inserting sort implementation ***/
+/*** Insertion Sort implementation ***/
 // The idea is to mark the part of the array as sorted. Initially, only one element is sorted.
 // Next value after sorted part is compared sequentially back to the first element and placed to the correct place, stop when the current is more than encountered from the sorted part.
+// This algorithm is stable!
 
-void insertSort(int *arrayToSort, const int arraySize);
+void insertionSort(int *arrayToSort, const int arraySize);
 void printArray(int const *const arrayPtr, const int arraySize);
 
 int main(int argc, char const *argv[])
@@ -21,12 +22,12 @@ int main(int argc, char const *argv[])
     printArray(intArray, ARRAY_SIZE);
     cout.put('\n');
     cout << "Print the steps of soritng:\n";
-    insertSort(intArray, ARRAY_SIZE);
+    insertionSort(intArray, ARRAY_SIZE);
 
     return 0;
 }
 
-void insertSort(int *arrayToSort, const int arraySize)
+void insertionSort(int *arrayToSort, const int arraySize)
 {
     for (int i = 1; i < arraySize; i++){                           // Start from the second element, since the first is considered sorted
         int sortedPartIdx = i - 1;                                 // Index of the sorted part is before the current to check at the end of the cycle
