@@ -148,6 +148,12 @@ FROM sqlite_master;                             -- shows the entire schema: tabl
     FROM Customers
     ORDER BY cust_id;
 
+-- The same request using LEFT JOIN (copy of the "Count how many Orders every Customer has" below):
+    SELECT C.cust_name, C.cust_state, C.cust_id, COUNT(O.cust_id) AS NUM_OF_ORDERS
+    FROM Customers C
+        LEFT JOIN Orders O ON C.cust_id = O.cust_id
+    GROUP BY C.cust_id
+    ORDER BY C.cust_id;
 
 -- #12, Book: JOINS
 -- INNER JOIN
@@ -155,18 +161,28 @@ FROM sqlite_master;                             -- shows the entire schema: tabl
 -- there are products in the Products table.
 -- (LEFT JOIN will print out vendors also who has no products)
     SELECT ROW_NUMBER() OVER() ROW_NUM,
-           Vendors.vend_id, vend_name, prod_name, prod_price
-    FROM Vendors
-    INNER JOIN Products
-        ON Vendors.vend_id = Products.vend_id
+           V.vend_id, V.vend_name, P.prod_name, P.prod_price
+    FROM Vendors V
+    INNER JOIN Products P
+        ON V.vend_id = P.vend_id
+    ORDER BY V.vend_id;
+
+-- Crossjoin (result as INNER JOIN above):
+    SELECT Vendors.vend_id, vend_name, prod_name, prod_price
+    FROM Vendors, Products
+    WHERE Vendors.vend_id = Products.vend_id
     ORDER BY Vendors.vend_id;
 
--- Crossjoin (result as INNER JOIN)
-    -- SELECT Vendors.vend_id, Products.vend_id, vend_name, prod_name
-    -- FROM Vendors, Products
-    -- WHERE Vendors.vend_id = Products.vend_id;
+-- Additional example to count number of Products every Vendor has.chief_id.
+-- Need to use LEFt JOIN to print Vendors having no Products. And use COUNT([some row from Products]) to consider NULLs as zero
+    SELECT V.vend_id, V.vend_name, P.prod_name, P.prod_price, COUNT(P.prod_name)
+    FROM Vendors V
+    LEFT JOIN Products P
+        ON V.vend_id = P.vend_id
+    GROUP BY V.vend_id
+    ORDER BY V.vend_id;
 
- -- INNER JOIN on the same table (use AS):
+-- INNER JOIN on the same table (use AS):
 -- Prints info of Customers twice in a row
     SELECT *
     FROM Customers AS T1
@@ -178,8 +194,8 @@ FROM sqlite_master;                             -- shows the entire schema: tabl
 -- Vendors->Products->OrderItems
     SELECT P.prod_name, P.prod_price, V.vend_name, OI.quantity, OI.order_num
     FROM Vendors V
-    INNER JOIN Products P ON V.vend_id = P.vend_id
-    INNER JOIN OrderItems OI ON P.prod_id = OI.prod_id
+        INNER JOIN Products P ON V.vend_id = P.vend_id
+        INNER JOIN OrderItems OI ON P.prod_id = OI.prod_id
     WHERE OI.order_num = 20007;
 
  -- CrossJOIN (the same as INNER above):
