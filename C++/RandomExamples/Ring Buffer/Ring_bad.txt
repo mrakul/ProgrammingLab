@@ -1,0 +1,85 @@
+/*** Below is what I've written during the interview ***/
+
+/*Предлагается online реализовать ring со следующими ограничениями.
+
+1. Ring имеет максимальный размер, задаваемый в конструкторе, и не может его превышать. (Попытка добавления при полностью заполненном ring завершается неудачно, не перетирая существующие элементы).
+   Таким образом, это FIFO queue с ограничением длины.
+2. Для простоты ring хранит данные типа int
+3. Функция Add используется для добавления элемента в ring. Если удачно, то возвращает true, неудачно - false.
+4. Функция Take используется для того, чтобы забрать элемент из ring. Если удачно, то возвращает true, неудачно - false.
+
+Ограничения:
+
+1. Аллокация памяти возможна только в конструкторе. Деаллокация памяти, соответственно, только в деструкторе. Add() и Take() (а также функции, которые они вызывают) не должны ее производить
+2. После того, как Add() успешно положит int в ring, и до того, как Take() заберет int из ring, этот int не должен перемещаться по памяти.
+3. Имплементацию делаем ручками, встроенными средствами языка, без использования библиотечных функций (операторы new и delete, в том числе и для массивов считаем встроенными средствами языка).
+   Если Вы будете использовать какую-нибудь библиотечную функцию, то Вам нужно будет также написать реализацию ее и функций, которые она вызывает, пока условие, что делаем, встроенными средствами языка не выполнится.
+
+class Ring{
+  int itemsMaxNum;
+  int numberOfItems;
+  int *queueBuffer;
+
+  int headPos;
+  int tailPos;
+  // int curFreePos;
+
+  // Constructors
+  Ring() : itemsMaxNum(20), numberOfItems(0), headPos(-1), tailPos(-1){
+    int *queueBuffer = new int[20];
+  }
+
+  Ring(int bufferSize) : itemsMaxNum(bufferSize), numberOfItems(0), headPos(-1), tailPos(-1){
+      int *queueBuffer = new int[itemsMaxNum];
+
+      // Current position to place is the first element
+
+  }
+
+  // Functions
+  bool Add(int numToAdd){
+
+    if (numberOfItems > itemsMaxNum)
+      return false;
+    else{
+      if (numberOfItems == 0){
+          queueBuffer[++tailPos] = numToAdd;
+          headPos = tailPos;
+          numberOfItems++;
+          return true;
+        }
+      else{																																// Num of items is between 0 and MAX_NUMBER
+        queueBuffer[++tailPos] = numToAdd;
+        numberOfItems++;
+        return true;
+      }
+    }
+  }
+
+  bool Take(int &takenNum){
+    if (numberOfItems < 0)
+      return false;
+    else{
+        takenNum = queueBuffer[headPos];
+        if (headPos == lastPos)																						// No more elements, start from the beginning
+        {
+          headPos = -1;
+          lastPos = -1;
+        }
+        else
+          headPos++;
+
+        numberOfItems--;
+      }
+    }
+  }
+
+  //Destructor
+  ~Ring(){
+    delete[] queueBuffer;
+
+  }
+
+};
+
+*/
