@@ -1,12 +1,26 @@
+### Books, links ###
+1. Bash Reference Manual
+https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
+
+2. Shell scripting step by step tutorial
+(the same as the book "Mastering Linux Shell Scripting", Moukhtar Ibraghim")
+https://likegeeks.com/bash-script-easy-guide/
+
+3. The Linux Command Line, a Complete Indtroduction, William Shotts, 2nd Edition
+(already purchased, located under my technical library: "Operating Systems/Linux, Bash")
+https://www.amazon.com/Linux-Command-Line-2nd-Introduction/dp/1593279523
+
+
+
+### Commands separaterly and other info ###
 Find command:
 https://www.tecmint.com/35-practical-examples-of-linux-find-command/
 https://www.geeksforgeeks.org/find-command-in-linux-with-examples/
 
 
-
-VIM links:
---Learn Vim For the Last Time: A Tutorial and Primer
-https://danielmiessler.com/study/vim/
-
--- VIM Cheatsheet:
+### VIM ###
+1. VIM Cheatsheet
 https://vim.rtorr.com/
+
+2. Learn Vim For the Last Time: A Tutorial and Primer
+https://danielmiessler.com/study/vim/
