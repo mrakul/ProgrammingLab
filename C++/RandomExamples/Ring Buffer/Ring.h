@@ -10,12 +10,12 @@ using namespace std;
 class Ring
 {
 private:
-    int itemsMaxNum;                                                           // Value to set max size of the buffer
-    int numberOfItems;                                                         // Current number of items in the buffer
+    size_t itemsMaxNum;                                                        // Value to set max size of the buffer
+    size_t numberOfItems;                                                      // Current number of items in the buffer
     int *queueBuffer;                                                          // Buffer area pointer
     // Use indexes to access items in the buffer
-    int headPos;                                                               // Head position: position of the first to deque item
-    int tailPos;                                                               // Tail position: (!) tail is one past the end position. If the buffer is full, head is equal to tail
+    size_t headPos;                                                               // Head position: position of the first to deque item
+    size_t tailPos;                                                               // Tail position: (!) tail is one past the end position. If the buffer is full, head is equal to tail
 
 public:
     // Default Constructor
@@ -25,20 +25,20 @@ public:
     }
 
     // Constructor using specified value of the buffer size
-    Ring(int bufferSize): itemsMaxNum(bufferSize), numberOfItems(0), queueBuffer(nullptr), headPos(0), tailPos(0)
+    Ring(size_t bufferSize): itemsMaxNum(bufferSize), numberOfItems(0), queueBuffer(nullptr), headPos(0), tailPos(0)
     {
         queueBuffer = new (nothrow) int[itemsMaxNum];                          // Obtain enough memory. Need to throw exception or check the pointer, surely
     }
 
     // Adding an item function
-    bool addItem(int numToAdd)                                                 // Use a number to set to a new buffer
+    bool addItem(size_t numToAdd)                                                 // Use a number to set to a new buffer
     {
         // Note: there can be a solution to compare headPos and tailPos to understand if there is free space to add items or there is no items in the buffer (for example, headPos + 1 == tailPos)
         if (numberOfItems == itemsMaxNum)                                      // If number of items reached max buffer size
             return false;                                                      // Return False
-        else{                                                                  // There is a space in the buffer to add an item
-            queueBuffer[tailPos] = numToAdd;                                   // Set the value at the current tail position
-            tailPos++;                                                         // Move the tail forward
+        else {                                                                  // There is a space in the buffer to add an item
+             queueBuffer[tailPos] = numToAdd;                                   // Set the value at the current tail position
+             tailPos++;                                                         // Move the tail forward
 
             if (tailPos == itemsMaxNum)                                        // If tail position is out of range (after the buffer area)
                 tailPos = 0;                                                   // Set the tail pointing to the beginning of the buffer area
@@ -77,9 +77,9 @@ public:
 
         cout << "Buffer's content: " << endl;
         // Print content itself: use the Until loop since head can be equal to tail if max number is reached
-        int curPos = headPos;                                                  // Start from the head
+        size_t curPos = headPos;                                                  // Start from the head
         if (numberOfItems > 0){                                                // To prevent moving through the cycle
-            do{                                                                // Until current reaches the tail
+            do {                                                                // Until current reaches the tail
                 cout << queueBuffer[curPos] << " <- ";                         // Print the item
                 ++curPos;                                                      // Move current forward
 

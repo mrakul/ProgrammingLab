@@ -6,7 +6,7 @@ const int BUFFER_SIZE = 7;
 int main(int argc, char const *argv[])
 {
     // 0. Create a Ring buffer of 7 elements
-    Ring myRing(BUFFER_SIZE);
+     Ring myRing(BUFFER_SIZE);
 
     // 1. Fill the buffer fully and print the content. Loop while addItem() returns True
     for (int i = 0; myRing.addItem(i + 1); ++i);
@@ -18,10 +18,10 @@ int main(int argc, char const *argv[])
     myRing.getItem(curHead);
     myRing.printQueue();
 
-    // 3. Try to add more items to the buffer and print the content
+    // 3. Try addding more items to the buffer and print the content
     myRing.addItem(10);
     myRing.addItem(11);
-    myRing.addItem(12);
+    myRing.addItem(12);                                     // No place to save the number
     myRing.printQueue();
 
     // 4. Remove all the items from the buffer: both head and tail positions are index of 2
@@ -33,5 +33,5 @@ int main(int argc, char const *argv[])
     for (int i = 0; myRing.addItem(i * 10); ++i);
     myRing.printQueue();
 
-    return 0;
+    return EXIT_SUCCESS;
 }
