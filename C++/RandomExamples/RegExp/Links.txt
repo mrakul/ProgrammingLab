@@ -1,0 +1,16 @@
+RegExp (Regular Expressions) materials
+
+Basics:
+https://users.cs.cf.ac.uk/Dave.Marshall/Internet/NEWS/regexp.html
+https://www3.ntu.edu.sg/home/ehchua/programming/howto/Regexe.html
+https://docs.trifacta.com/display/DP/Supported+Special+Regular+Expression+Characters
+
+
+The tool to check against patterns:
+https://regex101.com/
+
+Lessons:
+https://regexone.com/lesson/introduction_abcs
+
+Habr:
+https://habr.com/ru/articles/545150/
