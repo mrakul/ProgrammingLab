@@ -53,6 +53,13 @@ int main(int argc, char const *argv[])
     for (setIter = setOfWords.begin(); setIter != setOfWords.end(); setIter++)
         mapOfWords[*setIter] = count(wordsVect.begin(), wordsVect.end(), *setIter);     //Count the number of the word appears in the vector
 
+    // Add one more word to the set and just access the map by the key to demonstrate adding to the map
+    setOfWords.insert("Test");
+    setOfWords.insert("Word");
+    // (!) If the key doesn't exist ("Test") in the map, it is added with default value
+    // mapOfWords["Word"];              // Access "Word" item when iterating below
+    mapOfWords["Test"] = 200;           // Set "Test" key value explicitly, "Word" must contain default value
+
     // Display the map contents: go through the set and use the index for the map to print the frequency
     cout << endl << "Word frequency:" << endl;
     for (setIter = setOfWords.begin(); setIter != setOfWords.end(); setIter++)
