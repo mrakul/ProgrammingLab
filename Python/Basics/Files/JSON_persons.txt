@@ -1,0 +1,27 @@
+{
+    "persons" :
+    [
+        {
+            "name": {
+                "first": "Lane",
+                "last": "Train"
+            },
+            "job": [
+                "dev",
+                "mgr"
+            ],
+            "age": 40.5
+        },
+        {
+            "test": {
+                "first": "Lane",
+                "last": "Train"
+            },
+            "job": [
+                "dev",
+                "mgr"
+            ],
+            "age": 40.5
+        }
+    ]
+}
