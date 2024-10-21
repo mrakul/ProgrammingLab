@@ -195,10 +195,17 @@ L1 = [1, 3, 5]
 L2 = L1             # => L2 refers to the same object (only for mutable objects)
 L1[0] = 200         # Changes both L2 and L1 (sure)
 
+# Print ID of the objects => equal
+print(id(L1), id(L2))
+
 # Make copy
 import copy
 L2 = copy.copy(L1)      # "shallow" copy
 L2 = copy.deepcopy(L1)  # Deep copy with nested structions
+
+# Print ID of the objects => different, anothe object was created
+print(id(L1), id(L2))
+
 # or
 L2 = list(L1)       # Generage another object using list Constructor 
 
@@ -213,3 +220,20 @@ sys.getrefcount(L1)
 print([x for x in sys.argv])
 # Or just
 print(sys.argv)
+
+# Comparisons
+L1 = [1, 2, 3]
+L2 = [1, 2, 3]
+
+# Equal but not the same objects
+print(L1 == L2, L1 is L2)
+
+# Equal and the same objects - short strings
+S1 = "Test"
+S2 = "Test"
+print(S1 == S2, S1 is S2)
+
+# Equal and not the same objects - longer strings
+S1 = "Long string 444444444444444 666666666666666666666666666666666666"
+S2 = "Long string 444444444444444 666666666666666666666666666666666666"
+print(S1 == S2, S1 is S2)

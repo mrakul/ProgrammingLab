@@ -1,0 +1,668 @@
+# trees.py
+
+def tree_0(row):
+    if row['entropy_list7'] XXX873:
+        if row['pkt_len_list0'] <= XXX0019:
+            if row['pkt_len_list1'] XXX764:
+                return 0
+            else:
+                if row['pkt_len_list1'] XXX272:
+                    if row['directions6'] <= X.XX:
+                        return 1
+                    else:
+                        return 1
+                else:
+                    return 1
+        else:
+            if row['true_entropy_list5'] XXX768:
+                if row['true_entropy_list5'] XXX603:
+                    return 0
+                else:
+                    if row['true_entropy_list5'] XXX625:
+                        return 0
+                    else:
+                        return 0
+            else:
+                if row['directions6'] XXX062:
+                    if row['pkt_len_list7'] <= -X:
+                        return 0
+                    else:
+                        return 0
+                else:
+                    return 0
+    else:
+        if row['pkt_len_list1'] XXX917:
+            return 0
+        else:
+            if row['true_entropy_list5'] <= :
+                if row['true_entropy_list11'] XXX883:
+                    if row['pkt_len_list7'] <= X.X:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    return 0
+            else:
+                if row['pkt_direction6'] <= -0X63:
+                    if row['true_entropy_list11'] XXX853:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['pkt_direction6'] <= -X618:
+                        return 0
+                    else:
+                        return 0
+
+def tree_1(row):
+    if row['entropy_list6'] XXX566:
+        if row['pkt_direction0'] <= -0.X:
+            if row['pkt_len_list7'] <= -0X672:
+                if row['pkt_len_list7'] <= -0X25:
+                    return 0
+                else:
+                    return 0
+            else:
+                if row['directions6'] XXX062:
+                    return 1
+                else:
+                    return 0
+        else:
+            if row['true_entropy_list6'] XXX236:
+                if row['entropy_list6'] <= -3X77:
+                    if row['pkt_direction6'] <= 1X493:
+                        return 0
+                    else:
+                        return 1
+                else:
+                    if row['entropy_list6'] XXX434:
+                        return 0
+                    else:
+                        return 1
+            else:
+                if row['pkt_len_list0'] <= -0X98:
+                    return 1
+                else:
+                    if row['pkt_len_list1'] XXX718:
+                        return 0
+                    else:
+                        return 1
+    else:
+        if row['pkt_direction0'] <= -0X941:
+            if row['pkt_len_list7'] <= 1X52:
+                if row['true_entropy_list0'] XXX539:
+                    if row['directions6'] <= 1X0:
+                        return 1
+                    else:
+                        return 1
+                else:
+                    if row['entropy_list6'] XXX444:
+                        return 1
+                    else:
+                        return 0
+            else:
+                if row['pkt_len_list7'] <= 1X3772:
+                    if row['pkt_direction6'] <= -X163:
+                        return 0
+                    else:
+                        return 0
+                else:
+                    return 1
+        else:
+            return 0
+
+def tree_2(row):
+    if row['directions6'] <= 1X70:
+        if row['true_entropy_list11'] XXX764:
+            if row['entropy_list6'] <= X298:
+                if row['pkt_len_list1'] XXX686:
+                    if row['true_entropy_list6'] <= X03:
+                        return 1
+                    else:
+                        return 1
+                else:
+                    return 0
+            else:
+                if row['entropy_list7'] XXX626:
+                    if row['true_entropy_list6'] <= -X396:
+                        return 1
+                    else:
+                        return 1
+                else:
+                    return 1
+        else:
+            if row['entropy_list6'] XXX164:
+                if row['pkt_direction0'] <= -X88:
+                    if row['entropy_list7'] XXX842:
+                        return 0
+                    else:
+                        return 1
+                else:
+                    if row['entropy_list6'] XXX193:
+                        return 0
+                    else:
+                        return 0
+            else:
+                if row['pkt_direction0'] <= -0.4614:
+                    if row['pkt_direction0'] <= -0.4913:
+                        return 0
+                    else:
+                        return 1
+                else:
+                    if row['pkt_direction6'] <= -1.1982:
+                        return 1
+                    else:
+                        return 0
+    else:
+        if row['pkt_len_list1'] XXX534:
+            if row['true_entropy_list11'] <= -1.2056:
+                if row['pkt_len_list7'] <= -0.2633:
+                    if row['true_entropy_list5'] XXX051:
+                        return 1
+                    else:
+                        return 1
+                else:
+                    return 1
+            else:
+                return 0
+        else:
+            if row['entropy_list7'] XXX093:
+                if row['true_entropy_list11'] <= -0.7449:
+                    if row['entropy_list6'] XXX602:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['pkt_len_list7'] <= -1.4382:
+                        return 0
+                    else:
+                        return 0
+            else:
+                if row['true_entropy_list0'] XXX248:
+                    if row['pkt_len_list1'] XXX954:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['true_entropy_list0'] XXX787:
+                        return 0
+                    else:
+                        return 0
+
+def tree_3(row):
+    if row['pkt_len_list1'] XXX227:
+        if row['true_entropy_list11'] XXX764:
+            if row['true_entropy_list11'] <= -1.2799:
+                return 0
+            else:
+                if row['pkt_direction0'] <= -0.1791:
+                    if row['pkt_direction0'] <= -0.4301:
+                        return 1
+                    else:
+                        return 1
+                else:
+                    return 0
+        else:
+            if row['pkt_len_list1'] XXX132:
+                if row['pkt_direction0'] <= -0.4064:
+                    if row['pkt_len_list0'] XXX002:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['pkt_direction6'] XXX692:
+                        return 0
+                    else:
+                        return 0
+            else:
+                if row['true_entropy_list6'] <= -0.3950:
+                    if row['entropy_list7'] <= -1.1416:
+                        return 0
+                    else:
+                        return 1
+                else:
+                    if row['entropy_list6'] XXX736:
+                        return 0
+                    else:
+                        return 0
+    else:
+        if row['true_entropy_list5'] XXX251:
+            if row['pkt_direction6'] <= -0.2772:
+                return 1
+            else:
+                if row['entropy_list7'] <= -1.7246:
+                    return 0
+                else:
+                    return 0
+        else:
+            if row['true_entropy_list5'] XXX329:
+                if row['true_entropy_list0'] XXX442:
+                    return 1
+                else:
+                    if row['pkt_direction6'] XXX066:
+                        return 1
+                    else:
+                        return 1
+            else:
+                if row['pkt_len_list7'] <= 1.2088:
+                    return 1
+                else:
+                    return 1
+
+def tree_4(row):
+    if row['pkt_direction6'] XXX873:
+        if row['pkt_len_list7'] <= 1.3157:
+            if row['pkt_len_list7'] <= -0.8814:
+                if row['pkt_direction0'] <= -0.4314:
+                    if row['pkt_len_list7'] <= -1.2163:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['true_entropy_list5'] XXX978:
+                        return 0
+                    else:
+                        return 1
+            else:
+                if row['entropy_list6'] XXX182:
+                    if row['true_entropy_list5'] <= -0.0822:
+                        return 0
+                    else:
+                        return 1
+                else:
+                    if row['true_entropy_list11'] XXX853:
+                        return 1
+                    else:
+                        return 0
+        else:
+            if row['true_entropy_list5'] XXX456:
+                return 0
+            else:
+                if row['pkt_direction6'] <= -1.2622:
+                    if row['entropy_list6'] XXX400:
+                        return 1
+                    else:
+                        return 1
+                else:
+                    if row['entropy_list6'] XXX086:
+                        return 1
+                    else:
+                        return 0
+    else:
+        if row['pkt_direction6'] <= 1.9968:
+            if row['pkt_len_list7'] <= -1.3866:
+                if row['pkt_direction6'] XXX746:
+                    if row['true_entropy_list0'] <= -0.4353:
+                        return 0
+                    else:
+                        return 1
+                else:
+                    if row['entropy_list7'] <= -3.2211:
+                        return 1
+                    else:
+                        return 0
+            else:
+                if row['pkt_len_list0'] <= -1.2056:
+                    if row['pkt_direction6'] <= 1.2033:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['directions6'] XXX062:
+                        return 0
+                    else:
+                        return 0
+        else:
+            if row['pkt_len_list0'] <= -0.5398:
+                return 1
+            else:
+                if row['pkt_len_list1'] XXX023:
+                    if row['true_entropy_list11'] XXX853:
+                        return 0
+                    else:
+                        return 0
+                else:
+                    if row['true_entropy_list11'] XXX359:
+                        return 1
+                    else:
+                        return 0
+
+def tree_5(row):
+    if row['pkt_len_list7'] <= 1.0473:
+        if row['pkt_len_list7'] XXX591:
+            if row['true_entropy_list6'] XXX162:
+                if row['pkt_direction6'] XXX692:
+                    if row['true_entropy_list6'] <= -0.8793:
+                        return 1
+                    else:
+                        return 1
+                else:
+                    if row['pkt_len_list1'] XXX699:
+                        return 1
+                    else:
+                        return 0
+            else:
+                if row['pkt_len_list1'] XXX132:
+                    if row['pkt_len_list7'] <= -0.1078:
+                        return 0
+                    else:
+                        return 0
+                else:
+                    if row['pkt_len_list1'] XXX227:
+                        return 0
+                    else:
+                        return 1
+        else:
+            if row['pkt_direction0'] <= -0.4689:
+                if row['pkt_direction6'] XXX173:
+                    if row['entropy_list7'] XXX714:
+                        return 1
+                    else:
+                        return 1
+                else:
+                    return 0
+            else:
+                if row['pkt_direction0'] <= -0.3814:
+                    if row['pkt_len_list0'] <= -0.5398:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['pkt_direction0'] <= -0.1941:
+                        return 1
+                    else:
+                        return 0
+    else:
+        if row['true_entropy_list11'] XXX764:
+            return 1
+        else:
+            if row['pkt_direction0'] <= -0.5188:
+                if row['pkt_direction6'] <= -1.2234:
+                    return 1
+                else:
+                    return 1
+            else:
+                if row['pkt_direction0'] <= -0.4114:
+                    return 0
+                else:
+                    if row['pkt_len_list7'] <= 1.2880:
+                        return 0
+                    else:
+                        return 0
+
+def tree_6(row):
+    if row['pkt_len_list1'] XXX227:
+        if row['entropy_list6'] XXX426:
+            if row['entropy_list7'] XXX345:
+                if row['pkt_len_list0'] XXX853:
+                    if row['pkt_direction6'] XXX549:
+                        return 0
+                    else:
+                        return 1
+                else:
+                    if row['pkt_direction6'] <= -0.1731:
+                        return 0
+                    else:
+                        return 0
+            else:
+                if row['true_entropy_list11'] <= -1.1640:
+                    return 1
+                else:
+                    if row['pkt_direction6'] <= -0.8884:
+                        return 1
+                    else:
+                        return 0
+        else:
+            if row['true_entropy_list11'] <= -1.2175:
+                if row['true_entropy_list6'] XXX504:
+                    if row['entropy_list6'] XXX875:
+                        return 0
+                    else:
+                        return 1
+                else:
+                    if row['entropy_list6'] XXX781:
+                        return 1
+                    else:
+                        return 1
+            else:
+                if row['pkt_len_list1'] XXX132:
+                    if row['pkt_direction6'] <= -1.1872:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['true_entropy_list5'] XXX678:
+                        return 0
+                    else:
+                        return 0
+    else:
+        if row['pkt_direction6'] XXX030:
+            if row['entropy_list7'] XXX783:
+                if row['pkt_direction6'] XXX118:
+                    if row['true_entropy_list0'] XXX739:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    return 0
+            else:
+                if row['entropy_list7'] XXX508:
+                    return 1
+                else:
+                    return 1
+        else:
+            if row['pkt_direction6'] XXX516:
+                if row['entropy_list6'] XXX265:
+                    return 0
+                else:
+                    return 1
+            else:
+                if row['true_entropy_list5'] <= -1.0119:
+                    return 0
+                else:
+                    return 1
+
+def tree_7(row):
+    if row['pkt_len_list1'] XXX426:
+        return 0
+    else:
+        if row['pkt_len_list1'] XXX132:
+            if row['pkt_direction0'] <= -0.4052:
+                if row['directions6'] XXX062:
+                    if row['entropy_list7'] XXX369:
+                        return 1
+                    else:
+                        return 1
+                else:
+                    return 0
+            else:
+                if row['pkt_len_list0'] XXX408:
+                    if row['entropy_list6'] XXX560:
+                        return 1
+                    else:
+                        return 1
+                else:
+                    if row['true_entropy_list0'] XXX651:
+                        return 0
+                    else:
+                        return 0
+        else:
+            if row['pkt_len_list1'] XXX820:
+                if row['pkt_len_list7'] XXX878:
+                    if row['true_entropy_list6'] <= -1.0559:
+                        return 0
+                    else:
+                        return 0
+                else:
+                    if row['true_entropy_list6'] XXX154:
+                        return 0
+                    else:
+                        return 0
+            else:
+                if row['true_entropy_list6'] XXX644:
+                    if row['true_entropy_list11'] XXX853:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['pkt_len_list1'] XXX921:
+                        return 1
+                    else:
+                        return 1
+
+def tree_8(row):
+    if row['true_entropy_list5'] XXX593:
+        if row['pkt_len_list0'] <= -1.1640:
+            if row['directions6'] <= -0.0546:
+                if row['pkt_len_list7'] <= -0.8299:
+                    if row['entropy_list6'] XXX592:
+                        return 1
+                    else:
+                        return 1
+                else:
+                    if row['pkt_len_list7'] XXX648:
+                        return 1
+                    else:
+                        return 1
+            else:
+                return 1
+        else:
+            if row['true_entropy_list11'] XXX378:
+                return 0
+            else:
+                if row['entropy_list7'] XXX846:
+                    if row['true_entropy_list6'] XXX742:
+                        return 0
+                    else:
+                        return 0
+                else:
+                    if row['pkt_len_list1'] XXX227:
+                        return 0
+                    else:
+                        return 1
+    else:
+        if row['pkt_len_list1'] XXX947:
+            if row['true_entropy_list5'] XXX654:
+                if row['entropy_list6'] XXX905:
+                    if row['true_entropy_list5'] XXX610:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['pkt_len_list0'] XXX180:
+                        return 1
+                    else:
+                        return 0
+            else:
+                if row['pkt_len_list1'] XXX132:
+                    if row['pkt_len_list7'] <= 1.3078:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['true_entropy_list5'] XXX767:
+                        return 1
+                    else:
+                        return 0
+        else:
+            if row['pkt_len_list1'] XXX227:
+                return 0
+            else:
+                if row['true_entropy_list5'] XXX329:
+                    if row['entropy_list6'] XXX888:
+                        return 0
+                    else:
+                        return 1
+                else:
+                    if row['pkt_len_list7'] <= 1.2088:
+                        return 0
+                    else:
+                        return 1
+
+def tree_9(row):
+    if row['true_entropy_list6'] XXX469:
+        if row['true_entropy_list6'] <= -0.1980:
+            if row['pkt_direction6'] XXX323:
+                if row['pkt_len_list1'] XXX764:
+                    return 0
+                else:
+                    if row['pkt_len_list1'] XXX718:
+                        return 1
+                    else:
+                        return 1
+            else:
+                if row['pkt_len_list1'] XXX826:
+                    if row['pkt_direction0'] <= -0.2440:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['pkt_direction0'] <= -0.5188:
+                        return 1
+                    else:
+                        return 0
+        else:
+            if row['true_entropy_list6'] XXX037:
+                if row['pkt_direction0'] <= -0.3902:
+                    if row['pkt_direction6'] XXX393:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['entropy_list6'] <= -0.5518:
+                        return 0
+                    else:
+                        return 0
+            else:
+                if row['true_entropy_list11'] <= -1.1640:
+                    if row['entropy_list7'] XXX504:
+                        return 0
+                    else:
+                        return 1
+                else:
+                    if row['pkt_direction6'] <= -0.0230:
+                        return 0
+                    else:
+                        return 0
+    else:
+        if row['pkt_len_list1'] XXX718:
+            if row['pkt_len_list1'] XXX132:
+                if row['entropy_list7'] XXX296:
+                    if row['true_entropy_list5'] XXX500:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['pkt_len_list1'] XXX865:
+                        return 0
+                    else:
+                        return 1
+            else:
+                if row['true_entropy_list6'] XXX123:
+                    if row['entropy_list7'] XXX062:
+                        return 0
+                    else:
+                        return 1
+                else:
+                    return 0
+        else:
+            if row['pkt_direction0'] <= -0.4888:
+                if row['true_entropy_list0'] XXX709:
+                    if row['pkt_direction0'] <= -0.5188:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    if row['pkt_direction6'] <= 2.1062:
+                        return 1
+                    else:
+                        return 0
+            else:
+                if row['pkt_len_list7'] <= 1.0800:
+                    if row['pkt_direction6'] XXX077:
+                        return 1
+                    else:
+                        return 0
+                else:
+                    return 0
+

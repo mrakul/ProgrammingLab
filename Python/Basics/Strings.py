@@ -45,6 +45,19 @@ print(chr(115))
 print(int('1101', 2))      # Specify the number system as the second operand
 print(bin(13))
 
+# Print out required number of bits
+number = 17
+print(f"Binary representation of {number}: {bin(number)}")
+print("Required number of bits: ", number.bit_length())
+print("Number of bits set: ", number.bit_count())
+
+# Print table of bits set in the byte
+for num in range(0, 256):
+        print(num.bit_count(), end=' ')
+        
+        if (((num + 1) % 16) == 0):
+                print('\n', end='')             
+
 # Changing string
 S = 'splot'
 # S[0] = 'l'    => Restricted, strings are immutble
@@ -53,6 +66,7 @@ S = S.replace('pl', 'pamal')    # Need to create a new one
 L = list(S)     # => modifying works for lists
 L[0] = 'q'
 S = ''.join(L)  # => convert back
+
 
 ### Parsing ###
 line = 'aaa bbb ccc'

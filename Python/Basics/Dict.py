@@ -6,7 +6,7 @@ D1.keys()
 print(D1.get('1'))
 print(D1.get(3))    # => None
 
-# Merge 
+# Merge
 # D2 = {[1, 2] : "Test"}    # => Restricted, List is not hashable object
 D2 = {4 : "Test"}
 D1.update(D2)

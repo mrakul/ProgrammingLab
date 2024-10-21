@@ -219,4 +219,59 @@ with open(PERSONS_FILE) as fileToRead:
     finally:
         fileToRead.close()
 
+# Read and insert into the same file: repeat words as the len of the word
+# Use seek() method as in C/C++, open file as '+r'
+
+# Fill the file preliminary with numbers
+# fileToRewrite = open('./Basics/Files/text.txt', 'w')
+
+# for x in range(100):
+#     fileToRewrite.write(str(x) * x + '\n')
+
+# fileToRewrite.close()
+
+# Process file inplace
+fileToRewrite = open('./Basics/Files/text.txt', '+r')
+offset = 0
+
+for curLine in fileToRewrite.readlines():
+    
+    # Note: if seek is beyond the current file size, space is filled with 0x00, as usual
+    fileToRewrite.seek(offset)        
+    newLine = ((curLine.rstrip() + ' ') * (len(curLine) - len('\n'))) + '\n'
+    
+    fileToRewrite.write(newLine)
+    fileToRewrite.flush()
+    
+    offset += len(newLine)
+
+
+# Read file line by line using 'walrus operator' (!)
+# Return to beginning, as usual
+fileToRewrite.seek(0)
+    
+while (line := fileToRewrite.readline()):
+    print(line, end = '')
+fileToRewrite.close()
+
+
+### Get features separated by commas to another file with only unique values ###
+fileToRead = open('features_model1.txt', 'r')
+
+data = fileToRead.read()
+
+fileProcessed = open('./features_model_1_processed', 'w')
+featuresSet = set({})
+
+for curFeature in data.split(','):
+    featuresSet.add(curFeature)
+    
+for feature in featuresSet:
+    fileProcessed.write(feature)
+    fileProcessed.write(', ')
+    
+fileProcessed.close()
+fileToRead.close()
+
+
 print("End of the program")
