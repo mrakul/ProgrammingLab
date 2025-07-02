@@ -4,38 +4,66 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
-		/*** GCC compiler ***/
-		{
-			"name": "gcc.exe - Build and debug active file",
-			"type": "cppdbg",
-			"request": "launch",
-			"program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-			"args": ["floats.txt"],//, "123"],
-			"stopAtEntry": true,
-			//"cwd": "${workspaceFolder}",
-			"cwd": "${fileDirname}",
-			"environment": [
-				{
-					"name": "PATH",
-					"value": "%PATH%;C:\\Program Files\\mingw\\mingw64\\bin\\"
-				}
+		/*** gcc + gdb, MinGW, Windows ***/
+		// {
+		// 	"name": "gcc.exe - Build and debug active file",
+		// 	"type": "cppdbg",
+		// 	"request": "launch",
+		// 	"program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+		// 	"args": ["floats.txt"],//, "123"],
+		// 	"stopAtEntry": true,
+		// 	//"cwd": "${workspaceFolder}",
+		// 	"cwd": "${fileDirname}",
+		// 	"environment": [
+		// 		{
+		// 			"name": "PATH",
+		// 			"value": "%PATH%;C:\\Program Files\\mingw\\mingw64\\bin\\"
+		// 		}
 
-			],
-			"externalConsole": false,
-			"MIMode": "gdb",
-			"targetArchitecture": "x86_64",
-			"logging": { "engineLogging": true },
-			"miDebuggerPath": "C:\\Program Files\\mingw\\mingw64\\bin\\gdb.exe",
-			"setupCommands": [
-				{
-					"description": "Enable pretty-printing for gdb",
-					"text": "-enable-pretty-printing",
-					"ignoreFailures": true
-				}
-			],
-			"preLaunchTask": "C/C++: gcc.exe build active file"
-		},
-		/*** MSVC compiler ***/
+		// 	],
+		// 	"externalConsole": false,
+		// 	"MIMode": "gdb",
+		// 	"targetArchitecture": "x86_64",
+		// 	"logging": { "engineLogging": true },
+		// 	"miDebuggerPath": "C:\\Program Files\\mingw\\mingw64\\bin\\gdb.exe",
+		// 	"setupCommands": [
+		// 		{
+		// 			"description": "Enable pretty-printing for gdb",
+		// 			"text": "-enable-pretty-printing",
+		// 			"ignoreFailures": true
+		// 		}
+		// 	],
+		// 	"preLaunchTask": "C/C++: gcc.exe build active file"
+		// },
+
+                /*** gcc + gdb,  Linux (Ubuntu) ***/
+                {
+                        "name": "(gdb) Launch",
+                        "type": "cppdbg",
+                        "request": "launch",
+                        "program": "${fileDirname}\\${fileBasenameNoExtension}",
+                        "args": [],
+                        "stopAtEntry": true,
+                        "cwd": "${fileDirname}",
+                        "environment": [],
+                        "externalConsole": false,
+                        "MIMode": "gdb",
+                        "miDebuggerPath": "/usr/bin/gdb",
+                        "setupCommands": [
+                                {
+                                        "description": "Enable pretty-printing for gdb",
+                                        "text": "-enable-pretty-printing",
+                                        "ignoreFailures": true
+                                },
+                                {
+                                        "description": "Set Disassembly Flavor to Intel",
+                                        "text": "-gdb-set disassembly-flavor intel",
+                                        "ignoreFailures": true
+                                }
+                        ],
+                        "preLaunchTask": "C/C++: gcc build active file"
+                }
+		/*** MSVC compiler, Windows ***/
 		// {
 		// 	"name": "cl.exe build and debug active file",
 		// 	"type": "cppvsdbg",
