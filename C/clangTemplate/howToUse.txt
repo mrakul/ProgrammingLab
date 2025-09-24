@@ -1,0 +1,66 @@
+Clang-format is a tool used to format C, C++, Objective-C, Java, JavaScript, and Protobuf code. It can be used as a standalone tool or integrated into various IDEs and editors. 
+1. Installation:
+
+    Standalone:
+    Install clang-format as part of the LLVM toolchain. This often involves downloading pre-built binaries or using a package manager specific to your operating system.
+    IDE/Editor Integration:
+    Many IDEs like CLion, Visual Studio, and JetBrains Rider, and editors like VS Code, offer built-in support or extensions for clang-format.
+
+2. Basic Usage (Standalone):
+Format a single file.
+Код
+
+    clang-format -i my_file.cpp
+
+The -i flag formats the file in place. Without it, the formatted output is printed to standard output. Specify a style.
+Код
+
+    clang-format -style=llvm -i my_file.cpp
+
+You can use predefined styles like LLVM, Google, Chromium, Mozilla, WebKit, or Microsoft. custom style.
+Код
+
+    clang-format -style="{IndentWidth: 4, TabWidth: 4}" -i my_file.cpp
+
+Define a custom style directly in the command line using a JSON-like format.
+3. Using a .clang-format file:
+
+    Create a file named .clang-format (or _clang-format) in your project's root directory.
+    Define your desired style options within this file using YAML syntax.
+    Example .clang-format:
+
+Код
+
+    BasedOnStyle: LLVM
+    IndentWidth: 4
+    TabWidth: 4
+    UseTab: Never
+    BreakBeforeBraces: Attach
+
+Format using the file.
+Код
+
+    clang-format -style=file -i my_file.cpp
+
+Clang-format will automatically search for the .clang-format file in the current directory and its parent directories.
+
+    Dump a predefined style to a file: 
+
+Код
+
+    clang-format -style=llvm -dump-config > .clang-format
+
+This creates a .clang-format file with all options of the LLVM style, which you can then customize.
+4. Disabling Formatting:
+
+    You can prevent clang-format from formatting specific sections of code using special comments:
+
+C++
+
+    // clang-format off
+    void unformatted_code();
+    // clang-format on
+
+5. IDE/Editor Integration:
+
+    Refer to your specific IDE or editor's documentation for instructions on enabling and configuring clang-format integration. This typically involves enabling a setting or installing an extension.
